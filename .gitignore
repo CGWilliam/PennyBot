@@ -203,6 +203,7 @@ develop-eggs/
 .installed.cfg
 *.pyc
 __pycache__
+.idea
 
 # Installer logs
 pip-log.txt
