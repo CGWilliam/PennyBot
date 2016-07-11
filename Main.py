@@ -93,7 +93,7 @@ def find_penny_comment(flat_comments, processing, mods):
                     #Other commands
 
                     if current.startswith("test"):
-                        reply = 'Im working!'
+                        reply = "I'm working!"
 
                     if current.startswith("roosterteeth"):
                         reply = " You mean Cock Bite Studios?"
@@ -218,7 +218,7 @@ def find_penny_comment(flat_comments, processing, mods):
                         reply ="[Attacking target!](http://fav.me/d7jdxet)"
 
                     elif current.startswith("fnki"):
-                        reply ="[They seem to be messing some members.](http://vignette2.wikia.nocookie.net/rwby/images/b/b8/Team_FNKI.png/revision/latest?cb=20151206162352)"
+                        reply ="[They seem to be missing some members.](http://vignette2.wikia.nocookie.net/rwby/images/b/b8/Team_FNKI.png/revision/latest?cb=20151206162352)"
 
                     elif current.startswith("sssn"):
                         reply ="[They're a cool group of idiots.](http://fav.me/d7rhk19)"
@@ -233,7 +233,7 @@ def find_penny_comment(flat_comments, processing, mods):
                         reply ="[The new A team?](http://fav.me/d9u8r04)"
 
                     elif current.startswith("freezerburn"):
-                        reply ="[So pure..](http://fav.me/d8dydoe)"
+                        reply ="[So pure...](http://fav.me/d8dydoe)"
 
                     elif current.startswith("camp camp"):
                         reply ="[Crazy Kids](https://youtu.be/IX1hxJ-0fDY?t=1m2s)"
@@ -242,7 +242,7 @@ def find_penny_comment(flat_comments, processing, mods):
                         reply ="[That guy didn't look right...](https://youtu.be/A6sWqoau_QQ?t=2m21s)"
 
                     elif current.startswith("quality post"):
-                        reply ="You apprear to have made a quality post, have a [Penny!](http://fav.me/d7laean)"
+                        reply ="You appear to have made a quality post, have a [Penny!](http://fav.me/d7laean)"
 
                     elif current.startswith("how are you"):
                         reply ="I'm fine, you?"
@@ -251,21 +251,21 @@ def find_penny_comment(flat_comments, processing, mods):
                         reply ="[You can do it Ruby!](https://youtu.be/tu6D5jR1rSQ?t=6s)"
 
                     elif current.startswith("rwby"):
-                        reply ="[The Begining.](https://youtu.be/pYW2GmHB5xs)"
+                        reply ="[The Beginning.](https://youtu.be/pYW2GmHB5xs)"
 
                     elif current.startswith("are you combat ready"):
                         reply ="[Don't worry Ruby, ](https://youtu.be/3b1gs8KrM-M?t=9m19s)"
 
                     elif current.startswith("jnpr"):
-                        reply ="Jeanne d'Arc, Thor, Achilles, and Mulan. All genderbent. \n That's not a teamup anyone could have predicted. "
+                        reply ="Jeanne d'Arc, Thor, Achilles, and Mulan. All genderbent. \n That's not a teamup anyone could have predicted."
 
                     elif current.startswith("gay robot"):
                         reply ="[You following this?](https://youtu.be/7O9ZyaNCcmw?t=1m53s)"
 
                     elif current.startswith("i love you"):
-                        reply ="[awww, I love you too!](http://fav.me/d8l0n7h)"
+                        reply ="[Awww, I love you too!](http://fav.me/d8l0n7h)"
 
-                    elif current.startswith("dissapoint"):
+                    elif current.startswith("disapponted"):
                         reply ="You have dissapointed me. That is not a good thing."
 
                     elif current.startswith("praise the sun"):
@@ -323,7 +323,7 @@ def find_penny_comment(flat_comments, processing, mods):
                         reply ="He has a fear of dihydrogen monoxide for some reason."
 
                     elif current.startswith("oobleck"):
-                        reply ="what would happen if we gave Ruby his coffee? Or Nora?"
+                        reply ="What would happen if we gave Ruby his coffee? Or Nora?"
 
                     elif current.startswith("taiyang"):
                         reply ="Entire team, entire team!"
@@ -356,7 +356,7 @@ def find_penny_comment(flat_comments, processing, mods):
                         reply ="[Ruby will kill him!](http://fav.me/d9pzuwm)"
 
                     elif current.startswith("shopkeep"):
-                        reply ="He's my Waifu"
+                        reply ="He's my Waifu."
 
                     elif current.startswith("penny"):
                         reply ="Yes?"
@@ -368,16 +368,16 @@ def find_penny_comment(flat_comments, processing, mods):
                         reply ="She has a crop, and she's a teacher! \n She also fixes everything."
 
                     elif current.startswith("tex"):
-                        reply ="She's a badass"
+                        reply ="She's a badass."
 
                     elif current.startswith("carolina"):
                         reply ="For some reason I feel like she would tear me in half."
 
                     elif current.startswith("torchwick"):
-                        reply ="He needs to learn when not to pontificate"
+                        reply ="He needs to learn when not to pontificate."
 
                     elif current.startswith("neon"):
-                        reply ="[She remminds me of something.](https://youtu.be/QH2-TGUlwu4)"
+                        reply ="[She reminds me of something.](https://youtu.be/QH2-TGUlwu4)"
 
                     elif current.startswith("neo"):
                         reply ="..... \n I want ice cream."
@@ -444,7 +444,7 @@ def find_penny_comment(flat_comments, processing, mods):
                         reply ="He's got a funny laugh."
 
                     elif current.startswith("miles and kerry"):
-                        reply ="They're fantastically, evil."
+                        reply ="They're fantastically evil."
 
                     elif current.startswith("miles"):
                         reply ="A great guy! But evil."
@@ -524,13 +524,13 @@ def find_penny_comment(flat_comments, processing, mods):
                         elif choice > 3:
                             reply ="[Look out Weiss!](http://i.imgur.com/5EnNbW5.jpg)"
                         else:
-                            reply = "If it make's Ruby happy..."
+                            reply = "If it makes Ruby happy..."
 
 
                     elif current.startswith("arkos"):
                         reply ="Sometimes the brightest loves burn the shortest... ^^^Cinder ^^^is ^^^evil!"
 
-                    elif current.startswith("backed alaska"):
+                    elif current.startswith("baked alaska"):
                         reply ="I don't think Raven approves... ^^which ^^only ^^makes ^^it ^^better!"
 
                     elif current.startswith("crosshares"):
