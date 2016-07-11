@@ -765,46 +765,47 @@ def find_penny_comment(flat_comments, processing, mods):
 
 
 while True:
-    if shutdown is False:
-        try:
-            # Reddit login
-
-            r = obot.login()
-            subreddit = r.get_subreddit('rwby')
-
-            # Retrive mods of the subreddit for use in shutdown
-
-            mods = r.get_moderators(subreddit)
-
-            subdone = load_previous_submissions()
-
-            post_search(subreddit, subdone)
-
-            subreddit_comments = subreddit.get_comments()
-            flat_comments = praw.helpers.flatten_tree(subreddit_comments)
-
-            already_done = already_processed_comments()
-
-            processing = set()
-
-            for comment in flat_comments:
-                processing.add(comment.id)
-            processing = processing - already_done
-
-            commentid = find_penny_comment(flat_comments, processing, mods)
-
-            already_done.add(commentid)
-
-            file = open("Logs.txt", "a")
-            file.write("I ran successfully at: " + str(time.asctime( time.localtime(time.time())) + "\n"))
-            file.close()
-            print("I ran successfully at: " + time.asctime( time.localtime(time.time())))
-
-        except Exception as e:
-            file = open("Logs.txt", "a")
-            file.write("!! I didn't Run at !!: " + str(time.asctime( time.localtime(time.time())) + "\n" + str(e) + "\n"))
-            file.close()
-            #print("!! I didn't Run at: " + time.asctime( time.localtime(time.time())+ "\n" + str(e)))
-    else:
+    if shutdown:
         sys.exit()
+
+    try:
+        # Reddit login
+
+        r = obot.login()
+        subreddit = r.get_subreddit('rwby')
+
+        # Retrive mods of the subreddit for use in shutdown
+
+        mods = r.get_moderators(subreddit)
+
+        subdone = load_previous_submissions()
+
+        post_search(subreddit, subdone)
+
+        subreddit_comments = subreddit.get_comments()
+        flat_comments = praw.helpers.flatten_tree(subreddit_comments)
+
+        already_done = already_processed_comments()
+
+        processing = set()
+
+        for comment in flat_comments:
+            processing.add(comment.id)
+        processing = processing - already_done
+
+        commentid = find_penny_comment(flat_comments, processing, mods)
+
+        already_done.add(commentid)
+
+        file = open("Logs.txt", "a")
+        file.write("I ran successfully at: " + str(time.asctime( time.localtime(time.time())) + "\n"))
+        file.close()
+        print("I ran successfully at: " + time.asctime( time.localtime(time.time())))
+
+    except Exception as e:
+        file = open("Logs.txt", "a")
+        file.write("!! I didn't Run at !!: " + str(time.asctime( time.localtime(time.time())) + "\n" + str(e) + "\n"))
+        file.close()
+        #print("!! I didn't Run at: " + time.asctime( time.localtime(time.time())+ "\n" + str(e)))
+
     time.sleep(70)
