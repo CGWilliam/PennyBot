@@ -108,7 +108,7 @@ def find_penny_comment(flat_comments, processing, mods):
                         reply ="Warning! Heresy detected! PennybotV2 reporting Combat Ready! [Firing main cannon!](http://i.imgur.com/1Jw8uIo.gifv)"
 
                     elif current.startswith("nora harem"):
-                        reply ="THIS IS THE PINNACLE OF ENLIGHTENMENT I'M TALKIN FULL ON BLAST UP YOUR ASS SO FAST LESBO FANTASM GIRL ON GIRL GASM PUCKER UP D CUP VAGINA BUMP DOKI DOKI SPIT SWAP ROLLERCOASTER YOUR COCK CAN'T EVEN HANDLE, SON. SELL YOUR SOUL TO THE YURI GODS, MOTHERFUCKER, NO TURNING BACK. \n And I really appreciate you taking your time out of the day to inquire about it. \n We meet every Thursday afternoon, pancakes will be catered. Pink robes and sacrificial daggers are strictly a formality. For more information, please ask /u/weerdo5255. \n The world isn't ready for our lasers and explosions!"
+                        reply ="[Ah hem,](http://www.cgwilliam.com/about/nora-harem/)"
 
                     elif current.startswith("you're awesome"):
                         if choice >= 5:
