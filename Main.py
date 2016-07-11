@@ -723,68 +723,7 @@ def find_penny_comment(flat_comments, processing, mods):
 
                     #Secret commands
 
-                    elif current.startswith("secret"):
-                        reply = "I have 9 secret commands! Only 1 is variable! More will be added soon!"
-                        #secretfound = secretfound -1
-
-                    elif current.startswith("remember"):
-                        reply = "PennyBotV2 will remember that"
-                        #secretfound = secretfound -1
-
-                    elif current.startswith("fuck"):
-                        reply = "#[YOU DONE FUCKED UP NOW!](http://fav.me/d9rqwxf) ^^^secret!"
-                        #secretfound = secretfound -1
-
-                    elif current.startswith("hk-47"):
-                        reply ="He's got some valid points, particularly in regards to dealing with meatbags. Still I prefer to deal with my enemies close up, so I can watch the life drain from their eyes. ^^^secret!"
-                        #secretfound = secretfound -1
-
-                    elif current.startswith("glados"):
-                        reply ="Ewww! Pervert detected! Pennybot reporting Combat Ready! [Firing main cannon!](http://i.imgur.com/AGoAQdo.gifv)^^^secret!"
-                        #secretfound = secretfound -1
-
-                    elif current.startswith("C1764"):
-                        reply ="/r/HFY I might be a robot, but I'm also human^^^secret!"
-                        #secretfound = secretfound -1
-
-                    elif current.startswith("vakurian"):
-                        reply ="They're not from Remenant!^^^secret!"
-                        #secretfound = secretfound -1
-
-                    elif current.startswith("hal-9000"):
-                        reply ="I'm sorry /u/" + str(commentauthor) + " I'm afraid I can't do that.^^^secret!"
-                        #secretfound = secretfound -1
-
-                    elif current.startswith("soda can"):
-                        reply ="[HA!?](https://youtu.be/_iq4xplqeI0?t=4m48s)^^^secret!"
-                        #secretfound = secretfound -1
-
-                    elif current.startswith("juane"):
-                        reply ="Jaune es un buen tipo, se que va a ser un gran lider un dia.^^^secret!"
-
-                    elif current.startswith("pocket penny"):
-                        if choice >= 5:
-                            reply ="[I smol!](http://67.media.tumblr.com/a8232d8c3b731c0d0ac7b399d1aa85b1/tumblr_o66hi0u9L81v66ox3o1_1280.gif)^^^secret!"
-                        else:
-                            reply = "[AH!](http://67.media.tumblr.com/085e797921642058a930e10fe4341f48/tumblr_o9qfchfPQR1v66ox3o3_1280.gif)^^^secret!"
-
-                    elif current.startswith("ash"):
-                        reply ="[She deserved it.](http://67.media.tumblr.com/8619e6cb7c98f38c8050489985f660b3/tumblr_o2nhw8pAaA1r93ft6o1_1280.png)"
-
-                    elif current.startswith("up up down down left right left right b a"):
-                        reply ="[What's happening!?](https://youtu.be/0-f-mGvOba8?t=11m16s)^^^secret!"
-
-                    elif current.startswith("pubert"):
-                        reply ="[A fungus could get that.](https://youtu.be/JehXwqCInlA?t=51s)^^^secret!"
-
-                    elif current.startswith("legion"):
-                        reply ="Does this unit have a soul?^^^secret!"
-
-                    elif current.startswith("do you want to play a game"):
-                        reply ="We're playing thermonuclear war? Yay!^^^secret!"
-
-                    elif current.startswith("what is the answer to life, the universe, and everything"):
-                        reply ="It's 43! \n *hic*^^^secret!"
+                   
 
                     #Emergency shutdown
                     elif current.startswith("shutdown"):
