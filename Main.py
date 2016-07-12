@@ -14,7 +14,6 @@ import sqlite3
 import datetime
 import sys
 
-global shutdown
 shutdown = False
 
 # Load the submission ID's from posts that have already been processed.
@@ -55,6 +54,7 @@ def already_processed_comments():
 
 # Determine what the comment is and the needed response
 def find_penny_comment(flat_comments, processing, mods):
+    global shutdown
     replied = False
     reply = ''
     # Don't care about where the comments are so flatten the comment tree
@@ -727,7 +727,6 @@ def find_penny_comment(flat_comments, processing, mods):
 
                     #Emergency shutdown
                     elif current.startswith("shutdown"):
-                        shutdown = False
                         print(commentauthor)
                         if commentauthor in mods or commentauthor == "Weerdo5255":
                             reply = "Emergency Shutdown Initiated! Bye!"
