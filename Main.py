@@ -1,17 +1,23 @@
+#_*_coding:utf-8_*_
+import os
 
-
-__author__ = 'C.G.William / Weerdo5255' \
+__author__ = 'C.G.William / Weerdo5255'
 
 'I can be contacted at weerdo5255@gmail.com'
 'Youre free to use the below code, on the stipulation that you give me credit and share with others!'
 'My website is www.cgwilliam.com'
 
 import Commands
+import Tagger
 import praw
 import obot
 import time
 import sqlite3
 import sys
+import random
+
+
+from django.utils.encoding import smart_str
 
 shutdown = False
 
@@ -20,6 +26,12 @@ def load_previous_submissions():
     with open('Submissions.txt', 'r') as f:
         subdone = [line.strip() for line in f]
     return subdone
+
+# Load AI phrases
+def load_ai_phrase():
+    with open('thoughts.txt', 'r') as f:
+        aiphrase = [line.strip() for line in f]
+    return aiphrase
 
 # Search all of the submissions searching for any mention of keyword
 def post_search(subreddit, subdone):
@@ -34,6 +46,7 @@ def post_search(subreddit, subdone):
 
         if "Penny" in str(submission.title):
             submission.add_comment("Who is that good looking robot? \n Pennybot stamps it with her [seal of approval!](http://i.imgur.com/bavrX6d.png)")
+            Tagger.internaltag('penny', str(comment.submission.url), str(comment.submission.title), int(comment.submission.created_utc))
             print("I found a Penny! in post: " + submission.id)
 
 # Load all comments that have been processed
@@ -50,6 +63,20 @@ def already_processed_comments():
 
     return already_done
 
+# Check the inbox for messages
+def get_messages():
+    messages = r.get_unread()
+
+    for message in messages:
+        text = str(message.body)
+        title = str(message.subject)
+        message.mark_as_read()
+
+        if "report" in text or "Report" in text or "report" in title or "Report" in title:
+            print("Sending a report to: " + str(message.author))
+            sendstring = str(Tagger.tagcollect())
+            r.send_message(message.author, "A Pennybot Report!", sendstring)
+
 # Determine what the comment is and the needed response
 def find_penny_comment(flat_comments, processing, mods):
     global shutdown
@@ -62,7 +89,7 @@ def find_penny_comment(flat_comments, processing, mods):
         replied = False
         response = []
 
-        commentauthor = comment.author
+        commentauthor = str(comment.author)
         wholecomment = comment.body
         list = wholecomment.splitlines(True)
         reply = ''
@@ -85,14 +112,14 @@ def find_penny_comment(flat_comments, processing, mods):
             current = current.strip()
             replied = True
 
-
+            # Add to the suggestion text file
             if current.startswith("suggestion"):
                 reply ="Thank you for the command suggestions! \n Creator! /u/Weerdo5255 ! Someone has made an excellent suggestion for a command! \n (PennyBotV2 has saved this suggestion, even if the creator does not respond!)"
                 file = open("Suggestions.txt", "a")
                 file.write(str(wholecomment) + "FROM:" + str(commentauthor) + "\n")
                 file.close()
 
-            #Emergency shutdown
+            # Emergency shutdown
             elif current.startswith("shutdown"):
                 print(commentauthor)
                 if commentauthor in mods or commentauthor == "Weerdo5255":
@@ -101,8 +128,38 @@ def find_penny_comment(flat_comments, processing, mods):
                 else:
                     reply = "You are not Pyrrha!"
 
+
+            elif current.startswith("tag report"):
+
+                sendstring = str(Tagger.tagcollect())
+
+                r.send_message(commentauthor, "A Pennybot Report!", sendstring)
+
+                reply = "I've sent you the report!"
+
+
+            elif current.startswith("tag"):
+
+                reply = Tagger.replytag(current, str(comment.submission.url), str(comment.submission.title), int(comment.submission.created_utc))
+
+
+            # Access the AI Function
+            elif current.startswith("thoughts"):
+                thoughtstring = " "
+
+                randomnum =(random.randint(0,3))
+                try:
+                    x=0
+                    phrases = load_ai_phrase()
+                    while (x <= randomnum):
+                        thoughtstring = thoughtstring + random.choice(phrases) + "\n"
+                        x += 1
+                except:
+                    thoughtstring = ("I don't have any thoughts at the moment.")
+
+                reply = thoughtstring
             else:
-                reply = Commands.penny_commands(current)
+                reply = Commands.penny_commands(current, str(comment.submission.url), str(comment.submission.title), int(comment.submission.created_utc))
 
 
             response.append(reply)
@@ -117,24 +174,23 @@ def find_penny_comment(flat_comments, processing, mods):
             comment.reply(string)
 
         db = sqlite3.connect("Processed.db")
+        db.text_factory = str
         cursor = db.cursor()
         cursor.execute('INSERT INTO Processed VALUES (?, ?, ?, ?, ?, ?)',
                     (str(comment.id), int(comment.created_utc), str(comment.body), str(comment.author), str(replied), str(reply)))
         cursor.execute("DELETE FROM Processed WHERE time <= strftime('%s') - 86400 * 2;")
         db.commit()
-
     return comment.id
 
-
 while True:
-    if shutdown:
+    if shutdown == True:
         sys.exit()
 
     try:
         # Reddit login
 
         r = obot.login()
-        subreddit = r.get_subreddit('test')
+        subreddit = r.get_subreddit('rwby')
 
         # Retrive mods of the subreddit for use in shutdown
 
@@ -157,17 +213,19 @@ while True:
 
         commentid = find_penny_comment(flat_comments, processing, mods)
 
+        get_messages()
+
         already_done.add(commentid)
 
         file = open("Logs.txt", "a")
-        file.write("I ran successfully at: " + str(time.asctime( time.localtime(time.time())) + "\n"))
+        file.write("I ran successfully at: " + smart_str(time.asctime( time.localtime(time.time())) + "\n"))
         file.close()
         print("I ran successfully at: " + time.asctime( time.localtime(time.time())))
 
     except Exception as e:
         file = open("Logs.txt", "a")
-        file.write("!! I didn't Run at !!: " + str(time.asctime(time.localtime(time.time())) + "\n" + str(e) + "\n"))
+        file.write("!! I didn't Run at !!: " + smart_str(time.asctime( time.localtime(time.time())) + smart_str(e) + "\n"))
         file.close()
-        print("!! I didn't Run at: " + time.asctime(time.localtime(time.time())+ "\n" + str(e)))
+        print("!! I didn't Run at: " + smart_str(time.asctime( time.localtime(time.time())) + smart_str(e) +"\n"))
 
     time.sleep(70)
