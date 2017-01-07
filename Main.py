@@ -1,4 +1,4 @@
-#_*_coding:utf-8_*_
+# _*_coding:utf-8_*_
 import os
 
 __author__ = 'C.G.William / Weerdo5255'
@@ -16,10 +16,10 @@ import sqlite3
 import sys
 import random
 
-
 from django.utils.encoding import smart_str
 
 shutdown = False
+
 
 # Load the submission ID's from posts that have already been processed.
 def load_previous_submissions():
@@ -27,11 +27,13 @@ def load_previous_submissions():
         subdone = [line.strip() for line in f]
     return subdone
 
+
 # Load AI phrases
 def load_ai_phrase():
     with open('thoughts.txt', 'r') as f:
         aiphrase = [line.strip() for line in f]
     return aiphrase
+
 
 # Search all of the submissions searching for any mention of keyword
 def post_search(subreddit, subdone):
@@ -45,16 +47,22 @@ def post_search(subreddit, subdone):
         file.close()
 
         if "Penny" in str(submission.title):
-            submission.add_comment("Who is that good looking robot? \n Pennybot stamps it with her [seal of approval!](http://i.imgur.com/bavrX6d.png)")
-            Tagger.internaltag('penny', str(comment.submission.url), str(comment.submission.title), int(comment.submission.created_utc))
+            submission.add_comment(
+                "Who is that good looking robot? \n Pennybot stamps it with her [seal of approval!](http://i.imgur.com/bavrX6d.png)")
+            Tagger.internaltag('penny', str(comment.submission.url), str(comment.submission.title),
+                               int(comment.submission.created_utc))
             print("I found a Penny! in post: " + submission.id)
+
 
 # Load all comments that have been processed
 def already_processed_comments():
-    db = sqlite3.connect("Processed.db")
+    # BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    # db_path = os.path.join(BASE_DIR, "Processed.db")
+    db = sqlite3.connect('Processed.db')
+    # with sqlite3.connect(db_path) as db:
     cursor = db.cursor()
     already_done = set()
-    cursor.execute("SELECT * FROM Processed Post")
+    cursor.execute("SELECT * FROM Processed")
     results = cursor.fetchall()
     for row in results:
         Done_db = row[0]
@@ -62,6 +70,7 @@ def already_processed_comments():
     db.close()
 
     return already_done
+
 
 # Check the inbox for messages
 def get_messages():
@@ -76,6 +85,7 @@ def get_messages():
             print("Sending a report to: " + str(message.author))
             sendstring = str(Tagger.tagcollect())
             r.send_message(message.author, "A Pennybot Report!", sendstring)
+
 
 # Determine what the comment is and the needed response
 def find_penny_comment(flat_comments, processing, mods):
@@ -100,69 +110,88 @@ def find_penny_comment(flat_comments, processing, mods):
             current = current.replace("v2", "")
 
             # Scan for mention of pennybot and respond
-            if "pennybot," not in current:
-                continue
+            if "pennybot," in current:
+                print("Found a Penny comment at: " + time.asctime(time.localtime(time.time())))
+                lookingfor = "pennybot,"
 
-            print("Found a Penny comment at: " + time.asctime(time.localtime(time.time())))
-            lookingfor = "pennybot,"
+                # Remove pennybot from the string start scanning for response
+                indexcount = current.index(lookingfor) + 9
+                current = current.lstrip(current[:indexcount])
+                current = current.strip()
+                replied = True
 
-            # Remove pennybot from the string start scanning for response
-            indexcount = current.index(lookingfor) + 9
-            current = current.lstrip(current[:indexcount])
-            current = current.strip()
-            replied = True
+                # Add to the suggestion text file
+                if current.startswith("suggestion"):
+                    reply = "Thank you for the command suggestions! \n Creator! /u/Weerdo5255 ! Someone has made an excellent suggestion for a command! \n (PennyBotV2 has saved this suggestion, even if the creator does not respond!)"
+                    file = open("Suggestions.txt", "a")
+                    file.write(str(wholecomment) + "FROM:" + str(commentauthor) + "\n")
+                    file.close()
 
-            # Add to the suggestion text file
-            if current.startswith("suggestion"):
-                reply ="Thank you for the command suggestions! \n Creator! /u/Weerdo5255 ! Someone has made an excellent suggestion for a command! \n (PennyBotV2 has saved this suggestion, even if the creator does not respond!)"
-                file = open("Suggestions.txt", "a")
-                file.write(str(wholecomment) + "FROM:" + str(commentauthor) + "\n")
-                file.close()
+                # Emergency shutdown
+                if current.startswith("shutdown"):
+                    print(commentauthor)
+                    if commentauthor in mods or commentauthor == "Weerdo5255":
+                        reply = "Emergency Shutdown Initiated! Bye!"
+                        shutdown = True
+                    else:
+                        reply = "You are not Pyrrha!"
 
-            # Emergency shutdown
-            elif current.startswith("shutdown"):
-                print(commentauthor)
-                if commentauthor in mods or commentauthor == "Weerdo5255":
-                    reply = "Emergency Shutdown Initiated! Bye!"
-                    shutdown = True
+                """
+                if current.startswith("analyze"):
+                    current = current.lstrip(current[:8])
+                    current = current.strip()
+                    current = current.replace("/u/", "")
+                    current = current.replace("u/", "")
+                    AUser = r.get_redditor(current)
+                    Generate = AUser.get_submitted(limit=None)
+                    Karma = {}
+                    for x in Generate:
+                        subreddit = x.subreddit.display_name
+                        Karma[subreddit] = (Karma.get(subreddit, 0) + x.score)
+                    if 'RWBY' in Karma:
+                        score = str(Karma.get('RWBY'))
+                        reply = "They have: " + score + " karma in /r/RWBY. \n \n ^^^from ^^^their ^^^last ^^^1,000 ^^^posts/comments, ^^^blame ^^^the ^^^reddit ^^^API ^^^limits..."
+                    else:
+                        reply = "They are not yet part of the /r/RWBY Community."
+                """
+
+                if current.startswith("tag report"):
+                    sendstring = str(Tagger.tagcollect())
+                    r.send_message(commentauthor, "A Pennybot Report!", sendstring)
+                    reply = "I've sent you the report!"
+
+                if current.startswith("tag"):
+                    reply = Tagger.replytag(current, str(comment.submission.url), str(comment.submission.title),
+                                            int(comment.submission.created_utc))
+
+                # Access the AI Function
+                if current.startswith("thoughts"):
+                    thoughtstring = " "
+                    randomnum = (random.randint(0, 3))
+                    try:
+                        x = 0
+                        phrases = load_ai_phrase()
+                        while (x <= randomnum):
+                            thoughtstring = thoughtstring + random.choice(phrases) + "\n"
+                            x += 1
+                    except:
+                        thoughtstring = ("I don't have any thoughts at the moment.")
+
+                    reply = thoughtstring
                 else:
-                    reply = "You are not Pyrrha!"
+                    reply = Commands.penny_commands(current, str(comment.submission.url), str(comment.submission.title),
+                                                    int(comment.submission.created_utc))
+                if current.startswith("pennycheck"):
+                    lookingfor = "pennycheck"
+                    indexcount = current.index(lookingfor) + 10
+                    current = current.lstrip(current[:indexcount])
+                    current = current.strip()
+                    reply = "[Here are the Images I could Find!](http://iqdb.org/?url=" + current + ")"
 
+                if current.startswith("pennykarma"):
+                    reply = "Here is the [Karma Decay](http://karmadecay.com/" + str(comment.submission.url) + ")"
 
-            elif current.startswith("tag report"):
-
-                sendstring = str(Tagger.tagcollect())
-
-                r.send_message(commentauthor, "A Pennybot Report!", sendstring)
-
-                reply = "I've sent you the report!"
-
-
-            elif current.startswith("tag"):
-
-                reply = Tagger.replytag(current, str(comment.submission.url), str(comment.submission.title), int(comment.submission.created_utc))
-
-
-            # Access the AI Function
-            elif current.startswith("thoughts"):
-                thoughtstring = " "
-
-                randomnum =(random.randint(0,3))
-                try:
-                    x=0
-                    phrases = load_ai_phrase()
-                    while (x <= randomnum):
-                        thoughtstring = thoughtstring + random.choice(phrases) + "\n"
-                        x += 1
-                except:
-                    thoughtstring = ("I don't have any thoughts at the moment.")
-
-                reply = thoughtstring
-            else:
-                reply = Commands.penny_commands(current, str(comment.submission.url), str(comment.submission.title), int(comment.submission.created_utc))
-
-
-            response.append(reply)
+                response.append(reply)
 
         if replied:
             print(comment.submission.permalink)
@@ -177,10 +206,12 @@ def find_penny_comment(flat_comments, processing, mods):
         db.text_factory = str
         cursor = db.cursor()
         cursor.execute('INSERT INTO Processed VALUES (?, ?, ?, ?, ?, ?)',
-                    (str(comment.id), int(comment.created_utc), str(comment.body), str(comment.author), str(replied), str(reply)))
+                       (str(comment.id), int(comment.created_utc), str(comment.body), str(comment.author), str(replied),
+                        str(reply)))
         cursor.execute("DELETE FROM Processed WHERE time <= strftime('%s') - 86400 * 2;")
         db.commit()
     return comment.id
+
 
 while True:
     if shutdown == True:
@@ -218,14 +249,15 @@ while True:
         already_done.add(commentid)
 
         file = open("Logs.txt", "a")
-        file.write("I ran successfully at: " + smart_str(time.asctime( time.localtime(time.time())) + "\n"))
+        file.write("I ran successfully at: " + smart_str(time.asctime(time.localtime(time.time())) + "\n"))
         file.close()
-        print("I ran successfully at: " + time.asctime( time.localtime(time.time())))
+        print("I ran successfully at: " + time.asctime(time.localtime(time.time())))
 
     except Exception as e:
         file = open("Logs.txt", "a")
-        file.write("!! I didn't Run at !!: " + smart_str(time.asctime( time.localtime(time.time())) + smart_str(e) + "\n"))
+        file.write(
+            "!! I didn't Run at !!: " + smart_str(time.asctime(time.localtime(time.time())) + smart_str(e) + "\n"))
         file.close()
-        print("!! I didn't Run at: " + smart_str(time.asctime( time.localtime(time.time())) + smart_str(e) +"\n"))
+        print("!! I didn't Run at: " + smart_str(time.asctime(time.localtime(time.time())) + smart_str(e) + "\n"))
 
     time.sleep(70)
