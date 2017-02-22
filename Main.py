@@ -7,6 +7,8 @@ __author__ = 'C.G.William / Weerdo5255'
 'Youre free to use the below code, on the stipulation that you give me credit and share with others!'
 'My website is www.cgwilliam.com'
 
+from pytz import timezone
+from datetime import datetime
 import Commands
 import Tagger
 import praw
@@ -27,13 +29,11 @@ def load_previous_submissions():
         subdone = [line.strip() for line in f]
     return subdone
 
-
 # Load AI phrases
 def load_ai_phrase():
     with open('thoughts.txt', 'r') as f:
         aiphrase = [line.strip() for line in f]
     return aiphrase
-
 
 # Search all of the submissions searching for any mention of keyword
 def post_search(subreddit, subdone):
@@ -53,7 +53,6 @@ def post_search(subreddit, subdone):
                                int(comment.submission.created_utc))
             print("I found a Penny! in post: " + submission.id)
 
-
 # Load all comments that have been processed
 def already_processed_comments():
     # BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -71,7 +70,6 @@ def already_processed_comments():
 
     return already_done
 
-
 # Check the inbox for messages
 def get_messages():
     messages = r.get_unread()
@@ -86,6 +84,12 @@ def get_messages():
             sendstring = str(Tagger.tagcollect())
             r.send_message(message.author, "A Pennybot Report!", sendstring)
 
+def get_my_cake_day(username):
+    try:
+        redditor = r.get_redditor(username)
+        return time.strftime("%m%d", time.gmtime(redditor.created_utc))
+    except praw.errors.NotFound:
+        print("No Cake Day")
 
 # Determine what the comment is and the needed response
 def find_penny_comment(flat_comments, processing, mods):
@@ -120,52 +124,24 @@ def find_penny_comment(flat_comments, processing, mods):
                 current = current.strip()
                 replied = True
 
-                # Add to the suggestion text file
-                if current.startswith("suggestion"):
-                    reply = "Thank you for the command suggestions! \n Creator! /u/Weerdo5255 ! Someone has made an excellent suggestion for a command! \n (PennyBotV2 has saved this suggestion, even if the creator does not respond!)"
-                    file = open("Suggestions.txt", "a")
-                    file.write(str(wholecomment) + "FROM:" + str(commentauthor) + "\n")
-                    file.close()
-
-                # Emergency shutdown
-                if current.startswith("shutdown"):
-                    print(commentauthor)
-                    if commentauthor in mods or commentauthor == "Weerdo5255":
-                        reply = "Emergency Shutdown Initiated! Bye!"
-                        shutdown = True
-                    else:
-                        reply = "You are not Pyrrha!"
-
-                """
-                if current.startswith("analyze"):
-                    current = current.lstrip(current[:8])
-                    current = current.strip()
-                    current = current.replace("/u/", "")
-                    current = current.replace("u/", "")
-                    AUser = r.get_redditor(current)
-                    Generate = AUser.get_submitted(limit=None)
-                    Karma = {}
-                    for x in Generate:
-                        subreddit = x.subreddit.display_name
-                        Karma[subreddit] = (Karma.get(subreddit, 0) + x.score)
-                    if 'RWBY' in Karma:
-                        score = str(Karma.get('RWBY'))
-                        reply = "They have: " + score + " karma in /r/RWBY. \n \n ^^^from ^^^their ^^^last ^^^1,000 ^^^posts/comments, ^^^blame ^^^the ^^^reddit ^^^API ^^^limits..."
-                    else:
-                        reply = "They are not yet part of the /r/RWBY Community."
-                """
-
                 if current.startswith("tag report"):
                     sendstring = str(Tagger.tagcollect())
                     r.send_message(commentauthor, "A Pennybot Report!", sendstring)
                     reply = "I've sent you the report!"
 
-                if current.startswith("tag"):
+                # Add to the suggestion text file
+                elif current.startswith("suggestion"):
+                    reply = "Thank you for the command suggestions! \n Creator! /u/Weerdo5255 ! Someone has made an excellent suggestion for a command! \n (PennyBotV2 has saved this suggestion, even if the creator does not respond!)"
+                    filesug = open("Suggestions.txt", "a")
+                    filesug.write(str(wholecomment) + "FROM:" + str(commentauthor) + "\n")
+                    filesug.close()
+
+                elif current.startswith("tag"):
                     reply = Tagger.replytag(current, str(comment.submission.url), str(comment.submission.title),
                                             int(comment.submission.created_utc))
 
                 # Access the AI Function
-                if current.startswith("thoughts"):
+                elif current.startswith("thoughts"):
                     thoughtstring = " "
                     randomnum = (random.randint(0, 3))
                     try:
@@ -178,29 +154,69 @@ def find_penny_comment(flat_comments, processing, mods):
                         thoughtstring = ("I don't have any thoughts at the moment.")
 
                     reply = thoughtstring
-                else:
-                    reply = Commands.penny_commands(current, str(comment.submission.url), str(comment.submission.title),
-                                                    int(comment.submission.created_utc))
-                if current.startswith("pennycheck"):
+
+                elif current.startswith("shutdown"):
+                    print(commentauthor)
+                    if commentauthor in mods or commentauthor == "Weerdo5255":
+                        reply = "Emergency Shutdown Initiated! Bye!"
+                        shutdown = True
+                    else:
+                        reply = "You are not Pyrrha!"
+
+                elif current.startswith("ignore") or current.startswith("mute"):
+                    submission = comment.submission.id
+                    print(submission)
+                    postauthor = comment.submission.author
+                    print(commentauthor)
+                    print(postauthor)
+                    if commentauthor in mods or commentauthor == "Weerdo5255":
+                        reply = "Sorry! I'll be quite!"
+                        file = open("ignore.txt", "a")
+                        file.write(str(submission.id) + "\n")
+                        file.close()
+                    elif str(commentauthor) == str(postauthor):
+                        reply = "Sorry! I'll be quite!"
+                        file = open("ignore.txt", "a")
+                        file.write(str(submission) + "\n")
+                        file.close()
+                    else:
+                        reply = "You do not have sufficient privileges for that action."
+
+                elif current.startswith("pennycheck"):
                     lookingfor = "pennycheck"
                     indexcount = current.index(lookingfor) + 10
                     current = current.lstrip(current[:indexcount])
                     current = current.strip()
                     reply = "[Here are the Images I could Find!](http://iqdb.org/?url=" + current + ")"
 
-                if current.startswith("pennykarma"):
-                    reply = "Here is the [Karma Decay](http://karmadecay.com/" + str(comment.submission.url) + ")"
+                elif current.startswith("pennykarma"):
+                    reply = "Here is the [Karma Decay](http://karmadecay.com/" + str(
+                    comment.submission.url) + ")"
+                else:
+                    reply = Commands.penny_commands(current, str(comment.submission.url), str(comment.submission.title),
+                                                    int(comment.submission.created_utc))
 
                 response.append(reply)
 
         if replied:
             print(comment.submission.permalink)
             print(response)
-
-            string = ""
-            for x in response:
-                string += x + " \n \n"
-            comment.reply(string)
+            cake = get_my_cake_day(commentauthor)
+            print(cake)
+            now_utc = datetime.now(timezone('UTC'))
+            now_pacific = now_utc.astimezone(timezone('US/Pacific'))
+            nowp = now_pacific.strftime("%m%d")
+            print(nowp)
+            if nowp == cake:
+                string = ""
+                for x in response:
+                    string += x + " \n \n"
+                comment.reply(string + "\n \n Pennybot wishes you a Happy Cake Day as well!")
+            else:
+                string = ""
+                for x in response:
+                    string += x + " \n \n"
+                comment.reply(string)
 
         db = sqlite3.connect("Processed.db")
         db.text_factory = str
@@ -221,7 +237,7 @@ while True:
         # Reddit login
 
         r = obot.login()
-        subreddit = r.get_subreddit('rwby')
+        subreddit = r.get_subreddit('test')
 
         # Retrive mods of the subreddit for use in shutdown
 

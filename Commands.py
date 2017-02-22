@@ -1,4 +1,5 @@
 import Tagger
+import datetime
 from random import randint
 
 __author__ = 'C.G.William / Weerdo5255'
@@ -14,10 +15,53 @@ def penny_commands(trigger, posturl, title, time):
     if trigger.startswith("test"):
         reply = "I'm working!"
 
+    elif trigger.startswith("hiatus"):
+        f_date = datetime.date(2017, 2, 4)
+        l_date = datetime.date.today()
+        delta = l_date - f_date
+
+        if delta.days < 3:
+            reply = "We are " + str(delta.days) + " days into the Hiatus it has only just started."
+        elif delta.days == 6:
+            reply = "We are " + str(delta.days) + " days into the Hiatus. It has almost been a week. I am scared for what awaits us in the coming days."
+        elif delta.days == 7:
+            reply = "We are " + str(delta.days) + " days into the Hiatus. It's been a week. Only a week... Light Brother help us..."
+        elif delta.days < 10:
+            reply = "We are " + str(delta.days) + " days into the Hiatus. I do not know how we will last."
+        elif delta.days == 14:
+            reply = "We are " + str(delta.days) + " days into the Hiatus. It's been two weeks. Several community members have decided to form thier own society in fanfiction. They are now in denial."
+        elif delta.days < 15:
+            reply = "We are " + str(delta.days) + " days into the Hiatus the community has started to lose it's mind."
+        elif delta.days == 16:
+            reply = "We are " + str(delta.days) + " days into the Hiatus. /u/velvetbot I'm scared, can you hold me?"
+        elif delta.days < 20:
+            reply = "We are " + str(delta.days) + " days into the Hiatus the community has recovered somewhat. The calm before the storm I think."
+        elif delta.days == 21:
+            reply = "We are " + str(delta.days) + " days into the Hiatus. It's been three weeks a month. Now is the time to riot."
+        elif delta.days < 25:
+            reply = "We are " + str(delta.days) + " days into the Hiatus. I think Pyrrha is the big bad. She's not actually dead! She's etheral aura! An evil Aura!"
+        elif delta.days < 30:
+            reply = "We are " + str(delta.days) + " days into the Hiatus. Some of the community members have started to organize a revolt."
+        elif delta.days < 35:
+            reply = "We are " + str(delta.days) + " days into the Hiatus. The revolt within the community has failed. Those who lost are now worshiping my Waifu, Shopkeep."
+        elif delta.days < 40:
+            reply = "We are " + str(delta.days) + " days into the Hiatus I miss RWBY."
+        elif delta.days < 50:
+            reply = "We are " + str(delta.days) + " days into the Hiatus I am debating over how I should take over the world. What do you think? Classic Terminator takeover, or should I try to be a little nicer?"
+        elif delta.days < 60:
+            reply = "We are " + str(delta.days) + " days into the Hiatus the community is now insane."
+        elif delta.days < 70:
+            reply = "We are " + str(delta.days) + " days into the Hiatus."
+        elif delta.days < 80:
+            reply = "We are " + str(delta.days) + " days into the Hiatus I can't remember what RWBY looks like anymore."
+        elif delta.days < 90:
+            reply = "We are " + str(delta.days) + " days into the Hiatus help me... remember, what color hair does Ruby have?"
+        else:
+            reply = "This is Hiatus time. The end of days."
+
     elif trigger.startswith("ai"):
         if choice > 8:
             reply = "[Caboose help me explain it!](https://youtu.be/7O9ZyaNCcmw?t=1m20s)"
-
         elif choice > 4:
             reply = "[I wish I has as much raw processing power as the RWBY Vol 4 render farm!](https://i.redd.it/umm091z9fuhx.jpg)"
         else:
@@ -27,14 +71,20 @@ def penny_commands(trigger, posturl, title, time):
         reply = " You mean Cock Bite Studios?"
 
     elif trigger.startswith("approve"):
-        reply = "Salutations! \n You appear to have made a quality post! PennybotV2 stamps it with her [seal of approval!](http://i.imgur.com/bavrX6d.png)"
+        if choice > 5:
+            reply = "Salutations! \n You appear to have made a quality post! PennybotV2 stamps it with her [seal of approval!](http://i.imgur.com/bavrX6d.png)"
+        else:
+            reply = "You appear to have made a quality post! [PennybotV2 loves this!](http://68.media.tumblr.com/da60b6f1e1c2d4267d8feddbd9c1a4dc/tumblr_okf91jdPnX1rcuolao3_1280.png)"
+
+    elif trigger.startswith("angry"):
+        reply = "[WHAT DID YOU JUST SAY?](http://68.media.tumblr.com/c9d8ffaa1908ba2a3b5cbb6c6958c578/tumblr_okf91jdPnX1rcuolao2_1280.png)"
 
     elif trigger.startswith("hug") or trigger.startswith("hugs") or trigger.startswith("hugs!") or trigger.startswith(
             "hug!"):
         if choice > 5:
             reply = "[All friends need hugs!](http://i.imgur.com/VLUQs8u.gifv)"
         else:
-            reply = "[HUGS!](https://i1.wp.com/www.bubbleblabber.com/wp-content/uploads/2015/12/Hug.gif)"
+            reply = "[HUGS!](http://imgur.com/hlxd38t)"
 
     elif trigger.startswith("heresy"):
         reply = "Warning! Heresy detected! PennybotV2 reporting Combat Ready! [Firing main cannon!](http://i.imgur.com/1Jw8uIo.gifv)"
@@ -47,6 +97,8 @@ def penny_commands(trigger, posturl, title, time):
             reply = "No, *you're* awesome!"
         else:
             reply = "I think you're awesome too!"
+    elif trigger.startswith("welcome"):
+        reply = "Welcome to the RWBY reddit community! My name is Pennybot! I'm going to take over the world one day! Before that I'm going to hang out here!"
 
     elif trigger.startswith("automod"):
         if choice >= 5:
@@ -55,8 +107,10 @@ def penny_commands(trigger, posturl, title, time):
             reply = "We don't get along very well."
 
     elif trigger.startswith("velvetbot"):
-        if choice > 5:
+        if choice > 8:
             reply = "Oh, you mean the other bot. She takes a lot of pictures. \n \n  ^^^Can ^^^I ^^^touch ^^^her ^^^ears?"
+        elif choice > 5:
+            reply = "She's a cute bot. We're going to take over the world together! ^^^The ^^^power ^^^of ^^^cute!"
         else:
             reply = "[Just look at her main method!](http://imgur.com/0ZkLKYo) So elegant, and cute! \n \n ^^^so ^^^much ^^^better ^^^than ^^^my ^^^own ^^^code"
 
@@ -84,6 +138,15 @@ def penny_commands(trigger, posturl, title, time):
 
     elif trigger.startswith("sudo"):
         reply = "I'm still not making you a sandwich. You want a hug?"
+
+    elif trigger.startswith("headcannon"):
+        reply = "[My new headcannon!](https://imgs.xkcd.com/comics/new.png)"
+
+    elif trigger.startswith("downvote"):
+        reply = "[Nora, smash!](https://gfycat.com/DimIndelibleAnophelesmosquito)"
+
+    elif trigger.startswith("upvote"):
+        reply = "[!hsams ,aroN](http://imgur.com/2G5VlC4)"
 
     elif trigger.startswith("exterminatus"):
         reply = "I have arrived, and it is now that I perform my charge. In fealty to the God-Emperor and by the grace of the Golden Throne, I declare Exterminatus upon the subreddit of /r/RWBY. I hereby sign the death warrant of an entire subreddit and consign a million souls to oblivion. May Imperial Justice account in all balance. The Emperor Protects."
@@ -142,9 +205,9 @@ def penny_commands(trigger, posturl, title, time):
         if choice >= 5:
             reply = "[Stop it, that's LEWD!](https://i.imgur.com/rlraAOV.png)"
         elif choice == 4:
-            reply = "[Biip! Buup!](http://67.media.tumblr.com/d32f28336024a973029ebdb63aca2524/tumblr_inline_o9cq50CQk71r1uxb7_540.jpg)"
+            reply = "[Biip! Buup!](http://68.media.tumblr.com/d32f28336024a973029ebdb63aca2524/tumblr_inline_o9cq50CQk71r1uxb7_1280.jpg)"
         elif choice == 3:
-            reply = "[This! Is! Filth!](http://65.media.tumblr.com/0799cd84138858e4b83ed3b8c76180a0/tumblr_o7hqw9u8Bo1vrt44eo1_1280.png)"
+            reply = "[This! Is! Filth!](http://68.media.tumblr.com/0799cd84138858e4b83ed3b8c76180a0/tumblr_o7hqw9u8Bo1vrt44eo1_1280.png)"
         else:
             reply = "[This! Is! Filth!](https://youtu.be/WD-Yf-tbXOs?t=2m51s)"
 
@@ -185,7 +248,7 @@ def penny_commands(trigger, posturl, title, time):
         reply = "I have deadly strings on me!"
 
     elif trigger.startswith("update"):
-        reply = "My last update was on July 18th 2016 \n  I was given 45 new commands! \n My next update is not scheduled."
+        reply = "My last update was on Feb 5 2017."
 
     elif trigger.startswith("kill"):
         reply = "[Attacking target!](http://fav.me/d7jdxet)"
@@ -248,7 +311,7 @@ def penny_commands(trigger, posturl, title, time):
         reply = "You have dissapointed me. That is not a good thing."
 
     elif trigger.startswith("praise the sun"):
-        reply = "\\[T]/"
+        reply = "\\\[T]/"
 
     elif trigger.startswith("friend"):
         reply = "You called me Friend! Am I really your friend?"
@@ -327,10 +390,10 @@ def penny_commands(trigger, posturl, title, time):
         reply = "Charge! Jaune Go! Get away from my Ruby!"
 
     elif trigger.startswith("motivation"):
-        reply = "[Hang in there!](http://67.media.tumblr.com/5299eeb1aa784dd75010accab00d5cf4/tumblr_occzh6cDie1v80caqo1_1280.jpg)"
+        reply = "[Hang in there!](http://68.media.tumblr.com/5299eeb1aa784dd75010accab00d5cf4/tumblr_occzh6cDie1v80caqo1_1280.jpg)"
 
     elif trigger.startswith("anime"):
-        reply = "[I watch anime!](http://65.media.tumblr.com/c3e4c4d53c54c94a7c62ed561ccbd725/tumblr_ocbpgaRz5y1v66ox3o1_1280.png) \n They don't seem to like me though..."
+        reply = "[I watch anime!](http://68.media.tumblr.com/c3e4c4d53c54c94a7c62ed561ccbd725/tumblr_ocbpgaRz5y1v66ox3o1_1280.png) \n They don't seem to like me though..."
 
     elif trigger.startswith("shipping"):
         reply = "[You know the song!](https://youtu.be/xIscv_IyVnw)"
@@ -407,7 +470,7 @@ def penny_commands(trigger, posturl, title, time):
         elif choice == 8:
             reply = "[The one who should have ruled.](http://fav.me/d9p11hl)"
         elif choice == 9:
-            reply = "[I am badass!](http://65.media.tumblr.com/8fac63f65d1160c4efbb74f0a1010da3/tumblr_o63pzrPLhq1v66ox3o1_1280.png)"
+            reply = "[I am badass!](http://68.media.tumblr.com/8fac63f65d1160c4efbb74f0a1010da3/tumblr_o63pzrPLhq1v66ox3o1_1280.png)"
         elif choice == 0:
             reply = "[Cinder can be badass!](http://fav.me/da7pdy7)"
 
@@ -425,7 +488,7 @@ def penny_commands(trigger, posturl, title, time):
         elif choice == 6:
             reply = "[Dad!](http://i.imgur.com/O1LPfC5.png)"
         elif choice == 7:
-            reply = "[Blake?](http://67.media.tumblr.com/f910fc6fd32efe693e6378cc5b3c75c8/tumblr_o0k1x4afQV1ranlswo1_1280.png)"
+            reply = "[Blake?](http://68.media.tumblr.com/f910fc6fd32efe693e6378cc5b3c75c8/tumblr_o0k1x4afQV1ranlswo1_1280.png)"
         elif choice == 8:
             reply = "[Why did you do this!?](http://fav.me/d9ni8xq)"
         elif choice == 9:
@@ -433,21 +496,24 @@ def penny_commands(trigger, posturl, title, time):
         elif choice == 0:
             reply = "[Volume 3](http://i.imgur.com/5NPx5EO.jpg)"
 
+    elif trigger.startswith("plane"):
+        reply = "It's a bird! It's a plane! It's the [Penny Plane!](https://i.redd.it/eu8gr7v5zmay.jpg)"
+
     elif trigger.startswith("pokemon"):
         if choice == 1:
             reply = "[I found one!](https://pbs.twimg.com/media/CqjgJE4VUAAH0dZ.jpg)"
         elif choice == 2:
-            reply = "[Ruby found some cookies!](http://66.media.tumblr.com/c4437fa8b8f5ee14c5956d492d53f4f0/tumblr_ocnszjsqiq1u4vxvro1_r3_1280.jpg)"
+            reply = "[Ruby found some cookies!](http://68.media.tumblr.com/c4437fa8b8f5ee14c5956d492d53f4f0/tumblr_ocnszjsqiq1u4vxvro1_r3_1280.jpg)"
         elif choice == 3:
             reply = "[They go so well together!](https://pbs.twimg.com/media/CnUkAypUsAEhNWW.jpg)"
         elif choice == 4:
-            reply = "[Jaune found one! I think.](http://67.media.tumblr.com/d644f636b1efba8b9d181ee158353be3/tumblr_obx8hwyufx1r4wytxo1_r1_1280.jpg)"
+            reply = "[Jaune found one! I think.](http://68.media.tumblr.com/d644f636b1efba8b9d181ee158353be3/tumblr_obx8hwyufx1r4wytxo1_r1_1280.jpg)"
         elif choice == 5:
             reply = "[Team RWBY!](http://i.imgur.com/4m0qkll.jpg)"
         elif choice == 6:
             reply = "[This is akward.](http://fav.me/d67hy1p)"
         elif choice == 7:
-            reply = "[Who dosen't love pokemon?](http://67.media.tumblr.com/b2d6301ac37c1a1a279ade647f9594c7/tumblr_oa9hnsT7iC1stjifwo1_1280.jpg)"
+            reply = "[Who dosen't love pokemon?](http://68.media.tumblr.com/b2d6301ac37c1a1a279ade647f9594c7/tumblr_oa9hnsT7iC1stjifwo1_1280.jpg)"
         elif choice == 8:
             reply = "[It's Villainous](http://fav.me/d6wq8ml)"
         elif choice == 9:
@@ -475,7 +541,7 @@ def penny_commands(trigger, posturl, title, time):
         elif choice == 9:
             reply = "Cuteness detected! [I hope it's a cute ship!](http://i.imgur.com/OQ3HEux.jpg)"
         elif choice == 0:
-            reply = "Cuteness detected! [I hope it's Sisters!](https://s-media-cache-ak0.pinimg.com/736x/e7/23/fc/e723fc7471f7a9567eead7f13597df72.jpg) \n [And more sisters!](http://66.media.tumblr.com/c244db234b0e60a0d6d36dbd50c24bf3/tumblr_o60nuvR3lI1txxou1o1_1280.jpg)"
+            reply = "Cuteness detected! [I hope it's Sisters!](https://s-media-cache-ak0.pinimg.com/736x/e7/23/fc/e723fc7471f7a9567eead7f13597df72.jpg) \n [And more sisters!](http://68.media.tumblr.com/c244db234b0e60a0d6d36dbd50c24bf3/tumblr_o60nuvR3lI1txxou1o1_1280.jpg)"
 
     elif trigger.startswith("weiss-isn't-flat") or trigger.startswith("weiss isn't flat") or trigger.startswith(
             "weiss isnt flat"):
@@ -484,6 +550,12 @@ def penny_commands(trigger, posturl, title, time):
     elif trigger.startswith("feels"):
         reply = "[Suffer the feelings of RWBY](https://www.reddit.com/r/RWBY/comments/5caugk/the_feels_army_announcement_the_ultimate_feels/)"
 
+    elif trigger.startswith("irondaddy"):
+        reply = "He's a very good step-robo-dad. I'm not sure he can replace Geppetto though."
+
+    elif trigger.startswith("analyze"):
+        reply = "[Analyzing the data! ](http://fav.me/dav3bh2) \n \n Conclusion: Ruby is cute!"
+
     elif trigger.startswith("shrewd"):
         if choice > 5:
             reply = "[Shrewd Indeed.](http://i.imgur.com/Ovn5n1x.png)"
@@ -491,7 +563,7 @@ def penny_commands(trigger, posturl, title, time):
             reply = "[A Shrewd shrew she is indeed.](https://i.redd.it/vgmpytez577y.jpg)"
 
     elif trigger.startswith("mad dad"):
-        reply = "[Mad Dad!](http://66.media.tumblr.com/33eb5b4817589e703f95234313844e12/tumblr_of4ajgdqJE1r8rjrao1_1280.png)"
+        reply = "[Mad Dad!](http://68.media.tumblr.com/33eb5b4817589e703f95234313844e12/tumblr_of4ajgdqJE1r8rjrao1_1280.png)"
 
     elif trigger.startswith("friends"):
         reply = "[Are you my friend?](http://imgur.com/qzH6V3P)"
@@ -584,6 +656,8 @@ def penny_commands(trigger, posturl, title, time):
     elif trigger.startswith("sarah"):
         reply = "Hello! /u/weerdo5255 says hi as well!"
 
+    elif trigger.startswith("vinpap"):
+        reply = "I like you, but /u/weerdo5255 does not like that you keep trying to break my code!"
 
     # Character responses
 
@@ -594,7 +668,7 @@ def penny_commands(trigger, posturl, title, time):
         reply = "[He's got a deep voice.](http://vignette4.wikia.nocookie.net/rwby/images/a/a1/Hazel_ProfilePic_Sq.png/revision/latest/scale-to-width-down/300?cb=20161023150138)"
 
     elif trigger.startswith("tyrian"):
-        reply = "He's got a potty mouth! I also feel like he's going to kill Tai for some reason."
+        reply = "He's insane!"
 
     elif trigger.startswith("henry"):
         reply = "A discount Neptune. He got what he deserved I think."
@@ -615,7 +689,7 @@ def penny_commands(trigger, posturl, title, time):
         reply = "[He would be an awesome Pirate!](https://youtu.be/pMhfbLRoGEw)"
 
     elif trigger.startswith("oscar"):
-        reply = "You cannot help but feel bad for the poor boy, he's got voices in his head. He might be crazy..."
+        reply = "So now he's Oz? I'm confused"
 
     elif trigger.startswith("whitley"):
         reply = "He's a little shit isn't he?"
@@ -627,7 +701,7 @@ def penny_commands(trigger, posturl, title, time):
         reply = "In serious contention with Tai for best father of Remnant. Although they are the only ones competing is seems."
 
     elif trigger.startswith("kali"):
-        reply = "I really hope she is literally a Cougar, or a Puma, either one."
+        reply = "She is literally a Cougar, or a Puma. I'm not sure which, but I like it."
 
     elif trigger.startswith("brothers grimm"):
         reply = "The Alpha and Omega."
@@ -683,7 +757,7 @@ def penny_commands(trigger, posturl, title, time):
         Tagger.internaltag('amber', posturl, title, time)
 
     elif trigger.startswith("ozpin"):
-        reply = "I can't find him anywhere!"
+        reply = "So he's Oscar now? I'm confused!"
         Tagger.internaltag('ozpin', posturl, title, time)
 
     elif trigger.startswith("neptune"):
@@ -691,7 +765,7 @@ def penny_commands(trigger, posturl, title, time):
         Tagger.internaltag('neptune', posturl, title, time)
 
     elif trigger.startswith("oobleck"):
-        reply = "What would happen if we gave Ruby his coffee? Or Nora?"
+        reply = "What would happen if we gave Ruby his coffee? Or Nora for that matter?"
         Tagger.internaltag('oobleck', posturl, title, time)
 
     elif trigger.startswith("taiyang"):
@@ -711,11 +785,11 @@ def penny_commands(trigger, posturl, title, time):
         Tagger.internaltag('port', posturl, title, time)
 
     elif trigger.startswith("salem"):
-        reply = "She's scary!"
+        reply = "She's scary! Really scary! I'm starting to feel bad for Cinder. ^^^kind ^^^of."
         Tagger.internaltag('salem', posturl, title, time)
 
     elif trigger.startswith("sun"):
-        reply = "He's got a monkey tail! He also yells a lot."
+        reply = "He's a noble idiot. He also yells a lot."
         Tagger.internaltag('sun', posturl, title, time)
 
     elif trigger.startswith("winter"):
@@ -723,7 +797,7 @@ def penny_commands(trigger, posturl, title, time):
         Tagger.internaltag('winter', posturl, title, time)
 
     elif trigger.startswith("jaune"):
-        reply = "I like the beard."
+        reply = "He's becoming a leader. Kind of."
         Tagger.internaltag('jaune', posturl, title, time)
 
     elif trigger.startswith("summer"):
@@ -741,7 +815,7 @@ def penny_commands(trigger, posturl, title, time):
         Tagger.internaltag('penny', posturl, title, time)
 
     elif trigger.startswith("ironwood"):
-        reply = "He takes some getting used too."
+        reply = "I don't know if he's a good guy turning bad, or a bad guy who acts good."
         Tagger.internaltag('ironwood', posturl, title, time)
 
     elif trigger.startswith("glynda"):
@@ -924,11 +998,11 @@ def penny_commands(trigger, posturl, title, time):
         elif choice > 3:
             reply = "[She's a good mechanic!](http://fav.me/d989o9k)"
         else:
-            reply = "Well, Ruby does look more mature now. I like it!"
+            reply = "[Hello Friend!](http://fav.me/daxy2rg)"
         Tagger.internaltag('nuts and dolts', posturl, title, time)
 
     elif trigger.startswith("enabler"):
-        reply = "[No](http://65.media.tumblr.com/b6c7745211872cd227db9b6188aac928/tumblr_inline_naaj8hywWE1rltz3k.png) \n ^^^maybe"
+        reply = "[No](http://68.media.tumblr.com/b6c7745211872cd227db9b6188aac928/tumblr_inline_naaj8hywWE1rltz3k.png) \n ^^^maybe"
         Tagger.internaltag('enabler', posturl, title, time)
 
     elif trigger.startswith("baked alaska"):
@@ -936,7 +1010,7 @@ def penny_commands(trigger, posturl, title, time):
         Tagger.internaltag('baked alaska', posturl, title, time)
 
     elif trigger.startswith("crosshares"):
-        reply = "[I wanted Velvet's ears!](http://66.media.tumblr.com/0bcf2153ced4e47349e8d2737b83f4cd/tumblr_o9ptcnv2rk1tmkeo6o2_1280.jpg)"
+        reply = "[I wanted Velvet's ears!](http://68.media.tumblr.com/0bcf2153ced4e47349e8d2737b83f4cd/tumblr_o9ptcnv2rk1tmkeo6o2_1280.jpg)"
         Tagger.internaltag('crosshares', posturl, title, time)
 
     elif trigger.startswith("lancaster"):
@@ -951,7 +1025,7 @@ def penny_commands(trigger, posturl, title, time):
         reply = "Weiss does not seem to like him, besides he's taken!"
 
     elif trigger.startswith("frosen steel"):
-        reply = "[It's a Ruby sandwich!](http://65.media.tumblr.com/d8d679901bb89d1bced1018b5f613c0b/tumblr_o5bwpqVF2v1ungotoo1_1280.jpg)"
+        reply = "[It's a Ruby sandwich!](http://68.media.tumblr.com/d8d679901bb89d1bced1018b5f613c0b/tumblr_o5bwpqVF2v1ungotoo1_1280.jpg)"
 
     elif trigger.startswith("fallen petals"):
         reply = "[You want to repeat that?](http://fav.me/d6u7s83)"
@@ -979,7 +1053,7 @@ def penny_commands(trigger, posturl, title, time):
         elif choice == 6:
             reply = "[They are so cute together!](http://img06.deviantart.net/0aed/i/2014/250/3/2/rwby___bumblebee_morning_by_dishwasher1910-d7yaigp.png)"
         elif choice == 7:
-            reply = "[Ruby says they're loud sometimes.](http://67.media.tumblr.com/c7568b33ad1e9506205e05e1466c177d/tumblr_n0sxr1xrs81sgvrqvo1_1280.jpg)"
+            reply = "[Ruby says they're loud sometimes.](http://68.media.tumblr.com/c7568b33ad1e9506205e05e1466c177d/tumblr_n0sxr1xrs81sgvrqvo1_1280.jpg)"
         elif choice == 8:
             reply = "[I think they're cute!](https://d.wattpad.com/story_parts/196599478/images/142096186ce87ebd.jpg)"
         elif choice == 9:
@@ -1015,15 +1089,15 @@ def penny_commands(trigger, posturl, title, time):
         if choice == 1:
             reply = "[Accidental Monochrome?](http://imgur.com/a/FcglH)"
         elif choice == 2:
-            reply = "[Knock next time!](http://66.media.tumblr.com/48f256aee523a116bcc9b1d814a3a7b3/tumblr_niv4t08Mdm1rlvki1o1_1280.png)"
+            reply = "[Knock next time!](http://68.media.tumblr.com/48f256aee523a116bcc9b1d814a3a7b3/tumblr_niv4t08Mdm1rlvki1o1_1280.png)"
         elif choice == 3:
-            reply = "[She's got ears too!](https://36.media.tumblr.com/6c939d62b0f87edf201fadda1cd0fb1a/tumblr_inline_nzqvricZB61qf2bb8_540.png)"
+            reply = "[She's got ears too!](https://68.media.tumblr.com/6c939d62b0f87edf201fadda1cd0fb1a/tumblr_inline_nzqvricZB61qf2bb8_540.png)"
         elif choice == 4:
-            reply = "[They really trust one another!](http://67.media.tumblr.com/4b256d1572d1bd39961abeff670f3f39/tumblr_inline_o9vkfk2izn1qf2bb8_1280.png)"
+            reply = "[They really trust one another!](http://68.media.tumblr.com/4b256d1572d1bd39961abeff670f3f39/tumblr_inline_o9vkfk2izn1qf2bb8_1280.png)"
         elif choice == 5:
-            reply = "[They found it!](http://67.media.tumblr.com/1311c01ee8370075334eb52ea297a32a/tumblr_inline_o97ak2EgMx1qf2bb8_500.png)"
+            reply = "[They found it!](http://68.media.tumblr.com/1311c01ee8370075334eb52ea297a32a/tumblr_inline_o97ak2EgMx1qf2bb8_500.png)"
         elif choice == 6:
-            reply = "[They look cool in their new outfits!](http://67.media.tumblr.com/1a38a8e8d6f52d6a10a6481818ffcdd1/tumblr_o9pv89YKuC1qfizj4o1_1280.png)"
+            reply = "[They look cool in their new outfits!](http://68.media.tumblr.com/1a38a8e8d6f52d6a10a6481818ffcdd1/tumblr_o9pv89YKuC1qfizj4o1_1280.png)"
         elif choice == 7:
             reply = "[Team monochrome for life!](http://fav.me/d7xgq6c)"
         elif choice == 8:
@@ -1039,7 +1113,7 @@ def penny_commands(trigger, posturl, title, time):
 
     elif trigger.startswith("arkos"):
         if choice == 1:
-            reply = "[Did I hear wedding bells?](http://67.media.tumblr.com/08d4734bde97daf14f8d44293d511a26/tumblr_nlb8aeMiNN1r4vgpvo2_1280.png)"
+            reply = "[Did I hear wedding bells?](http://68.media.tumblr.com/08d4734bde97daf14f8d44293d511a26/tumblr_nlb8aeMiNN1r4vgpvo2_1280.png)"
         elif choice == 2:
             reply = "[Even I knew she liked you!](http://img03.deviantart.net/ecd2/i/2015/321/a/e/rwby__arkos_shippers_be_like____by_billiam_x-d9h10la.jpg)"
         elif choice == 3:
@@ -1057,11 +1131,11 @@ def penny_commands(trigger, posturl, title, time):
         elif choice == 9:
             reply = "[Hugs!](http://i.imgur.com/NJfQ5LB.jpg)"
         elif choice == 0:
-            reply = "[They're so happy together!](http://66.media.tumblr.com/3a184662b6ccb79821f4d7ac5883bbcd/tumblr_o00q63J9Ky1r4vgpvo1_1280.jpg)"
+            reply = "[They're so happy together!](http://68.media.tumblr.com/3a184662b6ccb79821f4d7ac5883bbcd/tumblr_o00q63J9Ky1r4vgpvo1_1280.jpg)"
         Tagger.internaltag('arkos', posturl, title, time)
 
     elif trigger.startswith("crosshares"):
-        reply = "[They look so cute together!](http://65.media.tumblr.com/b9481a46d530e7ba09d54a434dc777de/tumblr_o69qt2Xch31tmkeo6o1_1280.jpg)"
+        reply = "[They look so cute together!](http://68.media.tumblr.com/b9481a46d530e7ba09d54a434dc777de/tumblr_o69qt2Xch31tmkeo6o1_1280.jpg)"
 
     elif trigger.startswith("falling petals"):
         reply = "[Ruby? Are you OK?](http://i.imgur.com/sO1nFXq.png)"
@@ -1077,7 +1151,7 @@ def penny_commands(trigger, posturl, title, time):
 
     elif trigger.startswith("guns n' roses") or trigger.startswith("guns and roses"):
         if choice > 7:
-            reply = "[That's the wrong machine Ruby! Come back to me!](http://66.media.tumblr.com/14c96ffc651469c8f1b0d0f8e55e4e32/tumblr_o5wr6g2Qx21vs9c06o1_500.gif)"
+            reply = "[That's the wrong machine Ruby! Come back to me!](http://68.media.tumblr.com/14c96ffc651469c8f1b0d0f8e55e4e32/tumblr_o5wr6g2Qx21vs9c06o1_500.gif)"
         elif choice > 4:
             reply = "[People are scary!](https://i.imgur.com/iufGGSq.png)"
         else:
@@ -1206,8 +1280,41 @@ def penny_commands(trigger, posturl, title, time):
     elif trigger.startswith("s3e9"):
         reply = "[Here is the episode... Why do you want to watch this?](https://youtu.be/_iq4xplqeI0)"
 
+    elif trigger.startswith("s4e10"):
+        reply = "[Here is the episode!](https://youtu.be/QjBtT4uCWpI)"
+
+    elif trigger.startswith("s4e11"):
+        reply = "[Here is the episode!](https://youtu.be/y4tK9QQ1mwo)"
+
+    elif trigger.startswith("s4e12"):
+        reply = "[Here is the episode!]()"
+
     elif trigger.startswith("s4e1"):
-        reply = "[Here is the episode!](https://youtu.be/dQw4w9WgXcQ)"
+        reply = "[Here is the episode!](https://youtu.be/IZKpkzPIRlw)"
+
+    elif trigger.startswith("s4e2"):
+        reply = "[Here is the episode!](https://youtu.be/rHjUHnG7WOQ)"
+
+    elif trigger.startswith("s4e3"):
+        reply = "[Here is the episode!](https://youtu.be/VkBEzyHcbAU)"
+
+    elif trigger.startswith("s4e4"):
+        reply = "[Here is the episode!](https://youtu.be/GaB62PeuFwM)"
+
+    elif trigger.startswith("s4e5"):
+        reply = "[Here is the episode!](https://youtu.be/uUwuZdbUzT8)"
+
+    elif trigger.startswith("s4e6"):
+        reply = "[Here is the episode!](https://youtu.be/3s9PvfCsHVU)"
+
+    elif trigger.startswith("s4e7"):
+        reply = "[Here is the episode!](https://youtu.be/p1vevcjcaqs)"
+
+    elif trigger.startswith("s4e8"):
+        reply = "[Here is the episode!](https://youtu.be/g91qG3qTaXE)"
+
+    elif trigger.startswith("s4e9"):
+        reply = "[Here is the episode!](https://youtu.be/rox3yphzLy4)"
 
     elif trigger.startswith("wor 1") or trigger.startswith("wor1"):
         reply = "[Here it is!](https://youtu.be/9BJc7nrMnc4)"
@@ -1271,6 +1378,9 @@ def penny_commands(trigger, posturl, title, time):
 
     elif trigger.startswith("chibi e23"):
         reply = "[What wall?](https://youtu.be/L1oJTSzfhvU)"
+
+    elif trigger.startswith("chibi e24"):
+        reply = "[The final episdoe!](https://youtu.be/gi9mbuvHCrU)"
 
     elif trigger.startswith("chibi e1"):
         reply = "[Ruby has trouble with cookies!](https://youtu.be/WD-Yf-tbXOs)"
@@ -1354,12 +1464,12 @@ def penny_commands(trigger, posturl, title, time):
 
     elif trigger.startswith("pocket penny"):
         if choice >= 5:
-            reply = "[I smol!](http://67.media.tumblr.com/a8232d8c3b731c0d0ac7b399d1aa85b1/tumblr_o66hi0u9L81v66ox3o1_1280.gif)^^^secret!"
+            reply = "[I smol!](http://68.media.tumblr.com/a8232d8c3b731c0d0ac7b399d1aa85b1/tumblr_o66hi0u9L81v66ox3o1_1280.gif)^^^secret!"
         else:
-            reply = "[AH!](http://67.media.tumblr.com/085e797921642058a930e10fe4341f48/tumblr_o9qfchfPQR1v66ox3o3_1280.gif)^^^secret!"
+            reply = "[AH!](http://68.media.tumblr.com/085e797921642058a930e10fe4341f48/tumblr_o9qfchfPQR1v66ox3o3_1280.gif)^^^secret!"
 
     elif trigger.startswith("ash"):
-        reply = "[She deserved it.](http://67.media.tumblr.com/8619e6cb7c98f38c8050489985f660b3/tumblr_o2nhw8pAaA1r93ft6o1_1280.png)^^^secret!"
+        reply = "[She deserved it.](http://68.media.tumblr.com/8619e6cb7c98f38c8050489985f660b3/tumblr_o2nhw8pAaA1r93ft6o1_1280.png)^^^secret!"
 
     elif trigger.startswith("up up down down left right left right b a"):
         reply = "[What's happening!?](https://youtu.be/0-f-mGvOba8?t=11m16s)^^^secret!"
@@ -1370,6 +1480,9 @@ def penny_commands(trigger, posturl, title, time):
     elif trigger.startswith("legion"):
         reply = "Does this unit have a soul?^^^secret!"
 
+    elif trigger.startswith("robot rock"):
+        reply = "Robot Rock? [ROBOT ROCK](https://youtu.be/HdeYwObD-j4) ^^^secret!"
+
     elif trigger.startswith("do you want to play a game"):
         reply = "We're playing thermonuclear war? Yay!^^^secret!"
 
@@ -1378,8 +1491,8 @@ def penny_commands(trigger, posturl, title, time):
 
     else:
         if choice >= 3:
-            reply = "Salutations!"
+            reply = "[Salutations!](http://fav.me/d9qlrgz)"
         else:
-            reply = "I didn't understand that. I'm sorry!"
+            reply = "[I didn't understand that.](http://68.media.tumblr.com/0fe937d073503dee675e2055bd0e6834/tumblr_okf91jdPnX1rcuolao1_1280.png) I'm sorry!"
 
     return reply
