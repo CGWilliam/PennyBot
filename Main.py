@@ -163,6 +163,29 @@ def find_penny_comment(flat_comments, processing, mods):
                     else:
                         reply = "You are not Pyrrha!"
 
+                elif current.startswith("statistics"):
+                    db = sqlite3.connect("Processed.db")
+                    db.text_factory = str
+                    cursor = db.cursor()
+                    cursor.execute('SELECT COUNT(Response), Response FROM Processed WHERE Response is not null GROUP BY Response ORDER BY COUNT(Response) DESC')
+                    rows = cursor.fetchall()
+                    rows_result = [row for row in rows]
+                    rows_result = rows_result[1:6]
+                    print(rows_result)
+                    stringout = ""
+                    #reply = '\n \n '.join(str(p.replace("(")) for p in rows_result)
+                    for i in rows_result:
+                        string = str(i)
+                        string = string.replace('(', "", 1)
+                        string = string.replace('"', "", 1)
+                        string = string.replace("'", "", 1)
+                        string = string.replace(',', "|", 1)
+
+                        string = string[:-2]
+                        stringout += (string + "\n")
+                    reply = "Count | Response \n :--|:-- \n" + stringout
+                    db.close()
+
                 elif current.startswith("ignore") or current.startswith("mute"):
                     submission = comment.submission.id
                     print(submission)
@@ -237,7 +260,7 @@ while True:
         # Reddit login
 
         r = obot.login()
-        subreddit = r.get_subreddit('test')
+        subreddit = r.get_subreddit('rwby')
 
         # Retrive mods of the subreddit for use in shutdown
 

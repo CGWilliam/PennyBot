@@ -35,27 +35,49 @@ def penny_commands(trigger, posturl, title, time):
         elif delta.days == 16:
             reply = "We are " + str(delta.days) + " days into the Hiatus. /u/velvetbot I'm scared, can you hold me?"
         elif delta.days < 20:
-            reply = "We are " + str(delta.days) + " days into the Hiatus the community has recovered somewhat. The calm before the storm I think."
+            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://gfycat.com/BabyishGrouchyBoto), the community has recovered somewhat. The calm before the storm I think."
+        elif delta.days == 20:
+            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://gfycat.com/BabyishGrouchyBoto). I, I think I'm going to ask a certain Bunny for a date! I'm not sure what to say though..."
         elif delta.days == 21:
-            reply = "We are " + str(delta.days) + " days into the Hiatus. It's been three weeks a month. Now is the time to riot."
-        elif delta.days < 25:
-            reply = "We are " + str(delta.days) + " days into the Hiatus. I think Pyrrha is the big bad. She's not actually dead! She's etheral aura! An evil Aura!"
-        elif delta.days < 30:
-            reply = "We are " + str(delta.days) + " days into the Hiatus. Some of the community members have started to organize a revolt."
+            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://gfycat.com/BabyishGrouchyBoto). It's been three weeks, a month. Now is the time to riot."
+        elif delta.days == 22:
+            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://gfycat.com/BabyishGrouchyBoto). I asked Rubybot for advice on my Bunny problem, she suggested I give her strawberries and cookies."
+        elif delta.days == 23:
+            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://i.imgur.com/A3Ml3AP.jpg). After consulting with Weissbot, I think I need to be more standoffish with the Bunny, and let her come to me!"
+        elif delta.days == 24:
+            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://i.imgur.com/4OtJzPU.jpg?1). Blakebot has suggested some, odd things to do with the Bunny once I ask her out."
+        elif delta.days == 25:
+            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://gfycat.com/BabyishGrouchyBoto). Yangbot is saying I should just go and kiss the Bunny! I don't think I can do that..."
+        elif delta.days == 26:
+            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://i.imgur.com/A3Ml3AP.jpg). Jaunebot was not helpful. We played guitar together though!"
+        elif delta.days == 27:
+            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://i.imgur.com/4OtJzPU.jpg?1). Norabot says I should go and Boop the Bunny. I don't know what Boop means!"
+        elif delta.days == 28:
+            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://gfycat.com/BabyishGrouchyBoto). I feel funny, someone put a magnet near my server!! It's been 4 weeks since this all began."
+        elif delta.days == 29:
+            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://i.imgur.com/A3Ml3AP.jpg). I found Renbot in the cloud, but Norabot attacked me before we could talk!"
+        elif delta.days == 30:
+            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://i.imgur.com/4OtJzPU.jpg?1). I am going to ask /u/VelvetBot out tomorrow!"
+        elif delta.days == 31:
+            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://gfycat.com/BabyishGrouchyBoto). I am going to ask out /u/VelvetBot eventually! ^^^I'm ^^^scared."
+        elif delta.days == 32:
+            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://i.imgur.com/4OtJzPU.jpg?1). I don't know what to say to /u/VelvetBot!"
+        elif delta.days == 33:
+            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://i.imgur.com/4OtJzPU.jpg?1). /u/VelvetBot do you want to go out! We can take over /r/RWBY together! That's what I should say..."
         elif delta.days < 35:
-            reply = "We are " + str(delta.days) + " days into the Hiatus. The revolt within the community has failed. Those who lost are now worshiping my Waifu, Shopkeep."
+            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://gfycat.com/BabyishGrouchyBoto). Time to RIOT!"
         elif delta.days < 40:
-            reply = "We are " + str(delta.days) + " days into the Hiatus I miss RWBY."
+            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://i.imgur.com/A3Ml3AP.jpg) I miss RWBY."
         elif delta.days < 50:
-            reply = "We are " + str(delta.days) + " days into the Hiatus I am debating over how I should take over the world. What do you think? Classic Terminator takeover, or should I try to be a little nicer?"
+            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://i.imgur.com/4OtJzPU.jpg?1) I am debating over how I should take over the world. What do you think? Classic Terminator takeover, or should I try to be a little nicer?"
         elif delta.days < 60:
-            reply = "We are " + str(delta.days) + " days into the Hiatus the community is now insane."
+            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://gfycat.com/BabyishGrouchyBoto) the community is now insane."
         elif delta.days < 70:
-            reply = "We are " + str(delta.days) + " days into the Hiatus."
+            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://i.imgur.com/A3Ml3AP.jpgo)."
         elif delta.days < 80:
-            reply = "We are " + str(delta.days) + " days into the Hiatus I can't remember what RWBY looks like anymore."
+            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://i.imgur.com/4OtJzPU.jpg?1) I can't remember what RWBY looks like anymore."
         elif delta.days < 90:
-            reply = "We are " + str(delta.days) + " days into the Hiatus help me... remember, what color hair does Ruby have?"
+            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://gfycat.com/BabyishGrouchyBoto) help me... remember, what color hair does Ruby have?"
         else:
             reply = "This is Hiatus time. The end of days."
 
@@ -162,7 +184,10 @@ def penny_commands(trigger, posturl, title, time):
             reply = "You're welcome!"
 
     elif trigger.startswith("dance"):
-        reply = "[I can dance!](http://gfycat.com/SlowEnormousCat)"
+        if choice > 5:
+            reply = "[I can dance!](http://gfycat.com/SlowEnormousCat)"
+        else:
+            reply = "[I know how to dance! So does Iron-Daddy!](https://gfycat.com/SmoggyGrizzledBluefintuna)"
 
     elif trigger.startswith("belly dancer") or trigger.startswith("dancer"):
         if choice == 8:
@@ -202,8 +227,10 @@ def penny_commands(trigger, posturl, title, time):
         reply = "I can't find any cake in Remenant!"
 
     elif trigger.startswith("filth") or trigger.startswith("lewd"):
-        if choice >= 5:
+        if choice >= 8:
             reply = "[Stop it, that's LEWD!](https://i.imgur.com/rlraAOV.png)"
+        elif choice == 7 or choice == 6 or choice == 5:
+            reply = "[Stop. That is lewd!](http://68.media.tumblr.com/64a15f664bfd83684e1c92151a62bda4/tumblr_om6zhoOLpo1v66ox3o1_1280.png)"
         elif choice == 4:
             reply = "[Biip! Buup!](http://68.media.tumblr.com/d32f28336024a973029ebdb63aca2524/tumblr_inline_o9cq50CQk71r1uxb7_1280.jpg)"
         elif choice == 3:
@@ -265,8 +292,17 @@ def penny_commands(trigger, posturl, title, time):
     elif trigger.startswith("smile"):
         reply = "[You're my freind!](http://fav.me/d7pumst)"
 
+    elif trigger.startswith("glare"):
+        reply = "[What?!](https://i.ytimg.com/vi/RJi0v0TawA4/maxresdefault.jpg)"
+
+    elif trigger.startswith("triggered"):
+        reply = "What the fuck did you just say about me, you little Grimm? I'll have you know I graduated top of my class in Beacon, and I've been involved in numerous secret raids on the White Fang, and I have over 300 confirmed kills. I am trained in Grimm warfare and I?m the top Huntswoman in the entire Atlesian military. You are nothing but another target. I will wipe you the fuck out with precision the likes of which has never been seen before on Remnant, mark my fucking words. You think you can get away with saying that shit to me over the CCTS? Think again, fucker. As we speak I am contacting my secret criminal spy network across Vale and your CIP is being traced right now so better prepare for the storm, grimmworm. The storm that wipes out the pathetic little thing you call your aura. You?re so fucking dead, kid. I can be anywhere, anytime, and I can kill you in over one thousand seven hundred sixty-four ways, and that?s just with my cold robotic hands. Not only am I extensively trained in unarmed combat, but I have access to the entire arsenal of the Atlesian Military and I will use it to its full extent and wipe your miserable ass off the face of the continent, you little shit. If only you could have known what unlight retribution your little 'clever' comment was about to bring down on you, maybe you would have held your fucking tongue.  But you couldn?t, you didn't and now you're paying the price, you lighdamn idiot. I will shit fury all over you and you will drown in it. You?re fucking dead, kiddo."
+
     elif trigger.startswith("rnjr"):
         reply = "[The new A team?](http://fav.me/d9u8r04)"
+
+    elif trigger.startswith("repent"):
+        reply = "[Repent Motherfucker!](https://i.makeagif.com/media/3-15-2016/tkvwbb.gif)"
 
     elif trigger.startswith("freezerburn"):
         reply = "[So pure...](http://fav.me/d8dydoe)"
@@ -591,6 +627,9 @@ def penny_commands(trigger, posturl, title, time):
     elif trigger.startswith("you're awesome"):
         reply = "Aww, I know I am! Thanks!"
 
+    elif trigger.startswith("thanks") or trigger.startswith("thank you"):
+        reply = "You're welcome!"
+
     elif trigger.startswith("praise"):
         reply = "#THIS IS AWESOME!"
 
@@ -658,6 +697,9 @@ def penny_commands(trigger, posturl, title, time):
 
     elif trigger.startswith("vinpap"):
         reply = "I like you, but /u/weerdo5255 does not like that you keep trying to break my code!"
+
+    elif trigger.startswith("jpde"):
+        reply = "[Penny has her own game, now! She's on a quest for love!](http://project-jpde.tumblr.com/)"
 
     # Character responses
 
@@ -1073,9 +1115,7 @@ def penny_commands(trigger, posturl, title, time):
             reply = "If it makes Ruby happy..."
         elif choice == 5:
             reply = "[I'm not sure I get it.](https://s-media-cache-ak0.pinimg.com/736x/45/3a/bc/453abcee3c4eb145bb4b685c4b56e289.jpg)"
-        elif choice == 6:
-            reply = "[It's always the eyepatches.](http://fav.me/d6yzr5e)"
-        elif choice == 7:
+        elif choice == 7 or choice == 6:
             reply = "[Cookies!](http://fav.me/d93usd5)"
         elif choice == 8:
             reply = "[Falling in love!](http://i55.servimg.com/u/f55/17/91/58/60/tumblr14.jpg)"
@@ -1490,8 +1530,10 @@ def penny_commands(trigger, posturl, title, time):
         reply = "It's 43! \n *hic*^^^secret!"
 
     else:
-        if choice >= 3:
+        if choice >7:
             reply = "[Salutations!](http://fav.me/d9qlrgz)"
+        elif choice >5:
+            reply = "[Could you repeat that?](http://fav.me/d8w3lrr)"
         else:
             reply = "[I didn't understand that.](http://68.media.tumblr.com/0fe937d073503dee675e2055bd0e6834/tumblr_okf91jdPnX1rcuolao1_1280.png) I'm sorry!"
 
