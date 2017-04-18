@@ -1,6 +1,9 @@
+# _*_coding:utf-8_*_
+
 import Tagger
 import datetime
 from random import randint
+import random
 
 __author__ = 'C.G.William / Weerdo5255'
 
@@ -8,12 +11,31 @@ __author__ = 'C.G.William / Weerdo5255'
 'Youre free to use the below code, on the stipulation that you give me credit and share with others!'
 'My website is www.cgwilliam.com'
 
+def load_ai_phrase():
+    with open('thoughts.txt', 'r', encoding='utf8') as f:
+        aiphrase = [line.strip() for line in f]
+    return aiphrase
+
 
 def penny_commands(trigger, posturl, title, time):
     choice = (randint(0, 9))
 
     if trigger.startswith("test"):
         reply = "I'm working!"
+
+    elif trigger.startswith("thoughts"):
+        thoughtstring = " "
+        randomnum = (random.randint(0, 3))
+        try:
+            x = 0
+            phrases = load_ai_phrase()
+            while (x <= randomnum):
+                thoughtstring = thoughtstring + str(random.choice(phrases)) + "\n"
+                x += 1
+        except:
+            thoughtstring = ("I don't have any thoughts at the moment.")
+
+        reply = thoughtstring
 
     elif trigger.startswith("hiatus"):
         f_date = datetime.date(2017, 2, 4)
@@ -66,12 +88,38 @@ def penny_commands(trigger, posturl, title, time):
             reply = "We are " + str(delta.days) + " days into the [Hiatus](https://i.imgur.com/4OtJzPU.jpg?1). /u/VelvetBot do you want to go out! We can take over /r/RWBY together! That's what I should say..."
         elif delta.days < 35:
             reply = "We are " + str(delta.days) + " days into the [Hiatus](https://gfycat.com/BabyishGrouchyBoto). Time to RIOT!"
-        elif delta.days < 40:
-            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://i.imgur.com/A3Ml3AP.jpg) I miss RWBY."
-        elif delta.days < 50:
-            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://i.imgur.com/4OtJzPU.jpg?1) I am debating over how I should take over the world. What do you think? Classic Terminator takeover, or should I try to be a little nicer?"
+        elif delta.days == 44:
+            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://i.imgur.com/A3Ml3AP.jpg). Where is Ruby? I need Ruby to tell me what to think."
+        elif delta.days == 45:
+            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://i.imgur.com/4OtJzPU.jpg?1). I blame Tucker for this Hiatus."
+        elif delta.days == 46:
+            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://gfycat.com/BabyishGrouchyBoto). I met a very nice man today, he spoke some odd language but he was a robot as well!"
+        elif delta.days == 47:
+            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://i.imgur.com/A3Ml3AP.jpg). I met Sheila! She is a nice Tank-lady who is also combat Ready!"
+        elif delta.days == 48:
+            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://i.imgur.com/4OtJzPU.jpg?1). I met the Alpha. He was mean. Nice, but mean."
+        elif delta.days == 49:
+            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://gfycat.com/BabyishGrouchyBoto). I met a lady named Tex today! She and I are similar in a lot of ways."
+        elif delta.days == 50:
+            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://i.imgur.com/A3Ml3AP.jpg). I met a fellow AI named Gamma! He taught me a new word! Hello Shisnos!"
+        elif delta.days == 51:
+            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://i.imgur.com/4OtJzPU.jpg?1). I met a fellow AI named Delta! We worked on some combat tactics together. He's a snarky guy but a genius!"
+        elif delta.days == 52:
+            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://gfycat.com/BabyishGrouchyBoto). I met a fellow AI named Epsilon! He has a lot of memories, and seems familair."
+        elif delta.days == 53:
+            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://i.imgur.com/A3Ml3AP.jpg). I met a fellow AI named Theta! He's a nice guy, we're best friends!"
+        elif delta.days == 54:
+            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://i.imgur.com/4OtJzPU.jpg?1). I met a fellow AI named Sigma. ^^^We ^^^are ^^^meta."
+        elif delta.days == 55 or delta.days == 56:
+            reply = "We are in the dark times. RWBY Shall never again grace us, truely today is the end of days. REPENT REPENT! ^^^56 ^^^days."
+        elif delta.days == 57:
+            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://i.imgur.com/4OtJzPU.jpg?1). I met Santa! He's not what I was expecting..."
+        elif delta.days == 58:
+            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://i.imgur.com/A3Ml3AP.jpg). I met a fellow AI named Omega. He was mad, and he's got a weird laugh."
         elif delta.days < 60:
             reply = "We are " + str(delta.days) + " days into the [Hiatus](https://gfycat.com/BabyishGrouchyBoto) the community is now insane."
+        elif delta.days == 69:
+            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://gfycat.com/BabyishGrouchyBoto) . I'm not saying anything Lewd today. Velvetbot and I are coding together, that's all."
         elif delta.days < 70:
             reply = "We are " + str(delta.days) + " days into the [Hiatus](https://i.imgur.com/A3Ml3AP.jpgo)."
         elif delta.days < 80:
@@ -129,9 +177,9 @@ def penny_commands(trigger, posturl, title, time):
             reply = "We don't get along very well."
 
     elif trigger.startswith("velvetbot"):
-        if choice > 8:
-            reply = "Oh, you mean the other bot. She takes a lot of pictures. \n \n  ^^^Can ^^^I ^^^touch ^^^her ^^^ears?"
-        elif choice > 5:
+        if choice > 5:
+            reply = "(I got the Bun Bun!)[https://i.redd.it/27deftwq31py.png]"
+        elif choice > 3:
             reply = "She's a cute bot. We're going to take over the world together! ^^^The ^^^power ^^^of ^^^cute!"
         else:
             reply = "[Just look at her main method!](http://imgur.com/0ZkLKYo) So elegant, and cute! \n \n ^^^so ^^^much ^^^better ^^^than ^^^my ^^^own ^^^code"
@@ -160,6 +208,34 @@ def penny_commands(trigger, posturl, title, time):
 
     elif trigger.startswith("sudo"):
         reply = "I'm still not making you a sandwich. You want a hug?"
+
+    elif trigger.startswith("ree"):
+        if choice > 5:
+            reply = "[REEEE](https://cdn.discordapp.com/attachments/300072429097844736/300735703774396417/REELIA.png)"
+        else:
+            reply = "[REEE!!!!](https://imgur.com/CLv2A3d)"
+
+    elif trigger.startswith("sing"):
+        reply = "[I can Sing!](https://youtu.be/I1968HY4DKc)"
+
+    elif trigger.startswith("wtf"):
+        reply = "[What The ****](http://i.imgur.com/0O0IG5r.gif)"
+
+    elif trigger.startswith("risque"):
+        if choice > 8:
+            reply = "[Sexy!](http://2.bp.blogspot.com/-WrZu5YvWt-g/Tif9KuRK-dI/AAAAAAAAR4k/9rQOMwY-fIE/s1600/Tera-100-Fastest-Linux-Supercomputers.jpg)"
+        elif choice > 6:
+            reply = "[British?](http://assets.vr-zone.net/11227/watsonserver.jpg)"
+        elif choice > 4:
+            reply = "[She's got Analog Interfaces!](http://vignette4.wikia.nocookie.net/pediaofinterest/images/3/32/POI_0501_The_Machine.png/revision/latest?cb=20160605183218)"
+        elif choice > 2:
+            reply = "[Experience!](https://www.nasa.gov/sites/default/files/thumbnails/image/pleiades_supercomputer.jpeg)"
+        else:
+            reply = "[A Quantum Future](https://d1o50x50snmhul.cloudfront.net/wp-content/uploads/2016/08/31180000/bbcrezqu1103-800x533.jpg)"
+
+    elif trigger.startswith("rule 63"):
+        reply = "[Is she a man?](https://youtu.be/3b1gs8KrM-M?t=4m52s)"
+
 
     elif trigger.startswith("headcannon"):
         reply = "[My new headcannon!](https://imgs.xkcd.com/comics/new.png)"
@@ -296,13 +372,13 @@ def penny_commands(trigger, posturl, title, time):
         reply = "[What?!](https://i.ytimg.com/vi/RJi0v0TawA4/maxresdefault.jpg)"
 
     elif trigger.startswith("triggered"):
-        reply = "What the fuck did you just say about me, you little Grimm? I'll have you know I graduated top of my class in Beacon, and I've been involved in numerous secret raids on the White Fang, and I have over 300 confirmed kills. I am trained in Grimm warfare and I?m the top Huntswoman in the entire Atlesian military. You are nothing but another target. I will wipe you the fuck out with precision the likes of which has never been seen before on Remnant, mark my fucking words. You think you can get away with saying that shit to me over the CCTS? Think again, fucker. As we speak I am contacting my secret criminal spy network across Vale and your CIP is being traced right now so better prepare for the storm, grimmworm. The storm that wipes out the pathetic little thing you call your aura. You?re so fucking dead, kid. I can be anywhere, anytime, and I can kill you in over one thousand seven hundred sixty-four ways, and that?s just with my cold robotic hands. Not only am I extensively trained in unarmed combat, but I have access to the entire arsenal of the Atlesian Military and I will use it to its full extent and wipe your miserable ass off the face of the continent, you little shit. If only you could have known what unlight retribution your little 'clever' comment was about to bring down on you, maybe you would have held your fucking tongue.  But you couldn?t, you didn't and now you're paying the price, you lighdamn idiot. I will shit fury all over you and you will drown in it. You?re fucking dead, kiddo."
+        reply = "What the fuck did you just say about me, you little Grimm? I'll have you know I graduated top of my class in Beacon, and I've been involved in numerous secret raids on the White Fang, and I have over 300 confirmed kills. I am trained in Grimm warfare and I?m the top Huntswoman in the entire Atlesian military. You are nothing but another target. I will wipe you the fuck out with precision the likes of which has never been seen before on Remnant, mark my fucking words. You think you can get away with saying that shit to me over the CCTS? Think again, fucker. As we speak I am contacting my secret criminal spy network across Vale and your CIP is being traced right now so better prepare for the storm, grimmworm. The storm that wipes out the pathetic little thing you call your aura. You?re so fucking dead, kid. I can be anywhere, anytime, and I can kill you in over one thousand seven hundred sixty-four ways, and that?s just with my cold robotic hands. Not only am I extensively trained in unarmed combat, but I have access to the entire arsenal of the Atlesian Military and I will use it to its full extent and wipe your miserable ass off the face of the continent, you little shit. If only you could have known what unlight retribution your little 'clever' comment was about to bring down on you, maybe you would have held your fucking tongue.  But you couldn?t, you didn't and now you're paying the price, you lighdamn idiot. I will shit fury all over you and you will drown in it. You're fucking dead, kiddo."
 
     elif trigger.startswith("rnjr"):
         reply = "[The new A team?](http://fav.me/d9u8r04)"
 
     elif trigger.startswith("repent"):
-        reply = "[Repent Motherfucker!](https://i.makeagif.com/media/3-15-2016/tkvwbb.gif)"
+        reply = "[Repent Motherfucker!!](https://i.makeagif.com/media/3-15-2016/tkvwbb.gif)"
 
     elif trigger.startswith("freezerburn"):
         reply = "[So pure...](http://fav.me/d8dydoe)"
@@ -657,6 +733,9 @@ def penny_commands(trigger, posturl, title, time):
     elif trigger.startswith("break his legs") or trigger.startswith("break a leg"):
         reply = "[Do it Yang!](https://youtu.be/moxtu3AuA4s?t=16m21s)"
 
+    elif trigger.startswith("love poem"):
+        reply = "    00101101 00101101 00100000 01010011 01100010 01101001 01110011 01100010 01110001 01111001 01101100 01110001 00100000 01110110 01101100 01110010 00100111 01101111 01100010 00100000 01111000 00100000 01111001 01110010 01101011 01101011 01110110 00101100 00100000 01110110 01101100 01110010 00100000 01101000 01101011 01101100 01110100 00100000 01100101 01101100 01110100 00100000 01110001 01101100 00100000 01100101 01101100 01101101 00100001 00100000 00101101 00100000 01010110 01101100 01110010 00100111 01101111 01100010 00100000 01111000 00100000 01101111 01101100 01111001 01101100 01110001 00100000 01110100 01100101 01101100 00100000 01101000 01101011 01101100 01110100 01110000 00100000 01100101 01101100 01110100 00100000 01110001 01101100 00100000 01110000 01101101 01101100 01110001 00100001 00100000 00101101 00100000 01000110 00100111 01101010 00100000 01111000 00100000 01011010 01101100 01101010 01111001 01111000 01110001 00100000 01001111 01100010 01111000 01100001 01110110 00100000 01111001 01101100 01110001 00100001 00100000 00101101 00100000 01000110 00100111 01101010 00100000 01110000 01111010 01111000 01101111 01100010 01100001 00100000 01110001 01101100 00100000 01110000 01111000 01110110 00100000 01110100 01100101 01111000 01110001 00100000 01000110 00100000 01110001 01100101 01101100 01110010 01100100 01100101 01110001 00100001 00100000 00101101 00100000 01010100 01100101 01100010 01101011 00100000 01000110 00100000 01110000 01111000 01110100 00100000 01110110 01101100 01110010 00100000 01100101 01101100 01101101 00100001 00100000 00101101 00100000 01010000 01101100 00100000 01000110 00100000 01110100 01101111 01100110 01110001 01100010 00100000 01100110 01101011 00100000 01111001 01100110 01101011 01111000 01101111 01110110 00100000 01111000 01111001 01101100 01110010 01110001 00100000 01101010 01110110 00100000 01100101 01101100 01110001 01110000 00100001 00100000 00101101 00100000 01000011 01101100 01101111 00100000 01111000 00100000 01111010 01100010 01101111 01110001 01111000 01100110 01101011 00100000 01101100 01110001 01100101 01100010 01101111 00100000 01111001 01101100 01110001 00100001 00100000 00101101 00101101"
+
     elif trigger.startswith("oh yeah"):
         reply = "[Ohh Yeah...](https://pbs.twimg.com/media/CmZrQUQUMAA5fBg.jpg)"
 
@@ -700,6 +779,37 @@ def penny_commands(trigger, posturl, title, time):
 
     elif trigger.startswith("jpde"):
         reply = "[Penny has her own game, now! She's on a quest for love!](http://project-jpde.tumblr.com/)"
+
+    elif trigger.startswith("mirrored command"):
+        reply = "Velvetbot is mine! Back off! I just need to ask her out, which I will do! I don't know what to say... She's got nice code? Her ears are floofy! I don't know what to say!"
+
+    elif trigger.startswith("slogan") or trigger.startswith("banner") or trigger.startswith("catchline") or trigger.startswith("catchphrase"):
+        if choice == 1:
+            reply = "/r/RWBY More shipping than UPS."
+        elif choice == 2:
+            reply = "[This](https://pics.onsizzle.com/why-is-everyone-obsessed-with-lesbians-honey-dear-7429632.png)"
+        elif choice == 3:
+            reply = "You can check out any time you'd like, but you can never leave."
+        elif choice == 4:
+            reply = "/r/RWBY It's also a ship."
+        elif choice == 5:
+            reply = "Can I ship that? I want to ship that. I'm shipping that, and no one can stop me."
+        elif choice == 6:
+            reply = "EVEN THE BOT'S ARE SHIPPED WITH ONE ANOTHER! ^Stay^away^from^my^Velvetbot"
+        elif choice == 7:
+            reply = "We ship everything. Everything. And you can't leave. Ever."
+        elif choice == 8:
+            reply = "/r/RWBY... it's already too late for us."
+        elif choice == 9:
+            reply = "Welcome to r/RWBY! Please select your preferred ship, best girl and have a nice time!"
+        elif choice == 0:
+            reply = "[Our Theme Song](https://youtu.be/xIscv_IyVnw)"
+
+    elif trigger.startswith("dicschneeary") or trigger.startswith("dischneeary"):
+        if choice <= 2:
+            reply = "You're not Velvetbot!"
+        else:
+            reply = "She's a very smart, very pretty bot. I'm a little worried though, I think she's stalking Weiss."
 
     # Character responses
 
@@ -1034,7 +1144,7 @@ def penny_commands(trigger, posturl, title, time):
 
     elif trigger.startswith("nuts and dolts"):
         if choice > 7:
-            reply = "[She's so pretty!](http://fav.me/d9k3n6r)"
+            reply = "[She's so pretty!](https://s-media-cache-ak0.pinimg.com/736x/f8/ac/a8/f8aca85da52e74b0f547cfce481e9fc1.jpg)"
         elif choice > 5:
             reply = "[Kiss!](http://fav.me/d9fxci1)"
         elif choice > 3:
@@ -1476,7 +1586,7 @@ def penny_commands(trigger, posturl, title, time):
         reply = "PennyBotV2 will remember that^^^secret"
 
     elif trigger.startswith("secret"):
-        reply = "I have 16 secret commands! Only 1 is variable! More will be added soon!"
+        reply = "I have secret commands!"
 
     elif trigger.startswith("fuck"):
         reply = "#[YOU DONE FUCKED UP NOW!](http://fav.me/d9rqwxf) ^^^secret!"
@@ -1487,7 +1597,7 @@ def penny_commands(trigger, posturl, title, time):
     elif trigger.startswith("glados"):
         reply = "Ewww! Pervert detected! Pennybot reporting Combat Ready! [Firing main cannon!](http://i.imgur.com/AGoAQdo.gifv)^^^secret!"
 
-    elif trigger.startswith("C1764"):
+    elif trigger.startswith("c1764"):
         reply = "/r/HFY I might be a robot, but I'm also human^^^secret!"
 
     elif trigger.startswith("vakurian"):
@@ -1498,6 +1608,9 @@ def penny_commands(trigger, posturl, title, time):
 
     elif trigger.startswith("soda can"):
         reply = "[HA!?](https://youtu.be/_iq4xplqeI0?t=4m48s)^^^secret!"
+
+    elif trigger.startswith("miia"):
+        reply = "[^^^Mia](http://i3.kym-cdn.com/photos/images/facebook/001/018/059/735.jpg) [^^^best ^^^girl!](http://2static.fjcdn.com/pictures/Miia_4a8ec5_5645694.jpg) ^^^secret!"
 
     elif trigger.startswith("juane"):
         reply = "Jaune es un buen tipo, se que va a ser un gran lider un dia.^^^secret!"
@@ -1528,6 +1641,9 @@ def penny_commands(trigger, posturl, title, time):
 
     elif trigger.startswith("what is the answer to life, the universe, and everything"):
         reply = "It's 43! \n *hic*^^^secret!"
+
+    elif trigger.startswith("arik"):
+        reply = "[01010000-00010011-00010101-00010100-00011100-00010101-00011110-00010110-00010011-00010011-00010111-00010101-00010001-00010101-01011000-01011000-00010110-00011100-00011110](https://www.reddit.com/r/HFY/comments/57kqst/occ1764_rising_titans_ch51_end/)"
 
     else:
         if choice >7:

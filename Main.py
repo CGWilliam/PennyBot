@@ -84,6 +84,11 @@ def get_messages():
             sendstring = str(Tagger.tagcollect())
             r.send_message(message.author, "A Pennybot Report!", sendstring)
 
+def load_random_phrase():
+    with open('Commands.txt', 'r', encoding='utf8') as f:
+        randomcmd = [line.strip() for line in f]
+    return randomcmd
+
 def get_my_cake_day(username):
     try:
         redditor = r.get_redditor(username)
@@ -131,7 +136,7 @@ def find_penny_comment(flat_comments, processing, mods):
 
                 # Add to the suggestion text file
                 elif current.startswith("suggestion"):
-                    reply = "Thank you for the command suggestions! \n Creator! /u/Weerdo5255 ! Someone has made an excellent suggestion for a command! \n (PennyBotV2 has saved this suggestion, even if the creator does not respond!)"
+                    reply = "[You can make Suggestions here!](https://goo.gl/forms/NKGPxdJzxh87dsjv2) \n \n Pennybot has saves this comment as well! \n \n ^^^^^^^^/u/weerdo5255 "
                     filesug = open("Suggestions.txt", "a")
                     filesug.write(str(wholecomment) + "FROM:" + str(commentauthor) + "\n")
                     filesug.close()
@@ -215,6 +220,16 @@ def find_penny_comment(flat_comments, processing, mods):
                 elif current.startswith("pennykarma"):
                     reply = "Here is the [Karma Decay](http://karmadecay.com/" + str(
                     comment.submission.url) + ")"
+
+                elif current.startswith("random"):
+                    phrases = load_random_phrase()
+                    current = str(random.choice(phrases))
+                    current = current.lower()
+                    print(current)
+                    reply = Commands.penny_commands(current, str(comment.submission.url), str(comment.submission.title),
+                                                    int(comment.submission.created_utc))
+                    reply = "My " + current + " Command:     " +reply
+
                 else:
                     reply = Commands.penny_commands(current, str(comment.submission.url), str(comment.submission.title),
                                                     int(comment.submission.created_utc))
