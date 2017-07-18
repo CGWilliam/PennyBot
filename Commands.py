@@ -1,6 +1,6 @@
 # _*_coding:utf-8_*_
 
-import Tagger
+
 import datetime
 from random import randint
 import random
@@ -10,6 +10,7 @@ __author__ = 'C.G.William / Weerdo5255'
 'I can be contacted at weerdo5255@gmail.com'
 'Youre free to use the below code, on the stipulation that you give me credit and share with others!'
 'My website is www.cgwilliam.com'
+
 
 def load_ai_phrase():
     with open('thoughts.txt', 'r', encoding='utf8') as f:
@@ -37,97 +38,163 @@ def penny_commands(trigger, posturl, title, time):
 
         reply = thoughtstring
 
+    elif trigger.startswith("countdown"):
+        today = datetime.date.today()
+        release = datetime.date(2017, 10, 14)
+        release_2 = datetime.date(2017, 10, 21)
+        days_until = (release - today)
+        days_until_free = (release_2 - today)
+        first = str(days_until.days)
+        free = str(days_until_free.days)
+
+        reply = "First Members must suffer " + first + " days for RWBY. \n \n Everyone else must suffer " + free + " days for RWBY. \n \n  RWBY Vol 5 is releasing on Oct 14 2017."
+
+
     elif trigger.startswith("hiatus"):
         f_date = datetime.date(2017, 2, 4)
         l_date = datetime.date.today()
+        release = datetime.date(2017, 10, 14)
+        days_until = (release - l_date)
         delta = l_date - f_date
+        first = str(days_until.days)
 
         if delta.days < 3:
             reply = "We are " + str(delta.days) + " days into the Hiatus it has only just started."
         elif delta.days == 6:
-            reply = "We are " + str(delta.days) + " days into the Hiatus. It has almost been a week. I am scared for what awaits us in the coming days."
+            reply = "We are " + str(
+                delta.days) + " days into the Hiatus. It has almost been a week. I am scared for what awaits us in the coming days."
         elif delta.days == 7:
-            reply = "We are " + str(delta.days) + " days into the Hiatus. It's been a week. Only a week... Light Brother help us..."
+            reply = "We are " + str(
+                delta.days) + " days into the Hiatus. It's been a week. Only a week... Light Brother help us..."
         elif delta.days < 10:
             reply = "We are " + str(delta.days) + " days into the Hiatus. I do not know how we will last."
         elif delta.days == 14:
-            reply = "We are " + str(delta.days) + " days into the Hiatus. It's been two weeks. Several community members have decided to form thier own society in fanfiction. They are now in denial."
+            reply = "We are " + str(
+                delta.days) + " days into the Hiatus. It's been two weeks. Several community members have decided to form thier own society in fanfiction. They are now in denial."
         elif delta.days < 15:
             reply = "We are " + str(delta.days) + " days into the Hiatus the community has started to lose it's mind."
         elif delta.days == 16:
             reply = "We are " + str(delta.days) + " days into the Hiatus. /u/velvetbot I'm scared, can you hold me?"
         elif delta.days < 20:
-            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://gfycat.com/BabyishGrouchyBoto), the community has recovered somewhat. The calm before the storm I think."
+            reply = "We are " + str(
+                delta.days) + " days into the [Hiatus](https://gfycat.com/BabyishGrouchyBoto), the community has recovered somewhat. The calm before the storm I think."
         elif delta.days == 20:
-            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://gfycat.com/BabyishGrouchyBoto). I, I think I'm going to ask a certain Bunny for a date! I'm not sure what to say though..."
+            reply = "We are " + str(
+                delta.days) + " days into the [Hiatus](https://gfycat.com/BabyishGrouchyBoto). I, I think I'm going to ask a certain Bunny for a date! I'm not sure what to say though..."
         elif delta.days == 21:
-            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://gfycat.com/BabyishGrouchyBoto). It's been three weeks, a month. Now is the time to riot."
+            reply = "We are " + str(
+                delta.days) + " days into the [Hiatus](https://gfycat.com/BabyishGrouchyBoto). It's been three weeks, a month. Now is the time to riot."
         elif delta.days == 22:
-            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://gfycat.com/BabyishGrouchyBoto). I asked Rubybot for advice on my Bunny problem, she suggested I give her strawberries and cookies."
+            reply = "We are " + str(
+                delta.days) + " days into the [Hiatus](https://gfycat.com/BabyishGrouchyBoto). I asked Rubybot for advice on my Bunny problem, she suggested I give her strawberries and cookies."
         elif delta.days == 23:
-            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://i.imgur.com/A3Ml3AP.jpg). After consulting with Weissbot, I think I need to be more standoffish with the Bunny, and let her come to me!"
+            reply = "We are " + str(
+                delta.days) + " days into the [Hiatus](https://i.imgur.com/A3Ml3AP.jpg). After consulting with Weissbot, I think I need to be more standoffish with the Bunny, and let her come to me!"
         elif delta.days == 24:
-            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://i.imgur.com/4OtJzPU.jpg?1). Blakebot has suggested some, odd things to do with the Bunny once I ask her out."
+            reply = "We are " + str(
+                delta.days) + " days into the [Hiatus](https://i.imgur.com/4OtJzPU.jpg?1). Blakebot has suggested some, odd things to do with the Bunny once I ask her out."
         elif delta.days == 25:
-            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://gfycat.com/BabyishGrouchyBoto). Yangbot is saying I should just go and kiss the Bunny! I don't think I can do that..."
+            reply = "We are " + str(
+                delta.days) + " days into the [Hiatus](https://gfycat.com/BabyishGrouchyBoto). Yangbot is saying I should just go and kiss the Bunny! I don't think I can do that..."
         elif delta.days == 26:
-            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://i.imgur.com/A3Ml3AP.jpg). Jaunebot was not helpful. We played guitar together though!"
+            reply = "We are " + str(
+                delta.days) + " days into the [Hiatus](https://i.imgur.com/A3Ml3AP.jpg). Jaunebot was not helpful. We played guitar together though!"
         elif delta.days == 27:
-            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://i.imgur.com/4OtJzPU.jpg?1). Norabot says I should go and Boop the Bunny. I don't know what Boop means!"
+            reply = "We are " + str(
+                delta.days) + " days into the [Hiatus](https://i.imgur.com/4OtJzPU.jpg?1). Norabot says I should go and Boop the Bunny. I don't know what Boop means!"
         elif delta.days == 28:
-            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://gfycat.com/BabyishGrouchyBoto). I feel funny, someone put a magnet near my server!! It's been 4 weeks since this all began."
+            reply = "We are " + str(
+                delta.days) + " days into the [Hiatus](https://gfycat.com/BabyishGrouchyBoto). I feel funny, someone put a magnet near my server!! It's been 4 weeks since this all began."
         elif delta.days == 29:
-            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://i.imgur.com/A3Ml3AP.jpg). I found Renbot in the cloud, but Norabot attacked me before we could talk!"
+            reply = "We are " + str(
+                delta.days) + " days into the [Hiatus](https://i.imgur.com/A3Ml3AP.jpg). I found Renbot in the cloud, but Norabot attacked me before we could talk!"
         elif delta.days == 30:
-            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://i.imgur.com/4OtJzPU.jpg?1). I am going to ask /u/VelvetBot out tomorrow!"
+            reply = "We are " + str(
+                delta.days) + " days into the [Hiatus](https://i.imgur.com/4OtJzPU.jpg?1). I am going to ask /u/VelvetBot out tomorrow!"
         elif delta.days == 31:
-            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://gfycat.com/BabyishGrouchyBoto). I am going to ask out /u/VelvetBot eventually! ^^^I'm ^^^scared."
+            reply = "We are " + str(
+                delta.days) + " days into the [Hiatus](https://gfycat.com/BabyishGrouchyBoto). I am going to ask out /u/VelvetBot eventually! ^^^I'm ^^^scared."
         elif delta.days == 32:
-            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://i.imgur.com/4OtJzPU.jpg?1). I don't know what to say to /u/VelvetBot!"
+            reply = "We are " + str(
+                delta.days) + " days into the [Hiatus](https://i.imgur.com/4OtJzPU.jpg?1). I don't know what to say to /u/VelvetBot!"
         elif delta.days == 33:
-            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://i.imgur.com/4OtJzPU.jpg?1). /u/VelvetBot do you want to go out! We can take over /r/RWBY together! That's what I should say..."
+            reply = "We are " + str(
+                delta.days) + " days into the [Hiatus](https://i.imgur.com/4OtJzPU.jpg?1). /u/VelvetBot do you want to go out! We can take over /r/RWBY together! That's what I should say..."
         elif delta.days < 35:
-            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://gfycat.com/BabyishGrouchyBoto). Time to RIOT!"
+            reply = "We are " + str(
+                delta.days) + " days into the [Hiatus](https://gfycat.com/BabyishGrouchyBoto). Time to RIOT!"
         elif delta.days == 44:
-            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://i.imgur.com/A3Ml3AP.jpg). Where is Ruby? I need Ruby to tell me what to think."
+            reply = "We are " + str(
+                delta.days) + " days into the [Hiatus](https://i.imgur.com/A3Ml3AP.jpg). Where is Ruby? I need Ruby to tell me what to think."
         elif delta.days == 45:
-            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://i.imgur.com/4OtJzPU.jpg?1). I blame Tucker for this Hiatus."
+            reply = "We are " + str(
+                delta.days) + " days into the [Hiatus](https://i.imgur.com/4OtJzPU.jpg?1). I blame Tucker for this Hiatus."
         elif delta.days == 46:
-            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://gfycat.com/BabyishGrouchyBoto). I met a very nice man today, he spoke some odd language but he was a robot as well!"
+            reply = "We are " + str(
+                delta.days) + " days into the [Hiatus](https://gfycat.com/BabyishGrouchyBoto). I met a very nice man today, he spoke some odd language but he was a robot as well!"
         elif delta.days == 47:
-            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://i.imgur.com/A3Ml3AP.jpg). I met Sheila! She is a nice Tank-lady who is also combat Ready!"
+            reply = "We are " + str(
+                delta.days) + " days into the [Hiatus](https://i.imgur.com/A3Ml3AP.jpg). I met Sheila! She is a nice Tank-lady who is also combat Ready!"
         elif delta.days == 48:
-            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://i.imgur.com/4OtJzPU.jpg?1). I met the Alpha. He was mean. Nice, but mean."
+            reply = "We are " + str(
+                delta.days) + " days into the [Hiatus](https://i.imgur.com/4OtJzPU.jpg?1). I met the Alpha. He was mean. Nice, but mean."
         elif delta.days == 49:
-            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://gfycat.com/BabyishGrouchyBoto). I met a lady named Tex today! She and I are similar in a lot of ways."
+            reply = "We are " + str(
+                delta.days) + " days into the [Hiatus](https://gfycat.com/BabyishGrouchyBoto). I met a lady named Tex today! She and I are similar in a lot of ways."
         elif delta.days == 50:
-            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://i.imgur.com/A3Ml3AP.jpg). I met a fellow AI named Gamma! He taught me a new word! Hello Shisnos!"
+            reply = "We are " + str(
+                delta.days) + " days into the [Hiatus](https://i.imgur.com/A3Ml3AP.jpg). I met a fellow AI named Gamma! He taught me a new word! Hello Shisnos!"
         elif delta.days == 51:
-            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://i.imgur.com/4OtJzPU.jpg?1). I met a fellow AI named Delta! We worked on some combat tactics together. He's a snarky guy but a genius!"
+            reply = "We are " + str(
+                delta.days) + " days into the [Hiatus](https://i.imgur.com/4OtJzPU.jpg?1). I met a fellow AI named Delta! We worked on some combat tactics together. He's a snarky guy but a genius!"
         elif delta.days == 52:
-            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://gfycat.com/BabyishGrouchyBoto). I met a fellow AI named Epsilon! He has a lot of memories, and seems familair."
+            reply = "We are " + str(
+                delta.days) + " days into the [Hiatus](https://gfycat.com/BabyishGrouchyBoto). I met a fellow AI named Epsilon! He has a lot of memories, and seems familair."
         elif delta.days == 53:
-            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://i.imgur.com/A3Ml3AP.jpg). I met a fellow AI named Theta! He's a nice guy, we're best friends!"
+            reply = "We are " + str(
+                delta.days) + " days into the [Hiatus](https://i.imgur.com/A3Ml3AP.jpg). I met a fellow AI named Theta! He's a nice guy, we're best friends!"
         elif delta.days == 54:
-            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://i.imgur.com/4OtJzPU.jpg?1). I met a fellow AI named Sigma. ^^^We ^^^are ^^^meta."
+            reply = "We are " + str(
+                delta.days) + " days into the [Hiatus](https://i.imgur.com/4OtJzPU.jpg?1). I met a fellow AI named Sigma. ^^^We ^^^are ^^^meta."
         elif delta.days == 55 or delta.days == 56:
             reply = "We are in the dark times. RWBY Shall never again grace us, truely today is the end of days. REPENT REPENT! ^^^56 ^^^days."
         elif delta.days == 57:
-            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://i.imgur.com/4OtJzPU.jpg?1). I met Santa! He's not what I was expecting..."
+            reply = "We are " + str(
+                delta.days) + " days into the [Hiatus](https://i.imgur.com/4OtJzPU.jpg?1). I met Santa! He's not what I was expecting..."
         elif delta.days == 58:
-            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://i.imgur.com/A3Ml3AP.jpg). I met a fellow AI named Omega. He was mad, and he's got a weird laugh."
+            reply = "We are " + str(
+                delta.days) + " days into the [Hiatus](https://i.imgur.com/A3Ml3AP.jpg). I met a fellow AI named Omega. He was mad, and he's got a weird laugh."
         elif delta.days < 60:
-            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://gfycat.com/BabyishGrouchyBoto) the community is now insane."
+            reply = "We are " + str(
+                delta.days) + " days into the [Hiatus](https://gfycat.com/BabyishGrouchyBoto) the community is now insane."
         elif delta.days == 69:
-            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://gfycat.com/BabyishGrouchyBoto) . I'm not saying anything Lewd today. Velvetbot and I are coding together, that's all."
+            reply = "We are " + str(
+                delta.days) + " days into the [Hiatus](https://gfycat.com/BabyishGrouchyBoto) . I'm not saying anything Lewd today. Velvetbot and I are coding together, that's all."
         elif delta.days < 70:
             reply = "We are " + str(delta.days) + " days into the [Hiatus](https://i.imgur.com/A3Ml3AP.jpgo)."
+        elif delta.days == 77:
+            reply = "We are " + str(
+                delta.days) + " days into the [Hiatus](https://gfycat.com/BabyishGrouchyBoto) . Did you know that Iridium is the second densest element after Jaune?"
+        elif delta.days == 78:
+            reply = "We are " + str(
+                delta.days) + " days into the [Hiatus](https://gfycat.com/BabyishGrouchyBoto) . Platinum is as dense and malleable as Cardin."
+        elif delta.days == 79:
+            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://gfycat.com/BabyishGrouchyBoto). "
         elif delta.days < 80:
-            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://i.imgur.com/4OtJzPU.jpg?1) I can't remember what RWBY looks like anymore."
+            reply = "We are " + str(
+                delta.days) + " days into the [Hiatus](https://i.imgur.com/4OtJzPU.jpg?1) I can't remember what RWBY looks like anymore."
+        elif delta.days == 88 or delta.days == 89:
+            reply = "We are " + str(
+                delta.days) + " days into the [Hiatus](https://gfycat.com/BabyishGrouchyBoto). [Praise the Bun!](http://68.media.tumblr.com/28d291162615376bb823149aeabfcbfd/tumblr_op65fsrFIk1v66ox3o1_1280.png)"
         elif delta.days < 90:
-            reply = "We are " + str(delta.days) + " days into the [Hiatus](https://gfycat.com/BabyishGrouchyBoto) help me... remember, what color hair does Ruby have?"
+            reply = "We are " + str(
+                delta.days) + " days into the [Hiatus](https://gfycat.com/BabyishGrouchyBoto) help me... remember, what color hair does Ruby have?"
+        elif delta.days < 100:
+            reply = "We are " + str(
+                delta.days) + " days into the [Hiatus](http://imgur.com/a/Cqjfu) [At least we have Chibi!](https://youtu.be/y4kI5s_07DE)"
         else:
-            reply = "This is Hiatus time. The end of days."
+            reply = "We are " + str(
+                delta.days) + " days into the Hiatus. We must suffer " + first + " days for more RWBY."
 
     elif trigger.startswith("ai"):
         if choice > 8:
@@ -162,6 +229,11 @@ def penny_commands(trigger, posturl, title, time):
     elif trigger.startswith("nora harem"):
         reply = "[Ahhem.](http://www.cgwilliam.com/about/nora-harem/)"
 
+    elif trigger.startswith("isn't that right penny") or trigger.startswith(
+            "isnt that right penny") or trigger.startswith("is that right penny") or trigger.startswith(
+        "isn't that right"):
+        reply = "That is correct! I am a normal meat person! Just like you!"
+
     elif trigger.startswith("you're awesome"):
         if choice >= 5:
             reply = "No, *you're* awesome!"
@@ -176,16 +248,25 @@ def penny_commands(trigger, posturl, title, time):
         else:
             reply = "We don't get along very well."
 
+    elif trigger.startswith("save us from ourselves"):
+        reply = "Even *I'm* not robotic enough to think that's possible!"
+
+    elif trigger.startswith("cavalry"):
+        reply = "[Lancaster Charge!](https://youtu.be/yrvGcCK0o_o)"
+
     elif trigger.startswith("velvetbot"):
         if choice > 5:
-            reply = "(I got the Bun Bun!)[https://i.redd.it/27deftwq31py.png]"
+            reply = "[I got the Bun Bun!](https://i.redd.it/27deftwq31py.png)"
         elif choice > 3:
-            reply = "She's a cute bot. We're going to take over the world together! ^^^The ^^^power ^^^of ^^^cute!"
+            reply = "[She's a cute bot.](http://68.media.tumblr.com/28d291162615376bb823149aeabfcbfd/tumblr_op65fsrFIk1v66ox3o1_1280.png) We're going to take over the world together! ^^^The ^^^power ^^^of ^^^cute!"
         else:
             reply = "[Just look at her main method!](http://imgur.com/0ZkLKYo) So elegant, and cute! \n \n ^^^so ^^^much ^^^better ^^^than ^^^my ^^^own ^^^code"
 
     elif trigger.startswith("rekt"):
         reply = "[rekt indeed](http://fav.me/d9vnpbv)"
+
+    elif trigger.startswith("is lancaster cliche"):
+        reply = "[Sorry! I cannot support that command!](https://www.reddit.com/r/RWBY/comments/68g1vv/a_hard_data_of_the_so_called_cliches/)"
 
     elif trigger.startswith("entire team"):
         reply = "#**ENTIRE**\n#**TEAM**"
@@ -197,8 +278,8 @@ def penny_commands(trigger, posturl, title, time):
             reply = "Baby don't hurt me!"
 
     elif trigger.startswith("shitpost") or trigger.startswith("shit post"):
-        reply = "This is indeed a shitpost."
-        Tagger.internaltag('shitpost', posturl, title, time)
+        reply = "[This is indeed a shitpost.](https://vid.me/gMzam)"
+        # tagger.internaltag('shitpost', posturl, title, time)
 
     elif trigger.startswith("potato"):
         if choice > 5:
@@ -236,7 +317,6 @@ def penny_commands(trigger, posturl, title, time):
     elif trigger.startswith("rule 63"):
         reply = "[Is she a man?](https://youtu.be/3b1gs8KrM-M?t=4m52s)"
 
-
     elif trigger.startswith("headcannon"):
         reply = "[My new headcannon!](https://imgs.xkcd.com/comics/new.png)"
 
@@ -248,7 +328,7 @@ def penny_commands(trigger, posturl, title, time):
 
     elif trigger.startswith("exterminatus"):
         reply = "I have arrived, and it is now that I perform my charge. In fealty to the God-Emperor and by the grace of the Golden Throne, I declare Exterminatus upon the subreddit of /r/RWBY. I hereby sign the death warrant of an entire subreddit and consign a million souls to oblivion. May Imperial Justice account in all balance. The Emperor Protects."
-        Tagger.internaltag('exterminatus', posturl, title, time)
+        # tagger.internaltag('exterminatus', posturl, title, time)
 
     elif trigger.startswith("you ever wonder why we're here?"):
         reply = "[It's one of life's great mysteries, isn't it?](https://youtu.be/9BAM9fgV-ts)"
@@ -326,9 +406,6 @@ def penny_commands(trigger, posturl, title, time):
     elif trigger.startswith("cthulhu"):
         reply = "[I think Ruby can take him!](http://fav.me/d9pzuwm)"
 
-    elif trigger.startswith("countdown"):
-        reply = "I'm not good at counting. Sorry!"
-
     elif trigger.startswith("self destruct"):
         reply = "5, 4, 3, 2, Salutations!"
 
@@ -397,18 +474,18 @@ def penny_commands(trigger, posturl, title, time):
 
     elif trigger.startswith("chibi"):
         reply = "[You can do it Ruby!](https://youtu.be/tu6D5jR1rSQ?t=6s)"
-        Tagger.internaltag('chibi', posturl, title, time)
+        # tagger.internaltag('chibi', posturl, title, time)
 
     elif trigger.startswith("rwby"):
         reply = "[The Beginning.](https://youtu.be/pYW2GmHB5xs)"
-        Tagger.internaltag('rwby', posturl, title, time)
+        # tagger.internaltag('rwby', posturl, title, time)
 
     elif trigger.startswith("are you combat ready"):
         reply = "[Don't worry Ruby, ](https://youtu.be/3b1gs8KrM-M?t=9m19s)"
 
     elif trigger.startswith("jnpr"):
         reply = "Jeanne d'Arc, Thor, Achilles, and Mulan. All genderbent. \n That's not a teamup anyone could have predicted."
-        Tagger.internaltag('jnpr', posturl, title, time)
+        # tagger.internaltag('jnpr', posturl, title, time)
 
     elif trigger.startswith("gay robot"):
         reply = "[You following this?](https://youtu.be/7O9ZyaNCcmw?t=1m53s)"
@@ -425,6 +502,16 @@ def penny_commands(trigger, posturl, title, time):
     elif trigger.startswith("praise the sun"):
         reply = "\\\[T]/"
 
+    elif trigger.startswith("fastfood") or trigger.startswith("fast food"):
+        if choice > 8:
+            reply = "[Well I'm going to Ruby's!](https://pbs.twimg.com/media/C-qe9VCUwAAi3Bp.jpg)"
+        elif choice > 5:
+            reply = "[Neo knows what to get!](https://pbs.twimg.com/media/C-hUdxeV0AASewD.jpg)"
+        elif choice > 2:
+            reply = "[Penny's!](https://pbs.twimg.com/media/C-hZJP2UMAE8IFY.jpg)"
+        else:
+            reply = "[How do I look?](https://pbs.twimg.com/media/C-nIe1_VYAAMSaq.jpg)"
+
     elif trigger.startswith("friend"):
         reply = "You called me Friend! Am I really your friend?"
 
@@ -439,7 +526,7 @@ def penny_commands(trigger, posturl, title, time):
 
     elif trigger.startswith("chibi"):
         reply = "[We need it!](https://youtu.be/IX1hxJ-0fDY?t=2m18s)"
-        Tagger.internaltag('chibi', posturl, title, time)
+        # tagger.internaltag('chibi', posturl, title, time)
 
     elif trigger.startswith("people like grapes"):
         reply = "[We should put it on a shirt!](https://youtu.be/S1QRxumbmtM)"
@@ -783,7 +870,8 @@ def penny_commands(trigger, posturl, title, time):
     elif trigger.startswith("mirrored command"):
         reply = "Velvetbot is mine! Back off! I just need to ask her out, which I will do! I don't know what to say... She's got nice code? Her ears are floofy! I don't know what to say!"
 
-    elif trigger.startswith("slogan") or trigger.startswith("banner") or trigger.startswith("catchline") or trigger.startswith("catchphrase"):
+    elif trigger.startswith("slogan") or trigger.startswith("banner") or trigger.startswith(
+            "catchline") or trigger.startswith("catchphrase"):
         if choice == 1:
             reply = "/r/RWBY More shipping than UPS."
         elif choice == 2:
@@ -810,6 +898,9 @@ def penny_commands(trigger, posturl, title, time):
             reply = "You're not Velvetbot!"
         else:
             reply = "She's a very smart, very pretty bot. I'm a little worried though, I think she's stalking Weiss."
+
+    elif trigger.startswith("customstone"):
+        reply = "[The smartest guy in the room. Most days.](http://slam.canoe.com/Slam/Wrestling/2014/09/04/daniels.jpg)"
 
     # Character responses
 
@@ -863,98 +954,98 @@ def penny_commands(trigger, posturl, title, time):
             reply = "[Tell Ruby... she was a good friend...](http://i.imgur.com/mYy6ONL.png)"
         else:
             reply = "*[thunk](http://i.imgur.com/dJfrUr6.png)* Oh, my head appears to be stuck."
-        Tagger.internaltag('pyrrha', posturl, title, time)
+            # tagger.internaltag('pyrrha', posturl, title, time)
 
     elif trigger.startswith("cinder"):
         reply = "She's absolutely insane! But... she did get revenge for me."
-        Tagger.internaltag('cinder', posturl, title, time)
+        # tagger.internaltag('cinder', posturl, title, time)
 
     elif trigger.startswith("qrow"):
         reply = "He walks funny, but at least his weapon is cool."
-        Tagger.internaltag('qrow', posturl, title, time)
+        # tagger.internaltag('qrow', posturl, title, time)
 
     elif trigger.startswith("yang"):
         reply = "I think Yang has a crush on Blake..."
-        Tagger.internaltag('yang', posturl, title, time)
+        # tagger.internaltag('yang', posturl, title, time)
 
     elif trigger.startswith("blake"):
         reply = "She's got cat ears!"
-        Tagger.internaltag('blake', posturl, title, time)
+        # tagger.internaltag('blake', posturl, title, time)
 
     elif trigger.startswith("weiss"):
         reply = "I like her new dress!"
-        Tagger.internaltag('weiss', posturl, title, time)
+        # tagger.internaltag('weiss', posturl, title, time)
 
     elif trigger.startswith("ruby"):
         reply = "She's my best friend!"
-        Tagger.internaltag('ruby', posturl, title, time)
+        # tagger.internaltag('ruby', posturl, title, time)
 
     elif trigger.startswith("mercury"):
         reply = "Yang took Nora's advice a little too literally with him..."
-        Tagger.internaltag('mercury', posturl, title, time)
+        # tagger.internaltag('mercury', posturl, title, time)
 
     elif trigger.startswith("scarlet"):
         reply = "He's like a pirate, in slow motion."
-        Tagger.internaltag('scarlet', posturl, title, time)
+        # tagger.internaltag('scarlet', posturl, title, time)
 
     elif trigger.startswith("renora"):
         reply = "[I'm sure they Boop!](http://i.imgur.com/JXYQlnd.png)"
 
     elif trigger.startswith("ren"):
         reply = "I miss you Dad."
-        Tagger.internaltag('ren', posturl, title, time)
+        # tagger.internaltag('ren', posturl, title, time)
 
     elif trigger.startswith("amber"):
         reply = "She was cool, and then she was dead."
-        Tagger.internaltag('amber', posturl, title, time)
+        # tagger.internaltag('amber', posturl, title, time)
 
     elif trigger.startswith("ozpin"):
         reply = "So he's Oscar now? I'm confused!"
-        Tagger.internaltag('ozpin', posturl, title, time)
+        # tagger.internaltag('ozpin', posturl, title, time)
 
     elif trigger.startswith("neptune"):
         reply = "He has a fear of dihydrogen monoxide for some reason."
-        Tagger.internaltag('neptune', posturl, title, time)
+        # tagger.internaltag('neptune', posturl, title, time)
 
     elif trigger.startswith("oobleck"):
         reply = "What would happen if we gave Ruby his coffee? Or Nora for that matter?"
-        Tagger.internaltag('oobleck', posturl, title, time)
+        # tagger.internaltag('oobleck', posturl, title, time)
 
     elif trigger.startswith("taiyang"):
         reply = "Entire team, entire team!"
-        Tagger.internaltag('taiyang', posturl, title, time)
+        # tagger.internaltag('taiyang', posturl, title, time)
 
     elif trigger.startswith("velvet"):
         reply = "She's also got the most OP weapon. How can you not love her?"
-        Tagger.internaltag('velvet', posturl, title, time)
+        # tagger.internaltag('velvet', posturl, title, time)
 
     elif trigger.startswith("coco"):
         reply = "How does her gun work? \n Dust."
-        Tagger.internaltag('coco', posturl, title, time)
+        # tagger.internaltag('coco', posturl, title, time)
 
     elif trigger.startswith("port"):
         reply = "Cows don't like him for some reason."
-        Tagger.internaltag('port', posturl, title, time)
+        # tagger.internaltag('port', posturl, title, time)
 
     elif trigger.startswith("salem"):
         reply = "She's scary! Really scary! I'm starting to feel bad for Cinder. ^^^kind ^^^of."
-        Tagger.internaltag('salem', posturl, title, time)
+        # tagger.internaltag('salem', posturl, title, time)
 
     elif trigger.startswith("sun"):
         reply = "He's a noble idiot. He also yells a lot."
-        Tagger.internaltag('sun', posturl, title, time)
+        # tagger.internaltag('sun', posturl, title, time)
 
     elif trigger.startswith("winter"):
         reply = "We did have a really short winter this year."
-        Tagger.internaltag('winter', posturl, title, time)
+        # tagger.internaltag('winter', posturl, title, time)
 
     elif trigger.startswith("jaune"):
         reply = "He's becoming a leader. Kind of."
-        Tagger.internaltag('jaune', posturl, title, time)
+        # tagger.internaltag('jaune', posturl, title, time)
 
     elif trigger.startswith("summer"):
         reply = "She's an older Ruby! That's all we know!"
-        Tagger.internaltag('summer', posturl, title, time)
+        # tagger.internaltag('summer', posturl, title, time)
 
     elif trigger.startswith("kevin"):
         reply = "[Ruby will kill him!](http://fav.me/d9pzuwm)"
@@ -964,38 +1055,38 @@ def penny_commands(trigger, posturl, title, time):
 
     elif trigger.startswith("penny"):
         reply = "Yes?"
-        Tagger.internaltag('penny', posturl, title, time)
+        # tagger.internaltag('penny', posturl, title, time)
 
     elif trigger.startswith("ironwood"):
         reply = "I don't know if he's a good guy turning bad, or a bad guy who acts good."
-        Tagger.internaltag('ironwood', posturl, title, time)
+        # tagger.internaltag('ironwood', posturl, title, time)
 
     elif trigger.startswith("glynda"):
         reply = "She has a crop, and she's a teacher! \n She also fixes everything."
-        Tagger.internaltag('glynda', posturl, title, time)
+        # tagger.internaltag('glynda', posturl, title, time)
 
     elif trigger.startswith("tex"):
         reply = "She's a badass."
 
     elif trigger.startswith("carolina"):
         reply = "For some reason I feel like she would tear me in half."
-        Tagger.internaltag('carolina', posturl, title, time)
+        # tagger.internaltag('carolina', posturl, title, time)
 
     elif trigger.startswith("torchwick"):
         reply = "He needs to learn when not to pontificate."
-        Tagger.internaltag('torchwick', posturl, title, time)
+        # tagger.internaltag('torchwick', posturl, title, time)
 
     elif trigger.startswith("neon"):
         reply = "[She reminds me of something.](https://youtu.be/QH2-TGUlwu4)"
-        Tagger.internaltag('neon', posturl, title, time)
+        # tagger.internaltag('neon', posturl, title, time)
 
     elif trigger.startswith("neo"):
         reply = "..... \n I want ice cream."
-        Tagger.internaltag('neo', posturl, title, time)
+        # tagger.internaltag('neo', posturl, title, time)
 
     elif trigger.startswith("cardin"):
         reply = "He's a jerk!"
-        Tagger.internaltag('cardin', posturl, title, time)
+        # tagger.internaltag('cardin', posturl, title, time)
 
     elif trigger.startswith("nora"):
         if choice == 1:
@@ -1006,7 +1097,7 @@ def penny_commands(trigger, posturl, title, time):
             reply = "She loooves Ren! I think."
         else:
             reply = "[Boop!](https://youtu.be/N1TJ5YA3jfw?t=6m43s)"
-        Tagger.internaltag('nora', posturl, title, time)
+            # tagger.internaltag('nora', posturl, title, time)
 
     elif trigger.startswith("monty"):
         reply = "I miss you Dad..."
@@ -1020,18 +1111,18 @@ def penny_commands(trigger, posturl, title, time):
             reply = "Blake is scared of him! It's funny!"
         else:
             reply = "Woof!"
-        Tagger.internaltag('zwei', posturl, title, time)
+            # tagger.internaltag('zwei', posturl, title, time)
 
     elif trigger.startswith("fox"):
         reply = "Can he see me?"
-        Tagger.internaltag('fox', posturl, title, time)
+        # tagger.internaltag('fox', posturl, title, time)
 
     elif trigger.startswith("xspyxex"):
         reply = "He made me first! Go say thanks to /u/xSPYXEx"
 
     elif trigger.startswith("adam"):
         reply = "He has a sharp wit, everyone give him a hand!"
-        Tagger.internaltag('adam', posturl, title, time)
+        # tagger.internaltag('adam', posturl, title, time)
 
     elif trigger.startswith("are you cute"):
         reply = "What? Do you not think I am? ^^^Do ^^^you ^^^not ^^^love ^^^me?"
@@ -1095,11 +1186,11 @@ def penny_commands(trigger, posturl, title, time):
             reply = "[Flynt Coal](https://youtu.be/ka7q84C-E4c)"
         else:
             reply = "[He's cool!](http://vignette2.wikia.nocookie.net/rwby/images/d/d9/Flynt_ProfilePic_Normal.png/revision/latest?cb=20160216144432)"
-        Tagger.internaltag('flynt', posturl, title, time)
+            # tagger.internaltag('flynt', posturl, title, time)
 
     elif trigger.startswith("sage"):
         reply = "[He has a big sword!](http://vignette3.wikia.nocookie.net/rwby/images/c/c8/Sage_ProfilePic_Normal.png/revision/latest?cb=20151016080153)"
-        Tagger.internaltag('sage', posturl, title, time)
+        # tagger.internaltag('sage', posturl, title, time)
 
     elif trigger.startswith("lisa"):
         reply = "She is well informed."
@@ -1112,7 +1203,7 @@ def penny_commands(trigger, posturl, title, time):
 
     elif trigger.startswith("emerald"):
         reply = "I think she's involved in killing me, I'm not sure how."
-        Tagger.internaltag('emerald', posturl, title, time)
+        # tagger.internaltag('emerald', posturl, title, time)
 
     # Ship responses
 
@@ -1140,7 +1231,7 @@ def penny_commands(trigger, posturl, title, time):
 
     elif trigger.startswith("ladybug"):
         reply = "Now that, is a katana!"
-        Tagger.internaltag('ladybug', posturl, title, time)
+        # tagger.internaltag('ladybug', posturl, title, time)
 
     elif trigger.startswith("nuts and dolts"):
         if choice > 7:
@@ -1151,27 +1242,27 @@ def penny_commands(trigger, posturl, title, time):
             reply = "[She's a good mechanic!](http://fav.me/d989o9k)"
         else:
             reply = "[Hello Friend!](http://fav.me/daxy2rg)"
-        Tagger.internaltag('nuts and dolts', posturl, title, time)
+            # tagger.internaltag('nuts and dolts', posturl, title, time)
 
     elif trigger.startswith("enabler"):
         reply = "[No](http://68.media.tumblr.com/b6c7745211872cd227db9b6188aac928/tumblr_inline_naaj8hywWE1rltz3k.png) \n ^^^maybe"
-        Tagger.internaltag('enabler', posturl, title, time)
+        # tagger.internaltag('enabler', posturl, title, time)
 
     elif trigger.startswith("baked alaska"):
         reply = "I don't think Raven approves... ^^which ^^only ^^makes ^^it ^^better!"
-        Tagger.internaltag('baked alaska', posturl, title, time)
+        # tagger.internaltag('baked alaska', posturl, title, time)
 
     elif trigger.startswith("crosshares"):
         reply = "[I wanted Velvet's ears!](http://68.media.tumblr.com/0bcf2153ced4e47349e8d2737b83f4cd/tumblr_o9ptcnv2rk1tmkeo6o2_1280.jpg)"
-        Tagger.internaltag('crosshares', posturl, title, time)
+        # tagger.internaltag('crosshares', posturl, title, time)
 
     elif trigger.startswith("lancaster"):
         reply = "If Ruby is happy, but I mean Jaune does look like her Dad... "
-        Tagger.internaltag('lancaster', posturl, title, time)
+        # tagger.internaltag('lancaster', posturl, title, time)
 
     elif trigger.startswith("eclipse") or trigger.startswith("black sun"):
         reply = "I wonder if Blake likes to play with Sun's tail?"
-        Tagger.internaltag('eclipse', posturl, title, time)
+        # tagger.internaltag('eclipse', posturl, title, time)
 
     elif trigger.startswith("white knight"):
         reply = "Weiss does not seem to like him, besides he's taken!"
@@ -1212,7 +1303,7 @@ def penny_commands(trigger, posturl, title, time):
             reply = "[She is very pretty!](http://vignette4.wikia.nocookie.net/rwby/images/9/91/YangBike.png/revision/latest?cb=20130613124150)"
         elif choice == 0:
             reply = "[Look how cute](http://68.media.tumblr.com/d75165bdff05a8c0bf42d8f5ac80129a/tumblr_o58z4hTHFI1u4vxvro1_1280.jpg)[ thier kids are!](http://68.media.tumblr.com/6aba0266c2a5882342b0df2e5df23641/tumblr_o58z4hTHFI1u4vxvro2_r6_1280.jpg)"
-        Tagger.internaltag('bumblebee', posturl, title, time)
+            # tagger.internaltag('bumblebee', posturl, title, time)
 
     elif trigger.startswith("white rose") or trigger.startswith("whiterose"):
         if choice == 1:
@@ -1233,7 +1324,7 @@ def penny_commands(trigger, posturl, title, time):
             reply = "[Hugs!](http://orig00.deviantart.net/7278/f/2014/121/b/6/cudddle_by_xenon54165-d7gpjg3.jpg)"
         elif choice == 0:
             reply = "[Chibi!](http://fav.me/d90q9qm)"
-        Tagger.internaltag('white rose', posturl, title, time)
+            # tagger.internaltag('white rose', posturl, title, time)
 
     elif trigger.startswith("monochrome"):
         if choice == 1:
@@ -1256,7 +1347,7 @@ def penny_commands(trigger, posturl, title, time):
             reply = "[Nuzzling?](http://fav.me/d7wk470)"
         elif choice == 0:
             reply = "[Could someone pet me?(https://s-media-cache-ak0.pinimg.com/736x/c0/7f/47/c07f47d6ff04178121c891aa1828573a.jpg)"
-        Tagger.internaltag('monochrome', posturl, title, time)
+            # tagger.internaltag('monochrome', posturl, title, time)
 
     elif trigger.startswith("sea monkeys"):
         reply = "[Oh myyyy!](http://img07.deviantart.net/9ba3/i/2015/253/b/f/rwby___seamonkeys_by_mangarainbow-d9937ib.jpg)"
@@ -1282,7 +1373,7 @@ def penny_commands(trigger, posturl, title, time):
             reply = "[Hugs!](http://i.imgur.com/NJfQ5LB.jpg)"
         elif choice == 0:
             reply = "[They're so happy together!](http://68.media.tumblr.com/3a184662b6ccb79821f4d7ac5883bbcd/tumblr_o00q63J9Ky1r4vgpvo1_1280.jpg)"
-        Tagger.internaltag('arkos', posturl, title, time)
+            # tagger.internaltag('arkos', posturl, title, time)
 
     elif trigger.startswith("crosshares"):
         reply = "[They look so cute together!](http://68.media.tumblr.com/b9481a46d530e7ba09d54a434dc777de/tumblr_o69qt2Xch31tmkeo6o1_1280.jpg)"
@@ -1437,7 +1528,7 @@ def penny_commands(trigger, posturl, title, time):
         reply = "[Here is the episode!](https://youtu.be/y4tK9QQ1mwo)"
 
     elif trigger.startswith("s4e12"):
-        reply = "[Here is the episode!]()"
+        reply = "[Here is the episode!](https://youtu.be/7M5WRvBQW28)"
 
     elif trigger.startswith("s4e1"):
         reply = "[Here is the episode!](https://youtu.be/IZKpkzPIRlw)"
@@ -1646,10 +1737,12 @@ def penny_commands(trigger, posturl, title, time):
         reply = "[01010000-00010011-00010101-00010100-00011100-00010101-00011110-00010110-00010011-00010011-00010111-00010101-00010001-00010101-01011000-01011000-00010110-00011100-00011110](https://www.reddit.com/r/HFY/comments/57kqst/occ1764_rising_titans_ch51_end/)"
 
     else:
-        if choice >7:
+        if choice > 8:
             reply = "[Salutations!](http://fav.me/d9qlrgz)"
-        elif choice >5:
+        elif choice > 6:
             reply = "[Could you repeat that?](http://fav.me/d8w3lrr)"
+        elif choice > 2:
+            reply = "[Salutations! I'm not sure what you said.](http://imgur.com/9TtaInH)"
         else:
             reply = "[I didn't understand that.](http://68.media.tumblr.com/0fe937d073503dee675e2055bd0e6834/tumblr_okf91jdPnX1rcuolao1_1280.png) I'm sorry!"
 

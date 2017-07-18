@@ -283,7 +283,7 @@ while True:
     try:
         mods = []
         r = obot.login()
-        subreddit = r.subreddit('test')
+        subreddit = r.subreddit('rwby')
         for moderator in subreddit.moderator():
             mods.append(str(moderator))
         print("The " + str(subreddit) + " Moderators: " + str(mods))

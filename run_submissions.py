@@ -16,8 +16,8 @@ def load_previous_submissions():
     return subs
 
 
-def sub_stream(subreddit, subdone, comdone):
-    print(subdone)
+def sub_stream(subreddit, subdone):
+    #print(subdone)
     for submission in subreddit.stream.submissions():
         if not str(submission.id) in subdone:
             print(submission.id)
@@ -32,7 +32,7 @@ def sub_stream(subreddit, subdone, comdone):
             print(str(submission.title).encode("utf-8"))
             title = str(submission.title).lower()
             if "penny" in title:
-                #submission.reply("Who is that good looking robot? \n Pennybot stamps it with her [seal of approval!](http://i.imgur.com/bavrX6d.png)")
+                submission.reply("Who is that good looking robot? \n Pennybot stamps it with her [seal of approval!](http://i.imgur.com/bavrX6d.png)")
                 print("I found a Penny! in post: " + submission.id + " At: " + str(datetime.now()))
 
 
@@ -43,9 +43,8 @@ while True:
         subreddit = r.subreddit('rwby')
         for moderator in subreddit.moderator():
             mods.append(str(moderator))
-        print("The " + str(subreddit) + " Moderators: " + str(mods))
+        #print("The " + str(subreddit) + " Moderators: " + str(mods))
         sub_stream(subreddit, load_previous_submissions())
-        print(r.user)
     except Exception as e:
         print(e)
         print("Waiting 20 seconds to restart")
