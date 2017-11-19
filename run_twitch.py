@@ -170,7 +170,6 @@ while True:
     else:
         username = re.search(r"\w+", current).group(0)  # return the entire match
         message = CHAT_MSG.sub("", current)
-        print(username + ": " + message)
         response = []
         current = message
         if "pennybot," in current:

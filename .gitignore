@@ -222,3 +222,14 @@ pip-log.txt
 .mr.developer.cfg
 Logs.txt
 Logs.txt
+/Rdatabase.db
+/Submissions.txt
+/Suggestions.txt
+/ignore.txt
+Cdatabase.db
+Sdatabase.db
+sshd_config
+config.txt
+Rdatabase.db
+Rdatabase.db
+Rdatabase.db
