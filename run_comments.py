@@ -44,6 +44,12 @@ def load_ignore():
     return ignorelist
 
 
+def load_pignore():
+    with open('pyrrhaignore.txt', 'r', encoding='utf8') as f:
+        ignorelist = [line.strip() for line in f]
+    return ignorelist
+
+
 def get_my_cake_day(username):
     try:
         redditor = r.redditor(username)
@@ -96,7 +102,7 @@ def ot3_search(name1, name2, name3):
 def proccess_comments(current, comment, choice):
     # Add to the suggestion text file
     if current.startswith("suggestion"):
-        reply = "[You can make Suggestions here!](https://goo.gl/forms/NKGPxdJzxh87dsjv2) \n \n Pennybot has saved this comment as well! \n \n ^^^^^^^^/u/weerdo5255 "
+        reply = "[You can make Suggestions here!](https://docs.google.com/forms/d/e/1FAIpQLScp8yibCZRKqNcvvUT69VfEs2inp4DvNFvakGWubIAyv8D4EA/viewform?usp=sf_link) \n \n Pennybot has saved this comment as well! \n \n ^^^^^^^^/u/weerdo5255 "
         filesug = open("Suggestions.txt", "a")
         filesug.write(str(comment.body) + "FROM:" + str(comment.author) + "\n")
         filesug.close()
@@ -236,94 +242,153 @@ def proccess_comments(current, comment, choice):
     return reply
 
 
-def find_mispelling(comment):
+def find_mispelling(comment, sid):
     reply = ""
-    if "phyrra" in comment:
-        reply = "[Phyrra](http://streamable.com/c0fel)? Do you mean Pyrrha?"
-    elif "pyrah" in comment:
-        reply = "[Pyrah](https://streamable.com/rpnvt)? Do you mean Pyrrha?"
-    elif "phyrrah" in comment:
-        reply = "[Phyrrah](http://streamable.com/jsf47)? Do you mean Pyrrha?"
-    elif "phyrrha" in comment:
-        reply = "[Phyrrha](https://streamable.com/60hdz)? Do you mean Pyrrha?"
-    elif "phryrra" in comment:
-        reply = "[Phryrra](http://streamable.com/jc9af)? Do you mean Pyrrha?"
-    elif "pyhrra" in comment:
-        reply = "[Pyhrra](http://streamable.com/11tag)? Do you mean Pyrrha?"
-    elif "pyrrah" in comment:
-        reply = "[Pyrrah](http://streamable.com/ks8mf)? Do you mean Pyrrha?"
-    elif "phrrya" in comment:
-        reply = "[Phrrya](http://streamable.com/t4hg5)? Do you mean Pyrrha?"
-    elif "pyrhha" in comment:
-        reply = "[Pyrhha](http://streamable.com/ovdli)? Do you mean Pyrrha?"
-    elif "pirrah" in comment:
-        reply = "[Pirrah](http://streamable.com/nm2lz)? Do you mean Pyrrha?"
-    elif "piera" in comment:
-        reply = "[Piera](http://streamable.com/8aken)? Do you mean Pyrrha?"
-    elif "pyra" in comment:
-        reply = "[Pyra](http://streamable.com/ys90o)? Do you mean Pyrrha?"
-    elif "pyhra" in comment:
-        reply = "[Pyhra](http://streamable.com/q4vm1)? Do you mean Pyrrha?"
-    elif "pierra" in comment:
-        reply = "[Pierra](http://streamable.com/h8qxx)? Do you mean Pyrrha?"
-    elif "pierah" in comment:
-        reply = "[Pierah](http://streamable.com/gkd5o)? Do you mean Pyrrha?"
-    elif "priah" in comment:
-        reply = "[Priah](http://streamable.com/qcp0p)? Do you mean Pyrrha?"
-    elif "phyrria" in comment:
-        reply = "[Phyrria](http://streamable.com/8hqps)? Do you mean Pyrrha?"
-    elif "pyrra" in comment:
-        reply = "[Pyrra](http://streamable.com/d4nnu)? Do you mean Pyrrha?"
-    elif "pyrhaa" in comment:
-        reply = "[Pyrhaa](http://streamable.com/iiz8c)? Do you mean Pyrrha?"
-    elif "pyyra" in comment:
-        reply = "[Pyyra](http://streamable.com/ww1gk)? Do you mean Pyrrha?"
-    elif "pyrrea" in comment:
-        reply = "[Pyrrea](http://streamable.com/cyehb)? Do you mean Pyrrha?"
-    elif "pureha" in comment:
-        reply = "[Pureha](http://streamable.com/inysv)? Do you mean Pyrrha?"
-    elif "pharah" in comment:
-        reply = "[Pharah](http://streamable.com/i0ttw)? Do you mean Pyrrha?"
-    elif "pharaoh" in comment:
-        reply = "[Pharaoh](http://streamable.com/v12ah)? Do you mean Pyrrha?"
-    elif "pyhhra" in comment:
-        reply = "[Pyhhra](http://streamable.com/clfwa)? Do you mean Pyrrha?"
-    elif "pyrhha" in comment:
-        reply = "[Pyrhha](http://streamable.com/rmn9d)? Do you mean Pyrrha?"
-    elif "pyhraa" in comment:
-        reply = "[Pyhraa](http://streamable.com/we8bd)? Do you mean Pyrrha?"
-    elif "pyyrah" in comment:
-        reply = "[Pyyrah](http://streamable.com/lsjn2)? Do you mean Pyrrha?"
-    elif "phyyra" in comment:
-        reply = "[Phyyra](http://streamable.com/x8i9j)? Do you mean Pyrrha?"
-    elif "pryyha" in comment:
-        reply = "[Pryyha](http://streamable.com/5wbug)? Do you mean Pyrrha?"
-    elif "pyyrha" in comment:
-        reply = "[Pyyrha](http://streamable.com/34og7)? Do you mean Pyrrha?"
-    elif "phyra" in comment:
-        reply = "[Phyra](https://streamable.com/3nbyt)? Do you mean Pyrrha?"
-    elif "prryha" in comment:
-        reply = "[Prryha](http://streamable.com/0sj7t)? Do you mean Pyrrha?"
-    elif "pyraah" in comment:
-        reply = "[Pyraah](http://streamable.com/srreq)? Do you mean Pyrrha?"
-    elif "pearhat" in comment:
-        reply = "[Pearhat](http://streamable.com/i8z81)? Do you mean Pyrrha?"
-    elif "pyyrahe" in comment:
-        reply = "[Pyyrahe](http://streamable.com/upyvf)? Do you mean Pyrrha?"
-    elif "purra" in comment:
-        reply = "[Purra](http://streamable.com/pwx3t)? Do you mean Pyrrha?"
-    elif "prhhya" in comment:
-        reply = "[Prhhya](http://streamable.com/8c471)? Do you mean Pyrrha?"
-    elif "pyrrahe" in comment:
-        reply = "[Pyrrahe](http://streamable.com/woxdj)? Do you mean Pyrrha?"
-    return reply
+    respond = False
+    pyrrhaignoreposts = load_pignore()
+    if sid not in pyrrhaignoreposts:
+        if "phyrra" in comment:
+            reply = "[Phyrra](http://streamable.com/c0fel)? Do you mean Pyrrha?"
+            respond = True
+        elif "pyrah" in comment:
+            reply = "[Pyrah](https://streamable.com/rpnvt)? Do you mean Pyrrha?"
+            respond = True
+        elif "phyrrah" in comment:
+            reply = "[Phyrrah](http://streamable.com/jsf47)? Do you mean Pyrrha?"
+            respond = True
+        elif "phyrrha" in comment:
+            reply = "[Phyrrha](https://streamable.com/60hdz)? Do you mean Pyrrha?"
+            respond = True
+        elif "phryrra" in comment:
+            reply = "[Phryrra](http://streamable.com/jc9af)? Do you mean Pyrrha?"
+            respond = True
+        elif "pyhrra" in comment:
+            reply = "[Pyhrra](http://streamable.com/11tag)? Do you mean Pyrrha?"
+            respond = True
+        elif "pyrrah" in comment:
+            reply = "[Pyrrah](http://streamable.com/ks8mf)? Do you mean Pyrrha?"
+            respond = True
+        elif "phrrya" in comment:
+            reply = "[Phrrya](http://streamable.com/t4hg5)? Do you mean Pyrrha?"
+            respond = True
+        elif "pyrhha" in comment:
+            reply = "[Pyrhha](http://streamable.com/ovdli)? Do you mean Pyrrha?"
+            respond = True
+        elif "pirrah" in comment:
+            reply = "[Pirrah](http://streamable.com/nm2lz)? Do you mean Pyrrha?"
+            respond = True
+        elif "piera" in comment:
+            reply = "[Piera](http://streamable.com/8aken)? Do you mean Pyrrha?"
+            respond = True
+        elif "pyra" in comment:
+            reply = "[Pyra](http://streamable.com/ys90o)? Do you mean Pyrrha?"
+            respond = True
+        elif "pyhra" in comment:
+            reply = "[Pyhra](http://streamable.com/q4vm1)? Do you mean Pyrrha?"
+            respond = True
+        elif "pierra" in comment:
+            reply = "[Pierra](http://streamable.com/h8qxx)? Do you mean Pyrrha?"
+            respond = True
+        elif "pierah" in comment:
+            reply = "[Pierah](http://streamable.com/gkd5o)? Do you mean Pyrrha?"
+            respond = True
+        elif "priah" in comment:
+            reply = "[Priah](http://streamable.com/qcp0p)? Do you mean Pyrrha?"
+            respond = True
+        elif "phyrria" in comment:
+            reply = "[Phyrria](http://streamable.com/8hqps)? Do you mean Pyrrha?"
+            respond = True
+        elif "pyrra" in comment:
+            reply = "[Pyrra](http://streamable.com/d4nnu)? Do you mean Pyrrha?"
+            respond = True
+        elif "pyrhaa" in comment:
+            reply = "[Pyrhaa](http://streamable.com/iiz8c)? Do you mean Pyrrha?"
+            respond = True
+        elif "pyyra" in comment:
+            reply = "[Pyyra](http://streamable.com/ww1gk)? Do you mean Pyrrha?"
+            respond = True
+        elif "pyrrea" in comment:
+            reply = "[Pyrrea](http://streamable.com/cyehb)? Do you mean Pyrrha?"
+            respond = True
+        elif "pureha" in comment:
+            reply = "[Pureha](http://streamable.com/inysv)? Do you mean Pyrrha?"
+            respond = True
+        elif "pharah" in comment:
+            reply = "[Pharah](http://streamable.com/i0ttw)? Do you mean Pyrrha?"
+            respond = True
+        elif "pharaoh" in comment:
+            reply = "[Pharaoh](http://streamable.com/v12ah)? Do you mean Pyrrha?"
+            respond = True
+        elif "pyhhra" in comment:
+            reply = "[Pyhhra](http://streamable.com/clfwa)? Do you mean Pyrrha?"
+            respond = True
+        elif "pyrhha" in comment:
+            reply = "[Pyrhha](http://streamable.com/rmn9d)? Do you mean Pyrrha?"
+            respond = True
+        elif "pyhraa" in comment:
+            reply = "[Pyhraa](http://streamable.com/we8bd)? Do you mean Pyrrha?"
+            respond = True
+        elif "pyyrah" in comment:
+            reply = "[Pyyrah](http://streamable.com/lsjn2)? Do you mean Pyrrha?"
+            respond = True
+        elif "phyyra" in comment:
+            reply = "[Phyyra](http://streamable.com/x8i9j)? Do you mean Pyrrha?"
+            respond = True
+        elif "pryyha" in comment:
+            reply = "[Pryyha](http://streamable.com/5wbug)? Do you mean Pyrrha?"
+            respond = True
+        elif "pyyrha" in comment:
+            reply = "[Pyyrha](http://streamable.com/34og7)? Do you mean Pyrrha?"
+            respond = True
+        elif "phyra" in comment:
+            reply = "[Phyra](https://streamable.com/3nbyt)? Do you mean Pyrrha?"
+            respond = True
+        elif "prryha" in comment:
+            reply = "[Prryha](http://streamable.com/0sj7t)? Do you mean Pyrrha?"
+            respond = True
+        elif "pyraah" in comment:
+            reply = "[Pyraah](http://streamable.com/srreq)? Do you mean Pyrrha?"
+            respond = True
+        elif "pearhat" in comment:
+            reply = "[Pearhat](http://streamable.com/i8z81)? Do you mean Pyrrha?"
+            respond = True
+        elif "pyyrahe" in comment:
+            reply = "[Pyyrahe](http://streamable.com/upyvf)? Do you mean Pyrrha?"
+            respond = True
+        elif "purra" in comment:
+            reply = "[Purra](http://streamable.com/pwx3t)? Do you mean Pyrrha?"
+            respond = True
+        elif "prhhya" in comment:
+            reply = "[Prhhya](http://streamable.com/8c471)? Do you mean Pyrrha?"
+            respond = True
+        elif "pyrrahe" in comment:
+            reply = "[Pyrrahe](http://streamable.com/woxdj)? Do you mean Pyrrha?"
+            respond = True
+        elif "ilya" in comment:
+            reply = "[What, oh.](https://i.imgur.com/vIlmFug.gifv) Do you mean Ilia?"
+            respond = True
+        elif "ileah" in comment:
+            reply = "[What, oh.](https://i.imgur.com/vIlmFug.gifv) Do you mean Ilia?"
+            respond = True
+        elif "ilea" in comment:
+            reply = "[What, oh.](https://i.imgur.com/vIlmFug.gifv) Do you mean Ilia?"
+            respond = True
+        elif "iliah" in comment:
+            reply = "[What, oh.](https://i.imgur.com/vIlmFug.gifv) Do you mean Ilia?"
+            respond = True
+        if respond is True:
+            file = open("pyrrhaignore.txt", "a")
+            file.write(sid + "\n")
+            file.close()
+        return reply
 
 
 def find_penny(comment):
     replied = False
     ignoreposts = load_ignore()
     author = str(comment.author)
-    if comment.submission.id not in ignoreposts:
+    sid = comment.submission.id
+    if sid not in ignoreposts:
         response = []
         commentlist = str(comment.body).splitlines(True)
         if "PennyBotV2" in author:
@@ -363,7 +428,7 @@ def find_penny(comment):
                     txtreply = proccess_comments(current, comment, choice)
                     response.append(txtreply)
                 else:
-                    txtreply = find_mispelling(current)
+                    txtreply = find_mispelling(current, sid)
                     if txtreply is not "":
                         replied = True
                         response.append(txtreply)
@@ -376,16 +441,31 @@ def find_penny(comment):
         if nowp == cake:
             string = ""
             for x in response:
-                string += x + " \n \n"
-            comment.reply(string + "\n \n Pennybot wishes you a Happy Cake Day as well!")
+                if x is not None:
+                    string += x + " \n \n"
+            try:
+                if string is not "":
+                    comment.reply(string + "\n \n Pennybot wishes you a Happy Cake Day as well!")
+                    print(
+                        "Found a Penny comment at: " + time.asctime(time.localtime(
+                            time.time())) + "\nIn thread: " + comment.submission.shortlink + " \nI responded with:" + "\n" + string)
+            except:
+                print("Couldn't respond at: " + time.asctime(time.localtime(
+                time.time())) + "\nIn thread: " + comment.submission.shortlink)
         else:
             string = ""
             for x in response:
-                string += x + " \n \n"
-            comment.reply(string)
-        print(
-            "Found a Penny comment at: " + time.asctime(time.localtime(
-                time.time())) + "\nIn thread: " + comment.submission.shortlink + " \nI responded with:" + "\n" + string)
+                if x is not None:
+                    string += str(x) + " \n \n"
+            try:
+                comment.reply(string)
+                print(
+                    "Found a Penny comment at: " + time.asctime(time.localtime(
+                        time.time())) + "\nIn thread: " + comment.submission.shortlink + " \nI responded with:" + "\n" + string)
+            except:
+                print("Couldn't respond at: " + time.asctime(time.localtime(
+                time.time())) + "\nIn thread: " + comment.submission.shortlink)
+
 
 
 def com_stream(subreddit, comdone):
@@ -416,15 +496,18 @@ def com_stream(subreddit, comdone):
             find_penny(comment)
 
 
+
 while True:
     try:
         mods = []
         r = obot.login()
-        subreddit = r.subreddit('rwby')
-        for moderator in subreddit.moderator():
-            mods.append(str(moderator))
+        subredditlist = ['fnki','rwby']
+        for sub in subredditlist:
+            for moderator in r.subreddit(sub).moderator():
+                mods.append(str(moderator))
+        subjoin = "+"
+        subreddit = r.subreddit(subjoin.join(subredditlist))
         print("The " + str(subreddit) + " Moderators: " + str(mods))
-        # com_stream(subreddit, load_previous_comments())
         com_stream(subreddit, load_previous_comments())
     except Exception as e:
         print(e)

@@ -119,6 +119,15 @@ def sub_stream(subreddit, subdone):
                 elif choice == 24:
                     submission.reply("Who is that good looking [neko robot?](https://68.media.tumblr.com/da07b4aca99e20027e4f95614f86e268/tumblr_o80qhi64Qv1v66ox3o1_1280.png) \n PennyBot approves this post!")
 
+                elif choice == 25:
+                    submission.reply("Who is that good looking [smiling robot?](https://i.redd.it/nm54dow2e0d01.jpg) \n PennyBot approves this post!")
+
+                elif choice == 26:
+                    submission.reply("Who is that good looking [angelic robot?](https://i.imgur.com/AMEIZBW.jpg) \n PennyBot approves this post!")
+
+                elif choice == 27:
+                    submission.reply("Who is that [startled robot?](https://78.media.tumblr.com/3ebb5768e12c8de1b93ce9c6d9c42fcf/tumblr_inline_p240ohOKq51qjss6b_500.png) \n PennyBot approves this post!")
+
                 else:
                     submission.reply("Who is that good looking robot? \n Pennybot stamps it with her [seal of approval!](http://i.imgur.com/bavrX6d.png)")
 
@@ -129,18 +138,16 @@ while True:
     try:
         mods = []
         r = obot.login()
-        subreddit = r.subreddit('rwby')
-        for moderator in subreddit.moderator():
-            mods.append(str(moderator))
-        #print("The " + str(subreddit) + " Moderators: " + str(mods))
+        subredditlist = ['fnki','rwby']
+        for sub in subredditlist:
+            for moderator in r.subreddit(sub).moderator():
+                mods.append(str(moderator))
+        subjoin = "+"
+        subreddit = r.subreddit(subjoin.join(subredditlist))
+        print("The " + str(subreddit) + " Moderators: " + str(mods))
         sub_stream(subreddit, load_previous_submissions())
     except Exception as e:
         print(e)
         print("Waiting 20 seconds to restart")
         time.sleep(20)
         pass
-
-
-
-
-

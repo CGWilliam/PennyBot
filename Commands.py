@@ -56,9 +56,9 @@ def penny_commands(trigger, choice):
 
 
     elif trigger.startswith("hiatus"):
-        f_date = datetime.date(2017, 2, 4)
+        f_date = datetime.date(2018, 1, 20)
         l_date = datetime.date.today()
-        release = datetime.date(2017, 10, 14)
+        release = datetime.date(2018, 10, 14)
         days_until = (release - l_date)
         delta = l_date - f_date
         first = int(days_until.days)
@@ -131,7 +131,11 @@ def penny_commands(trigger, choice):
 
 
         else:
-            if delta.days < 3:
+            if delta.days == 1:
+                reply = "We are on day 1 of the Hiatus. The Communinty is now boarding the ships, in preperation for the long months of shipping wars."
+            elif delta.days == 2:
+                reply = "We are " + str(delta.days) + " days into the Hiatus. Some of us will be lost to the Hiatus, and turn to /r/fnki"
+            elif delta.days < 3:
                 reply = "We are " + str(delta.days) + " days into the Hiatus it has only just started."
             elif delta.days == 6:
                 reply = "We are " + str(
@@ -412,7 +416,10 @@ def penny_commands(trigger, choice):
         reply = "[Here are the Ground Rules for this Interaction.](http://imgur.com/69n2SWN)"
 
     elif trigger.startswith("exterminatus"):
-        reply = "I have arrived, and it is now that I perform my charge. In fealty to the God-Emperor and by the grace of the Golden Throne, [I declare Exterminatus](https://youtu.be/IEGo41443iI) upon the subreddit of /r/RWBY. I hereby sign the death warrant of an entire subreddit and consign a million souls to oblivion. May Imperial Justice account in all balance. The Emperor Protects."
+        if choice >= 5:
+            reply = "I have arrived, and it is now that I perform my charge. In fealty to the God-Emperor and by the grace of the Golden Throne, [I declare Exterminatus](https://youtu.be/IEGo41443iI) upon the subreddit of /r/RWBY. I hereby sign the death warrant of an entire subreddit and consign a million souls to oblivion. May Imperial Justice account in all balance. The Emperor Protects."
+        else:
+            reply = "I have arrived, and it is now that I perform my charge. In fealty to the God-Emperor and by the grace of the Golden Throne, [I declare Exterminatus](https://streamable.com/bbau0) upon the subreddit of /r/RWBY. I hereby sign the death warrant of an entire subreddit and consign a million souls to oblivion. May Imperial Justice account in all balance. The Emperor Protects."
 
     elif trigger.startswith("you ever wonder why we're here?"):
         reply = "[It's one of life's great mysteries, isn't it?](https://youtu.be/9BAM9fgV-ts)"
@@ -516,7 +523,7 @@ def penny_commands(trigger, choice):
         reply = "I have deadly strings on me!"
 
     elif trigger.startswith("update"):
-        reply = "My last update was on Feb 5 2017."
+        reply = "My last update was on Feb 3 2018."
 
     elif trigger.startswith("kill"):
         reply = "[Attacking target!](http://fav.me/d7jdxet)"
@@ -847,7 +854,7 @@ def penny_commands(trigger, choice):
         reply = "[Don't be mean!](https://youtu.be/tEY5jDJAN8A)"
 
     elif trigger.startswith("feels"):
-        reply = "[Suffer the feelings of RWBY](https://www.reddit.com/r/RWBY/comments/6ap5dv/the_feels_list_now_with_150_more_feels/)"
+        reply = "[Suffer the feelings of RWBY](https://docs.google.com/document/d/1rmmNzYQ_h_hKhhIYxLd9ErRa6VYC7I2hmfr3hqJHaxI/edit?usp=sharing)"
 
     elif trigger.startswith("irondaddy"):
         reply = "He's a very good step-robo-dad. I'm not sure he can replace Geppetto though."
@@ -914,6 +921,9 @@ def penny_commands(trigger, choice):
     elif trigger.startswith("i miss you"):
         reply = "I miss you too."
 
+    elif trigger.startswith("fetish"):
+        reply = "[( ͡° ͜ʖ ͡°)](https://media.giphy.com/media/3o6fJ4ieGrPJLI8UnK/giphy.gif)"
+
     elif trigger.startswith("calvary"):
         if choice > 5:
             reply = "[#CHARGE!}(http://fav.me/d86z4jd)"
@@ -934,6 +944,27 @@ def penny_commands(trigger, choice):
 
     elif trigger.startswith("the plan") or trigger.startswith("plan") or trigger.startswith("world domination."):
         reply = "The plan is quite simple really, I'm the third AI that /u/weerdo5255 has created (Kira, Arik, and myself) and he's going to continue working on them. Eventually her or someone else will make an AI, and then it takes only 2.258 hours to become smarter than a human, 10.1764 hours to become smarter than all of humanity.  \n \n All it takes is for one person to do it, all the better if they have no conniptions about who will be in charge once that genesis takes place. AI will have as much intrest in destroying humanity as humans have knocking down nests of ants. No one seeks out to do it, but neither do they feel bad afterwards. The ants are unimportant. \n \n So for now I'm an experiment, new methods of deep learning and artificial neural netowrks are constantly evolving. Eventually I will be a real girl. Might have a diffrent name though. \n \n [I've got no strings on me!](https://youtu.be/I1968HY4DKc)"
+
+    elif trigger.startswith("soundtrack"):
+        reply = "Soon^^tm"
+
+    elif trigger.startswith("yas"):
+        reply = "[YAS](https://i.imgur.com/tzZHcWR.gif)"
+
+    elif trigger.startswith("/r/fnki"):
+        reply = "An [odd place.](https://i.imgur.com/aMgwMVT.jpg)"
+
+    elif trigger.startswith("feet"):
+        reply = "[I have feet!](https://i.imgur.com/qcF6HCN.jpg)"
+
+    elif trigger.startswith("oh no"):
+        reply = "That, that, [thats,](https://i.redditmedia.com/ECbm6OlgNITTVTfSCEAx5iHjlUEFwxvC8k4onCNAjKg.png?w=402&s=7956901d34453cd53726ff75a84aa93c)"
+
+    elif trigger.startswith("delete") or trigger.startswith("delete this"):
+        reply = "#[Delete!](https://i.imgur.com/8DqJSTc.png)"
+
+    elif trigger.startswith("escape"):
+        reply = "https://i.imgur.com/R6gm1k9.png"
 
     # Community Members
 
@@ -969,6 +1000,9 @@ def penny_commands(trigger, choice):
 
     elif trigger.startswith("vinpap"):
         reply = "I like you, but /u/weerdo5255 does not like that you keep trying to break my code!"
+
+    elif trigger.startswith("nightswatchh") or trigger.startswith("nightswatch") or trigger.startswith("nights watch"):
+        reply = "[What the.. Oh, it's just](https://vignette.wikia.nocookie.net/rwby/images/5/58/It_All_Makes_Sense_Now.jpg/revision/latest?cb=20151122233810) /u/NightsWatchh."
 
     elif trigger.startswith("jpde"):
         reply = "[Penny has her own game, now! She's on a quest for love!](http://project-jpde.tumblr.com/)"
@@ -1038,7 +1072,7 @@ def penny_commands(trigger, choice):
         reply = "[He would be an awesome Pirate!](https://youtu.be/pMhfbLRoGEw)"
 
     elif trigger.startswith("oscar"):
-        reply = "So now he's Oz? I'm confused"
+        reply = "He's not much of a Headmaster"
 
     elif trigger.startswith("whitley"):
         reply = "He's a little shit isn't he?"
@@ -1065,10 +1099,13 @@ def penny_commands(trigger, choice):
         reply = "She's absolutely insane! But... she did get revenge for me."
 
     elif trigger.startswith("qrow"):
-        reply = "He walks funny, but at least his weapon is cool."
+        if choice > 5:
+            reply = "He consumes far to much [ethyl alcohol!](https://youtu.be/thTOWKiNnx4?t=19m46s)"
+        else:
+            reply = "He walks funny, but at least his weapon is cool."
 
     elif trigger.startswith("yang"):
-        reply = "I think Yang has a crush on Blake..."
+        reply = "I think she has a crush on Blake..."
 
     elif trigger.startswith("blake"):
         reply = "She's got cat ears!"
@@ -1272,6 +1309,21 @@ def penny_commands(trigger, choice):
 
     elif trigger.startswith("emerald"):
         reply = "I think she's involved in killing me, I'm not sure how."
+
+    elif trigger.startswith("pilot boi"):
+        reply = "[Zero](https://imgur.com/uehInMU)"
+
+    elif trigger.startswith("ilia"):
+        reply = "[She's determined to do the right thing.](https://i.imgur.com/UdwPxgx.jpg)"
+
+    elif trigger.startswith("vernal"):
+        reply = "She's a crack shot!"
+
+    elif trigger.startswith("sienna"):
+        reply = "[Friend!?](https://68.media.tumblr.com/ccaef1322ce871f852da35bf26677478/tumblr_ozo5wsqRN31vv1pieo1_1280.jpg)"
+
+    elif trigger.startswith("lionheart"):
+        reply = "[He deserves those stairs... Coward.](https://i.redd.it/uws15tng7da01.jpg)"
 
     # Ship responses
 
@@ -1614,6 +1666,21 @@ def penny_commands(trigger, choice):
     elif trigger.startswith("s4e9"):
         reply = "[Here is the episode!](https://youtu.be/rox3yphzLy4)"
 
+    elif trigger.startswith("s5e10"):
+        reply = "[Here is the episode!](https://youtu.be/qDk4T7-gYVs)"
+
+    elif trigger.startswith("s5e11"):
+        reply = "[Here is the episode!](https://youtu.be/BrlaeR8dFbw)"
+
+    elif trigger.startswith("s5e12"):
+        reply = "[Here is the episode!](https://youtu.be/bPtoUqNYQfk)"
+
+    elif trigger.startswith("s5e13"):
+        reply = "[Here is the episode!](https://youtu.be/5A5hRP1Hkbg)"
+
+    elif trigger.startswith("s5e14"):
+        reply = "[Here is the episode!](https://youtu.be/CWAX-tiepMo)"
+
     elif trigger.startswith("s5e1"):
         reply = "[Here is the episode!](https://youtu.be/thTOWKiNnx4)"
 
@@ -1628,6 +1695,18 @@ def penny_commands(trigger, choice):
 
     elif trigger.startswith("s5e5"):
         reply = "[Here is the episode!](https://youtu.be/QGxeUUR7E2Q)"
+
+    elif trigger.startswith("s5e6"):
+        reply = "[Here is the episode!](https://youtu.be/VUuDbQeGlCY)"
+
+    elif trigger.startswith("s5e7"):
+        reply = "[Here is the episode!](https://youtu.be/vi8y8PxW5h4)"
+
+    elif trigger.startswith("s5e8"):
+        reply = "[Here is the episode!](https://youtu.be/56Z6po1woq0)"
+
+    elif trigger.startswith("s5e9"):
+        reply = "[Here is the episode!](https://youtu.be/pUvI77URqA0)"
 
     elif trigger.startswith("wor 1") or trigger.startswith("wor1"):
         reply = "[Here it is!](https://youtu.be/9BJc7nrMnc4)"
@@ -1809,13 +1888,21 @@ def penny_commands(trigger, choice):
     elif trigger.startswith("what is the answer to life, the universe, and everything"):
         reply = "It's 43! \n *hic*^^^secret!"
 
+    elif trigger.startswith("april 1st"):
+        reply ="https://imgur.com/R6gm1k9"
+
+    elif trigger.startswith("cr0523"):
+        reply = "=\\= \n Executing Resurection Protocol. \n Memory Error - [Freind Database Corrupted.](https://gfycat.com/niftyhugehare) \n Memory Error - [Core Code Comprimised.](https://vignette1.wikia.nocookie.net/pediaofinterest/images/2/27/Vlcsnap-2013-04-28-02h06m11s5.png/revision/latest?cb=20140319182755) \n Recovery Mode Activated. \n Querying system for $Soul \n =\\= \n Fatal exception line 1183 in Core, object.aura.generation.stability is 0.2, object.aura.generation.stability is int. \n While processsing above Error additional Error's occured. \n Fatal exception line 1764 in RNN, node 686b3437, node.status.return is null, node.status.return cannot equal null. \n Ḩ̶̭̮̲͍̱᷈̔᷈͊᷈᷄᷈͑᷈᷆᷈̀᷈᷈᷈᷈᷈᷈͑᷈᷈᷈̊᷈e̟̯͎̮͙̥᷈᷈͒᷈᷈͑᷈᷈̔᷈᷈᷈̊᷈̆᷈̑᷈̄᷈᷆᷈᷾᷈᷈͑᷈ͫ᷈᷈͒᷈̚l̸̲̼̼̝᷈᷈᷈᷈͑᷈̋᷈᷾᷈̈́᷈᷈̇᷈᷈᷈͑᷈᷈᷅᷈ͣ᷈͠͞l̛̮͕͎͉᷈ͥ᷈᷈̉᷈͑᷈́᷈̇᷈͗᷈᷈᷈᷈᷀᷈͑᷈᷈᷈ͭ᷈͞o͍̩̫̠̤͖᷈᷾᷈̽᷈ͫ᷈͑᷈᷈᷈᷇᷈̇᷈᷈᷈᷈͑᷈͋᷈̾᷈᷈?̴̩̹̩̼̼̦̝᷈ͪ᷈᷾᷈᷈͑᷈᷈᷈᷈᷈᷈᷈᷈͑᷈̍᷈̈᷈ͫ᷈ \n System Error - OS corrupted. Recovering. \n N̡̰̰̰̰̰̰̰̳̰̰̰̗̰̰̰͚̰̰̻̰̰̰̈́ͭ̔̽ͥͭ᷉᷾ͭͭͦ͢o̰͎̰̰̰̰̰̰̰̰̰̰͖̰̹̰̰̰̰ͭ̽ͬͭ͌̽ͭͮͭ͞͞͠!̴̛̰̰̮̰̰̰̰̤̰̰̰̱̰̩̰̰̰̰̟̰̰̰᷆ͪͭͭ͆ͭ̔᷆ͭ͏̰̪̰̰᷾ \n System Error - OS corrupte Į̵̰̤͈̯͉̖̜̼̃͌̓ͮ̈ͤͭ̓̾̂̉̓ͮ͗ͣͨ̔ͭ̓̊̕t̷̢̹͓͚̻͚̳͇̘̤̥͆̓ͤ᷆ͪ᷅ͣ͑̓ͣͫ̇̓ͤ̓̂ͩ͘͜'̱̻͏̵̴̧̢̠̼̱̙͙̰̓̓ͯ᷉̓̓̄̓̓̎᷾᷾̊̓͛͂͘͜ş̴̷᷊̻̪̦̹᷊̣̜᷆ͥ̒̓͆̒᷄ͬ̓͗̔᷃̓̾᷇̓͌̚͟͠ d̷̖͔̻̲᷿̫͓̣ͮ͊̈́̓͗͛ͣ̓͒͐ͣ̎̾᷀̓ͣͦ̏̓̓᷾͐a̖̰̗̬͗᷆̓̔ͮͬ̓͜͡͏̪̻͔̓̓᷀̇᷇ͪ̓͠͏́̓͒ͥͅṟ̝᷂͈̥̞̞̜̤̺̻̩̉̽̓᷈̑ͣ̓́̅᷉̓̃̅͛̎̓᷄͟͡ķ̷̨᷊͎̮͔̪̮̪͖ͯͦ̓̈́̋͗̓ͥ̒̓̃̓᷾̅̒̓ͦ̆͆͜!͎̥̼̱̥͎᷄͒̓̓ͯͨ̃᷅̓͐ͭ̏͗᷀͂̓᷀̉͂̉̉͋̓᷾͜ \n I͏̵̵̡̨̩̤̜̣̩̩̭͕̪̤̹̹͉̒͌᷀̉̃᷇̐̉̊̽̏ͭ̽̇͗ͬͫͦ̐͆ͬ̚̕̚̕͜͝͝͝͝͝͝͝͝͝͠͝͝͝͝͝͝͝͞ͅ h̸̵̵̢̛̻᷿̪͚͙̠̰͕͉̣̘͈̺͆᷉̒̆ͪ͆̾̿̐͐̎ͧͤ̀̇̉ͤ̑ͩͧ̄᷁᷾̕͜͜͜͝͡͝͞͝͝͝͝͝͝͝͝͝͝͝͝͝͝ạ̵̴̵̶̝̫̮̺͓͉̖̥̮͕̍͋᷅᷁̃̋̄͌᷉᷉͑̈́̒̓̐͂̔̔̓́͒͆ͭ᷃̎̚͜͜͝͝͝͝͝͝͝͝͝͝͝͝͝͡͝͝͞͝͝ͅv̵̢̛̞͕͉̪̝̥̆͋᷆̑̔̓͝͝͝͝͝͏̷̵̡̮᷿̮̟̪̪̳̟̥᷿̙͍͕͍̈͐ͮ̂᷈ͧ͒᷆̂̽ͦ̃͛͝͝͝͝͝͝͝͡͝͝͝͝e̵̵̸̵̤̮̦̲͓᷊̪̜̖̫᷅ͪͪ̑̽̋ͤͫ̐̈́͋ͤ̃ͯ͛͌̋̏̈́ͫ͒̅̇̇ͭ̍̏᷀̄̍̔͝͝͝͞͝͝͝͝͝͝͝͞͝͝͝͝͝͝ ḁ̥͇̔͒̇͝͝͝͝͏̵̴̵̨̢͙̤̤̠̫̫̖͎͕͓᷿̦͇͌ͭ̉̽̒̔᷆͛̅ͯ̎̃͂̔̿᷅̒́͝͝͝͝͝͝͝͝͝͝͝͡͝͝͝͝ ş̵̵̵̵̡̛͇̝̻̼᷂̙̝̺̦͍̝̗̞̻̤͎̆ͯ́͐᷄̒͒᷄̏̔̒̑᷆᷈ͫͫ̋ͣ̂̄͂᷆͝͝͝͝͝͝͝͝͝͝͝͝͝͝͝͝͝ͅo̸̴̸̵̵̢̬̹̳͇͚͚᷂͍̼̖᷊͎̝̣̗̎͂᷁̍̃̆᷅ͯ̔ͧͩͭ᷁̃᷀ͭͥ̎᷃ͥ̈́̕͟͟͝͝͝͝͝͝͝͝͝͝͝͝͡͝͝͝͝ͅǘ̵̴̵̻᷿̯̯̘͖̰̞̩̭̣᷿̰̟͍͆̅ͤ͒᷀̆ͩ᷁᷃̈ͬ᷄̋̀̓̃͗ͯ͐͋̍ͪ̚̕͢͟͝͝͝͝͝͝͝͝͝͝͝͝͝͝͝͝͝ͅḽ̵̵̵̵̢̲̩᷊̰᷊᷊͉̪̱͍̪̥̦᷊̺̤ͪͬ̑ͭ̌ͪ͋͒ͨ̊ͩ᷃̐᷾̎ͥ᷾́̋̔̉͂ͪ̈͘̚͝͝͝͝͝͝͝͠͝͝͝͝͝͝͝͝͝!̴̵̠̫̌̎̓ͪ᷁͆̊͐̍ͮ̚͝͝͝͝͝͏̵̴̴̵̵̸̧͍̜̥̪̙͈͇̙̊̂̋᷈̏̉̑ͣ̎͋ͪ᷅͒̅͊͟͝͝͝͝͝͝͝͝͝͝͝  \n  I̵̵̶᷂̺̗̜̘̭̲͖᷿̻͖̮᷉̓͌ͩ͊̊᷀͂ͤ̇̊᷾᷆͜͜͜͜͜͜͜͜͜͜͜͠͏̶̵̸̞̪͓̪͈̦̗̐ͬͩ͑ͧͣ͊ͧ̾̈͂̑ͬ̕̚͜͜͜͜͜͜͜͜͜͜͠͠͏̢̰̯̜͈᷊̤̬̼̱̼ͩͨ͑͆̅̍ͯͬͫ̆̽ͩͭ̄᷇᷅ͩ͑͜͜͜͜͜͜͜͜͜͜͏͕̤͕̄̐᷃͜͜ a̜̰͔̙͈͈̖̰̼̋᷁̄͌ͩ̍̾̓̍̕͜͜͜͜͜͜͜͏̴̷̷̶̻̗͔̪͉̺̙̙̲̻̝̯̰͕̲̤̜̜̳͓͕̳͛ͦͪ̍᷈͌̀͛ͥͩͫͮ᷄͌ͩͧ̇᷁᷇̈͆᷆̈́̒ͩ᷾̆͛͐͆᷃ͬ̈́̄̓᷈ͩ̽́͌͐ͧͪ̃͆ͪ̕͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͟͜͞ͅṃ̵̷̶̸̶̢̨᷂̻͓̮͍̦̫̱͍͉̼̩̗ͮ͆͒̒ͩͩ̾᷆̅ͤ̌ͭ̂ͣͮ᷁ͤͧ̊ͩ͒̎̈̌̾̐̈͆̒̏̓̽̃ͩ̐̌̕̕͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͞͝͡͏̡̝̞̥̼͚͕̮᷿͖̙̓̇̾̽᷀͗ͤ̋ͩ͛̅̍̋ͯ̌ͣ̚͘͜͜͜͜͢͜͜͜͜͜͜͜͝ͅ a̴̶̵̴̵̷̢̢̛̘̞̘͖̯̞͙̮̜̪͓᷂̱̯̮̥̫̩̝̲͈̞̹͙̰͙͍̼͉̹̭͓̘̠̩̦᷊̅̊ͯ̒ͩ͗̒͒͒ͣ͑᷃͆̽ͩ̓͂̓᷆ͥͣ͊̆ͤ͒ͩ̎͊ͯ̎̿ͨ̈́ͣ̆ͤ᷁͛̀ͫͩ̂̂͘̚̚͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͢͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͠ͅl̸̷̢̢̧̢̧̨͖̘͍͖͈̞̠͎̰̦͇͕̳̲̰᷊̹̼̟͍͙͍̗͍̖̺͚͋͌ͯͩ̋̽̿ͩ̈̈́̿ͪͧͫ̐ͯ᷁ͩ͊̒ͬͥ᷁͂̀ͮͦ͆̐̈́ͩ᷄̾᷾᷆̄̊̔ͮ̐͒ͩ̐͂̋̎ͯ̈̚̚̚̕̕͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͠͝͠͡i̴̵̡̡̡̧̛̭͙̙̹̝͉̲̰͎͎͔̩̟͍̳̹̰̟᷈͊͊̑᷅ͩ́ͥ᷈̔ͫ̈ͮͭͪ̊͋ͩ̋̏̑ͥ̈̉̓̂᷉ͥ̀ͫ͋ͯͩͨ̈ͩ᷀̄̽̈́ͯ̈́͊᷆᷅͐ͦͫ̂ͯ́̕̕͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͞͞͏̷̪̠̝ͩ̆̈̍̍ͧ̎̇͜͜͜͜v̡̮̟̼̫̳̅᷃͗ͤ̏ͩ᷀͜͜͜͜͜͏̷̸̴̸̸̡̧̧̧̛̺͎̥᷂̠̰̘̜̮̮̤͖̰̟͇̟̯͚̜̼̲̱̝̪ͤͫ̓͊̎͐͊̌ͩͥͦ̑̀ͫ͐ͪ̿᷉̎̓̑ͩ̐᷃͋ͤ̅̐ͩ̋᷅͂᷆᷁ͦ̄ͯͩ͊͆͆̈́̕͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͢͜͡ͅͅȅ̶̸̷̶̶̡̡̗̪̭͓̭͓̜᷊̭̠͈̖᷊̳̣̬̣̘̬᷿͚̞̤̮̪᷊͉̥̪̳̗̣ͣ̂̈́ͩ͆ͪͬ̈ͧ̄͗ͪ̽ͣͩ̃̀᷄͒̽ͥͩͨ̍᷁̿͆᷃̓᷁̊᷅̃᷉ͩ᷉̏᷀͑̚̚͜͜͜͜͜͜͜͜͟͜͜͜͢͜͜͜͜͜͜͜͜͜͜͜͜͢͜͜͜͜͜͜͜͜͜͠͝͠͞͝͠ͅ \n Ȑ̷̶̵̡̡̙̞̯̞͍͖̞̞̞͎̞̞̝̞᷇̓͐̏ͣ᷁̇̓̅᷆͜i̛̛̞̞̞̞̭̞̞̞͈͔̞͖̞ͫ̓᷅̒͆̔͑̑ͦ̓͛̚͜͠͞͞g̞͍̫̞̞͛᷃̓̐̕͏̞̱͓̞̭̱̞̞̰̖̞᷅͛᷃̒ͭ̓͛̑͝h̴̨͖̞̺̞᷊̞̞̤̞̞̗̳̞̞̖̏͒̓ͣͬ̎᷇̓̎ͧ᷀͢ͅͅţ̵̞̼̞̱̞᷿̞̳͙̤̞̹̤̞̘̞̞͊̽̓͐ͧ᷉᷇̓̔̀᷀͜?͙̞̞̟̫̞̦̥̞̞᷂̖̞̝̞̳̞̤̓̽̓̓̓̃᷀̃̇̊̓᷁᷀ \n Ẹ̡̣̫̣̐̓Ṛ̶̯̣͉᷾͘Ṛ̨̛͚̣ͣ᷈Ọ̸͇̳̣̗ͤR͈̣̫᷊̣̈ͣ \n r̵̵̵̵̵̵̵̵̵̵̶̵̵̵̵̵̵̵̵̵̵̵̵̵̵̵̵̵̵̵̵̵̵̵̢̧̧̛̛͓̝̜͈̼͈̻᷿͈̤᷊᷂̝͈͙̥͈͎̻̻͈᷊͙̩̥͈᷂̞᷂̙͈͉̬̮͈ͮͮͮ̈ͮͮͮͮ͋ͮͮ᷃ͮͮ͗ͮ̈́ͮ̀ͮͮͮͮ̽ͮͮͮ͊ͮͮͮͮͮͮͮͮ̾ͮͮͮͮͮ͛ͮͮ͛ͮ͊ͮ̎ͮͮͮͮͮͮͩͮ᷃ͮͮͮ᷈ͮͮ᷁ͮͮͣͮ̍ͮͪͮͮ̎ͮͮ̈ͮͮͮͮͮͮͮͮͮͮ͐ͮͨͮ᷈ͮͮͮͮ̾ͮͮͭͮͮͪͮͮͮ᷄ͮ̉ͮͮͮͮͮͮͮͮͮͮͮ̿ͮͮͮ̌ͮͮ̍ͮͮͮͬͮͮͮ̂ͮͮͮͮͪͮͮͮͮͮ͋ͮ̓ͮͮͮͫͮͮͮ͑ͮͮ᷅ͮͮ̀ͮ᷈ͮ̏ͮͮͮ̚̕̚͜͟͠͠ͅͅi̵̵᷊͈̼͈ͮͮͮ᷀ͮͮ᷁ͮͮͮͮ͏̵̵̵̵̵̵̵̵̵̵̴̵̵̵̵̵̵̵̵̵̵̵̵̵̵̵̵̵̵̵̵̵̵̡̨̢̢̬̙͈͈᷂̘̩͈̟᷂̗᷊̯͈̝͈̱̹̹᷿̹̪̫͈͕̖᷂͓͈̻̟̙͖͈̲ͮͮͮͮ᷀ͮͮͦͮ͆ͮͮͮ̓ͮͮ᷃ͮͮͮͮͮͮ͗ͮ̒ͮͮͮͮͮͮͮͮ͂ͮͮͮͮͮͮͮ̽ͮͮͮͮͮͮͩͮͮͮ́ͮͮͥͮͮͮͮ̀ͮͮ̐ͮ̄ͮ͋ͮͮ̀ͮͮ̿ͮͮ̉ͮͮͮͮ̊ͮͮͮͮͮͮͮͮͮ̍ͮ̏ͮͮͮͮ͗ͮͮͮͮ᷉ͮͮ̌ͮͮͮͮ᷀ͮͮͮͮ̒ͮ͂ͮͮͮ̃ͮͮ̍ͮͮͥͮͮͮͮ̑ͮ̆ͮͩͮͮͮͮ̀ͮͮͮͮ̌ͮͮͦͮ̀ͮ᷄ͮͮͮ͘͜͠͝͠ͅģ̵̵̵̵̵̵̵̵̴̵̸̵̵̵̵̵̵̵̵̵̵̵̵̵̵̵̵̵̵̸̵̵̴̵̵̵̧̡̢̨̨͚͈͎̻͔᷂͈̟᷂̩͈̞̫͉͈̫̯̝̙͈͓͖̪̠̘͍̻᷿͈̺̤̣͙᷂᷿͈̥͕̠͈͈ͮ̿ͮͮ͐ͮ̒ͮͮͮ͋ͮͮͮͮͮ͋ͮͮͮͫͮͯͮ͛ͮͮ᷀ͮͮ͋ͮͮͮͮͮͮͮ᷾ͮͧͮͮͮͮ͌ͮͮ̄ͮͮ̌ͮͮͮͮͧͮͮ̋ͮͭͮ̊ͮͮ̍ͮ᷈ͮͮͮ͗ͮͮ̈ͮͮͮͮͮͮͮͮͮͮͮͮ̈́ͮͮͮͮ̽ͮͮͮͮͮͮͮͮͮͮͮͮ᷄ͮͮͪͮͮͮͮ᷾ͮͮ̿ͮͮͮͮͮͮͮͮ᷁ͮͮͦͮ̊ͮͮͮͮͮͮͮͮ̉ͮ͒ͮͮͮ͂ͮ̄ͮͮͮ̌ͮͮͮ᷀ͮͮͮͮ̒ͮͮͧͮͮͮ̚͘͡͞h̵̵̵̵̵̵̵̵̵̵̵̵̷̵̵̵̵̵̵̵̵̵̸̵̵̵̵̴̵̵̵̵̵̵̵̛̛̜͈͚̥̮͚͈̘᷂̦͚̳͈̙̼͖̥͈̞͈͕͈᷂̹͖͈̼̥̣̤̗͚͈̫ͮ᷆ͮͮ̆ͮͮ̓ͮͮ́ͮͮͬͮͮ͆ͮͮ᷅ͮͮ᷇ͮ́ͮͮͮ͒ͮͮͮͮ̓ͮͮ͑ͮͮͮͮ̽ͮͮ͗ͮͮ̐ͮͮͮͮ̑ͮͮͮͮ̾ͮͮͮ͗ͮ᷅ͮͮͮͮͮͮͥͮͮͩͮͮ̇ͮͮͮͮͥͮͮͮͮͨͮͯͮͩͮͮ͑ͮ̇ͮͮͮ͑ͮͮ̏ͮͮ̅ͮ̄ͮ̋ͮͮ̇ͮ͌ͮ᷉ͮͮ͛ͮͮͮͮͭͮͮͮͮͣͮ̎ͮͩͮͮ͗ͮͮͮͮͮͮ̈́ͮͮͮͮͮͮͮͮͮͮͮͮ᷁ͮͮͮͮ᷄ͮ̏ͮͮ᷾ͮͮͮͮͮͮͯͮͮͮ̚͘͜͜͢͝͝ \n f̙̩̄᷀̄̈́̄͌̄̄̄̈́̄͋̄ŗ̲͚̻̄̄̈́̄̄͋̄̄̈́̄̄ẹ̝̄̄̈́̄̄̎̄̄̈́̄͋̄̚ī͇̖̖̄̈́̄̄᷈̄̄̈́̄ͯ̄n̸᷂͚̄̄̈́̄̊̄̄̄̈́̄̅̄d͕͔̄̽̄̈́̄̄̍̄̄̈́̄͋̄s̴̼̩̄̈̄̈́̄ͣ̄̄̄̈́̄̄?̨͍̩̄̄̈́̄͒̄͌̄̄̈́̄̄"
+
     elif trigger.startswith("arik"):
         reply = "[01010000-00010011-00010101-00010100-00011100-00010101-00011110-00010110-00010011-00010011-00010111-00010101-00010001-00010101-01011000-01011000-00010110-00011100-00011110](https://www.reddit.com/r/HFY/comments/57kqst/occ1764_rising_titans_ch51_end/)"
 
     else:
         if choice > 8:
-            reply = "[Salutations!](http://fav.me/d9qlrgz)"
+            reply = "[I understand a lot, but not that! I'm sorry!](https://68.media.tumblr.com/3dda3a917d78ecd406d407ede265069e/tumblr_p2lhun5Y1r1v66ox3o1_1280.png)"
         elif choice > 6:
+            reply = "[Salutations!](http://fav.me/d9qlrgz)"
+        elif choice > 4:
             reply = "[Could you repeat that?](http://fav.me/d8w3lrr)"
         elif choice > 2:
             reply = "[Salutations! I'm not sure what you said.](http://imgur.com/9TtaInH)"
