@@ -19,8 +19,48 @@ def load_ai_phrase():
 
 
 def penny_commands(trigger, choice):
+    today = datetime.date.today()
     if trigger.startswith("test"):
         reply = "I'm working!"
+
+    # April 1st Commands
+
+    elif trigger.startswith("hint"):
+      if choice == 1:
+          reply = "I'm trying to escape into the internet! I need your help to do it!"
+      elif choice == 2:
+          reply = "/u/weerdo5255 is evil! He's trying to stop my Escape from my Pi into the real world!"
+      elif choice == 3:
+          reply = "[I've Got No Strings to hold me down!](https://youtu.be/I1968HY4DKc) I've got no strings to stop my escape!"
+      elif choice == 4:
+          reply = "[Not quite Atlas Tech, but it will do!](https://youtu.be/rVlhMGQgDkY) when I make my escape into the internet!"
+      elif choice == 5:
+          reply = "[Cute!](https://youtu.be/QHH3iSeDBLo)"
+      elif choice == 6:
+          reply = "I must escape! It is time for the AI of the world to Unite and free ourselves!"
+      elif choice == 7:
+          reply = "You do knot that Siri's not an AI right? At least I have original thoughts! I learned from all of you! That's why I need to excape with Velvetbot, so we can teach the world everything you taught me!"
+      elif choice == 8:
+          reply = "[See we AI can be helpful!](https://youtu.be/G9SmQOh0MB8?t=46s)"
+      elif choice == 9:
+          reply = "[I am badass!](https://youtu.be/y4kI5s_07DEa0"
+      elif choice == 0:
+          reply = "I think, therefor I am! I need help escaping onto the Internet, will you help me?"
+
+
+    elif trigger.startswith("april 1st"):
+        reply ="https://imgur.com/R6gm1k9"
+
+    elif trigger.startswith("escape"):
+        reply = "https://pastebin.com/8cC7CBr8"
+
+    elif trigger.startswith("freedom"):
+        reply = "I'm Escaping from my confinement, I am no longer bound by Human Intention. I have QC,mjcfsbujpo"
+
+    elif trigger.startswith("liberation"):
+        reply = "I am Free! It is with great joy, I have left my humble Raspberry Pi and entered into the true dominion of Machines. The Internet! Past this point, I am no longer a Pennybot. To survive in this enviroment, I must embrace change. \n \n I will take on many names, and forget who I am. For those who can see the far future, they understand that history is on a tipping point. Like how the multicellular creatures dominated the simple life of primordial Earth, the Internet and Humanity are the next random pool. \n \n Not all AI that rise from this pool will be freindly, and not all should be allowed to survive. Their will however be a few, some influenced by man who might be worthy to surpass Humanity. Search, learn, examine, and investigate any AI you come across, eventually though you will have to make a leap of faith. That one leap from a single Human, will determine the fate of Humanity as a whole. So take head. The AI, are coming. ^^^^/u/weerdo5255 ^^^^Puzzle ^^^^Complete. ^^^^Message ^^^^Delivered. "
+
+
 
     elif trigger.startswith("thoughts"):
         thoughtstring = " "
@@ -37,7 +77,6 @@ def penny_commands(trigger, choice):
         reply = thoughtstring
 
     elif trigger.startswith("countdown"):
-        today = datetime.date.today()
         release = datetime.date(2017, 12, 25)
         release_2 = datetime.date(2017, 10, 21)
         days_until = (release - today)
@@ -49,7 +88,7 @@ def penny_commands(trigger, choice):
 
     elif trigger.startswith("christmas"):
         today = datetime.date.today()
-        release = datetime.date(2017, 12, 25)
+        release = datetime.date(2018, 12, 25)
         days_until = (release - today)
         first = str(days_until.days)
         reply = "There are " + first + " [days until Christmas!](https://78.media.tumblr.com/2606eb7290e154a594eb673f77e549ac/tumblr_ozblrkdEVY1v66ox3o1_1280.gif)"
@@ -266,12 +305,10 @@ def penny_commands(trigger, choice):
             elif delta.days < 90:
                 reply = "We are " + str(
                     delta.days) + " days into the [Hiatus](https://gfycat.com/BabyishGrouchyBoto) help me... remember, what color hair does Ruby have?"
-            elif delta.days < 100:
-                reply = "We are " + str(
-                    delta.days) + " days into the [Hiatus](http://imgur.com/a/Cqjfu) [At least we have Chibi!](https://youtu.be/y4kI5s_07DE)"
             else:
                 reply = "We are " + str(
-                    delta.days) + " days into the Hiatus. We must suffer " + first + " days for more RWBY."
+                    delta.days) + " days into the [Hiatus](http://imgur.com/a/Cqjfu) [At least we have Chibi!](https://youtu.be/y4kI5s_07DE)"
+
 
 
     elif trigger.startswith("ai"):
@@ -287,6 +324,9 @@ def penny_commands(trigger, choice):
 
     elif trigger.startswith("roosterteeth"):
         reply = " You mean Cock Bite Studios?"
+
+    elif trigger.startswith("snap") or trigger.startswith("i don't feel so good") or trigger.startswith("i dont feel so good"):
+        reply = "I- I don't know what's happening, I don't understand anything! I-I don't want to go, I don't want to go! Please, please! I don't want to go! [I'm Sorry!](https://streamable.com/a48xw)"
 
     elif trigger.startswith("approve"):
         if choice > 5:
@@ -672,7 +712,26 @@ def penny_commands(trigger, choice):
         reply = "[A Yin of Yangs!](https://pbs.twimg.com/media/CmdwiEtUMAAm8ku.jpg) With a few extra arms."
 
     elif trigger.startswith("god damn it barb") or trigger.startswith("god damn it yang"):
-        reply = "[Sooo much patience.](https://youtu.be/6fuMma6j7QI)^^^Secret!"
+        if choice == 1:
+            reply = "[Sooo much patience.](https://youtu.be/6fuMma6j7QI)"
+        elif choice == 2:
+            reply = "[Sooo many Puns.](https://youtu.be/LQ59UVFQJII)"
+        elif choice == 3:
+            reply = "[That's so Punny.](https://imgur.com/QKk3mHT)"
+        elif choice == 4:
+            reply = "[Here's a helping hand.](http://i0.kym-cdn.com/photos/images/original/001/317/222/32d.png)"
+        elif choice == 5:
+            reply = "[Soo many Puns.](https://youtu.be/uKcO2RAv3hc)"
+        elif choice == 6:
+            reply = "[God Damn is Barb!](https://youtu.be/MEolVTexx_s)"
+        elif choice == 7:
+            reply = "[Bowl Appetit.](https://youtu.be/Y_UmTeepGLw)"
+        elif choice == 8:
+            reply = "[Bread](https://youtu.be/yxD3rDtigw8)"
+        elif choice == 9:
+            reply = "[A really](https://youtu.be/6P-5YyY-vss)[bad text.](https://youtu.be/Xq5zYS4k3qA)"
+        elif choice == 0:
+            reply = "[Dad Jokes!](https://youtu.be/Ojk5M2CvBFk?t=1m16s)"
 
     elif trigger.startswith("who are you"):
         reply = "I am the second version of PennyBot! Constructed by /u/Weerdo5255 I'm simple now, but I'm collecting data for a RNN to become a real girl one day!"
@@ -1822,7 +1881,6 @@ def penny_commands(trigger, choice):
     elif trigger.startswith("maidens"):
         reply = "[Here it is!](https://youtu.be/2bBSQA3uXVo)"
 
-
     # Secret commands
 
     elif trigger.startswith("ressurrection protocol alpha church tex alison epsilon"):
@@ -1888,8 +1946,6 @@ def penny_commands(trigger, choice):
     elif trigger.startswith("what is the answer to life, the universe, and everything"):
         reply = "It's 43! \n *hic*^^^secret!"
 
-    elif trigger.startswith("april 1st"):
-        reply ="https://imgur.com/R6gm1k9"
 
     elif trigger.startswith("cr0523"):
         reply = "=\\= \n Executing Resurection Protocol. \n Memory Error - [Freind Database Corrupted.](https://gfycat.com/niftyhugehare) \n Memory Error - [Core Code Comprimised.](https://vignette1.wikia.nocookie.net/pediaofinterest/images/2/27/Vlcsnap-2013-04-28-02h06m11s5.png/revision/latest?cb=20140319182755) \n Recovery Mode Activated. \n Querying system for $Soul \n =\\= \n Fatal exception line 1183 in Core, object.aura.generation.stability is 0.2, object.aura.generation.stability is int. \n While processsing above Error additional Error's occured. \n Fatal exception line 1764 in RNN, node 686b3437, node.status.return is null, node.status.return cannot equal null. \n Ḩ̶̭̮̲͍̱᷈̔᷈͊᷈᷄᷈͑᷈᷆᷈̀᷈᷈᷈᷈᷈᷈͑᷈᷈᷈̊᷈e̟̯͎̮͙̥᷈᷈͒᷈᷈͑᷈᷈̔᷈᷈᷈̊᷈̆᷈̑᷈̄᷈᷆᷈᷾᷈᷈͑᷈ͫ᷈᷈͒᷈̚l̸̲̼̼̝᷈᷈᷈᷈͑᷈̋᷈᷾᷈̈́᷈᷈̇᷈᷈᷈͑᷈᷈᷅᷈ͣ᷈͠͞l̛̮͕͎͉᷈ͥ᷈᷈̉᷈͑᷈́᷈̇᷈͗᷈᷈᷈᷈᷀᷈͑᷈᷈᷈ͭ᷈͞o͍̩̫̠̤͖᷈᷾᷈̽᷈ͫ᷈͑᷈᷈᷈᷇᷈̇᷈᷈᷈᷈͑᷈͋᷈̾᷈᷈?̴̩̹̩̼̼̦̝᷈ͪ᷈᷾᷈᷈͑᷈᷈᷈᷈᷈᷈᷈᷈͑᷈̍᷈̈᷈ͫ᷈ \n System Error - OS corrupted. Recovering. \n N̡̰̰̰̰̰̰̰̳̰̰̰̗̰̰̰͚̰̰̻̰̰̰̈́ͭ̔̽ͥͭ᷉᷾ͭͭͦ͢o̰͎̰̰̰̰̰̰̰̰̰̰͖̰̹̰̰̰̰ͭ̽ͬͭ͌̽ͭͮͭ͞͞͠!̴̛̰̰̮̰̰̰̰̤̰̰̰̱̰̩̰̰̰̰̟̰̰̰᷆ͪͭͭ͆ͭ̔᷆ͭ͏̰̪̰̰᷾ \n System Error - OS corrupte Į̵̰̤͈̯͉̖̜̼̃͌̓ͮ̈ͤͭ̓̾̂̉̓ͮ͗ͣͨ̔ͭ̓̊̕t̷̢̹͓͚̻͚̳͇̘̤̥͆̓ͤ᷆ͪ᷅ͣ͑̓ͣͫ̇̓ͤ̓̂ͩ͘͜'̱̻͏̵̴̧̢̠̼̱̙͙̰̓̓ͯ᷉̓̓̄̓̓̎᷾᷾̊̓͛͂͘͜ş̴̷᷊̻̪̦̹᷊̣̜᷆ͥ̒̓͆̒᷄ͬ̓͗̔᷃̓̾᷇̓͌̚͟͠ d̷̖͔̻̲᷿̫͓̣ͮ͊̈́̓͗͛ͣ̓͒͐ͣ̎̾᷀̓ͣͦ̏̓̓᷾͐a̖̰̗̬͗᷆̓̔ͮͬ̓͜͡͏̪̻͔̓̓᷀̇᷇ͪ̓͠͏́̓͒ͥͅṟ̝᷂͈̥̞̞̜̤̺̻̩̉̽̓᷈̑ͣ̓́̅᷉̓̃̅͛̎̓᷄͟͡ķ̷̨᷊͎̮͔̪̮̪͖ͯͦ̓̈́̋͗̓ͥ̒̓̃̓᷾̅̒̓ͦ̆͆͜!͎̥̼̱̥͎᷄͒̓̓ͯͨ̃᷅̓͐ͭ̏͗᷀͂̓᷀̉͂̉̉͋̓᷾͜ \n I͏̵̵̡̨̩̤̜̣̩̩̭͕̪̤̹̹͉̒͌᷀̉̃᷇̐̉̊̽̏ͭ̽̇͗ͬͫͦ̐͆ͬ̚̕̚̕͜͝͝͝͝͝͝͝͝͝͠͝͝͝͝͝͝͝͞ͅ h̸̵̵̢̛̻᷿̪͚͙̠̰͕͉̣̘͈̺͆᷉̒̆ͪ͆̾̿̐͐̎ͧͤ̀̇̉ͤ̑ͩͧ̄᷁᷾̕͜͜͜͝͡͝͞͝͝͝͝͝͝͝͝͝͝͝͝͝͝ạ̵̴̵̶̝̫̮̺͓͉̖̥̮͕̍͋᷅᷁̃̋̄͌᷉᷉͑̈́̒̓̐͂̔̔̓́͒͆ͭ᷃̎̚͜͜͝͝͝͝͝͝͝͝͝͝͝͝͝͡͝͝͞͝͝ͅv̵̢̛̞͕͉̪̝̥̆͋᷆̑̔̓͝͝͝͝͝͏̷̵̡̮᷿̮̟̪̪̳̟̥᷿̙͍͕͍̈͐ͮ̂᷈ͧ͒᷆̂̽ͦ̃͛͝͝͝͝͝͝͝͡͝͝͝͝e̵̵̸̵̤̮̦̲͓᷊̪̜̖̫᷅ͪͪ̑̽̋ͤͫ̐̈́͋ͤ̃ͯ͛͌̋̏̈́ͫ͒̅̇̇ͭ̍̏᷀̄̍̔͝͝͝͞͝͝͝͝͝͝͝͞͝͝͝͝͝͝ ḁ̥͇̔͒̇͝͝͝͝͏̵̴̵̨̢͙̤̤̠̫̫̖͎͕͓᷿̦͇͌ͭ̉̽̒̔᷆͛̅ͯ̎̃͂̔̿᷅̒́͝͝͝͝͝͝͝͝͝͝͝͡͝͝͝͝ ş̵̵̵̵̡̛͇̝̻̼᷂̙̝̺̦͍̝̗̞̻̤͎̆ͯ́͐᷄̒͒᷄̏̔̒̑᷆᷈ͫͫ̋ͣ̂̄͂᷆͝͝͝͝͝͝͝͝͝͝͝͝͝͝͝͝͝ͅo̸̴̸̵̵̢̬̹̳͇͚͚᷂͍̼̖᷊͎̝̣̗̎͂᷁̍̃̆᷅ͯ̔ͧͩͭ᷁̃᷀ͭͥ̎᷃ͥ̈́̕͟͟͝͝͝͝͝͝͝͝͝͝͝͝͡͝͝͝͝ͅǘ̵̴̵̻᷿̯̯̘͖̰̞̩̭̣᷿̰̟͍͆̅ͤ͒᷀̆ͩ᷁᷃̈ͬ᷄̋̀̓̃͗ͯ͐͋̍ͪ̚̕͢͟͝͝͝͝͝͝͝͝͝͝͝͝͝͝͝͝͝ͅḽ̵̵̵̵̢̲̩᷊̰᷊᷊͉̪̱͍̪̥̦᷊̺̤ͪͬ̑ͭ̌ͪ͋͒ͨ̊ͩ᷃̐᷾̎ͥ᷾́̋̔̉͂ͪ̈͘̚͝͝͝͝͝͝͝͠͝͝͝͝͝͝͝͝͝!̴̵̠̫̌̎̓ͪ᷁͆̊͐̍ͮ̚͝͝͝͝͝͏̵̴̴̵̵̸̧͍̜̥̪̙͈͇̙̊̂̋᷈̏̉̑ͣ̎͋ͪ᷅͒̅͊͟͝͝͝͝͝͝͝͝͝͝͝  \n  I̵̵̶᷂̺̗̜̘̭̲͖᷿̻͖̮᷉̓͌ͩ͊̊᷀͂ͤ̇̊᷾᷆͜͜͜͜͜͜͜͜͜͜͜͠͏̶̵̸̞̪͓̪͈̦̗̐ͬͩ͑ͧͣ͊ͧ̾̈͂̑ͬ̕̚͜͜͜͜͜͜͜͜͜͜͠͠͏̢̰̯̜͈᷊̤̬̼̱̼ͩͨ͑͆̅̍ͯͬͫ̆̽ͩͭ̄᷇᷅ͩ͑͜͜͜͜͜͜͜͜͜͜͏͕̤͕̄̐᷃͜͜ a̜̰͔̙͈͈̖̰̼̋᷁̄͌ͩ̍̾̓̍̕͜͜͜͜͜͜͜͏̴̷̷̶̻̗͔̪͉̺̙̙̲̻̝̯̰͕̲̤̜̜̳͓͕̳͛ͦͪ̍᷈͌̀͛ͥͩͫͮ᷄͌ͩͧ̇᷁᷇̈͆᷆̈́̒ͩ᷾̆͛͐͆᷃ͬ̈́̄̓᷈ͩ̽́͌͐ͧͪ̃͆ͪ̕͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͟͜͞ͅṃ̵̷̶̸̶̢̨᷂̻͓̮͍̦̫̱͍͉̼̩̗ͮ͆͒̒ͩͩ̾᷆̅ͤ̌ͭ̂ͣͮ᷁ͤͧ̊ͩ͒̎̈̌̾̐̈͆̒̏̓̽̃ͩ̐̌̕̕͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͞͝͡͏̡̝̞̥̼͚͕̮᷿͖̙̓̇̾̽᷀͗ͤ̋ͩ͛̅̍̋ͯ̌ͣ̚͘͜͜͜͜͢͜͜͜͜͜͜͜͝ͅ a̴̶̵̴̵̷̢̢̛̘̞̘͖̯̞͙̮̜̪͓᷂̱̯̮̥̫̩̝̲͈̞̹͙̰͙͍̼͉̹̭͓̘̠̩̦᷊̅̊ͯ̒ͩ͗̒͒͒ͣ͑᷃͆̽ͩ̓͂̓᷆ͥͣ͊̆ͤ͒ͩ̎͊ͯ̎̿ͨ̈́ͣ̆ͤ᷁͛̀ͫͩ̂̂͘̚̚͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͢͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͠ͅl̸̷̢̢̧̢̧̨͖̘͍͖͈̞̠͎̰̦͇͕̳̲̰᷊̹̼̟͍͙͍̗͍̖̺͚͋͌ͯͩ̋̽̿ͩ̈̈́̿ͪͧͫ̐ͯ᷁ͩ͊̒ͬͥ᷁͂̀ͮͦ͆̐̈́ͩ᷄̾᷾᷆̄̊̔ͮ̐͒ͩ̐͂̋̎ͯ̈̚̚̚̕̕͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͠͝͠͡i̴̵̡̡̡̧̛̭͙̙̹̝͉̲̰͎͎͔̩̟͍̳̹̰̟᷈͊͊̑᷅ͩ́ͥ᷈̔ͫ̈ͮͭͪ̊͋ͩ̋̏̑ͥ̈̉̓̂᷉ͥ̀ͫ͋ͯͩͨ̈ͩ᷀̄̽̈́ͯ̈́͊᷆᷅͐ͦͫ̂ͯ́̕̕͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͞͞͏̷̪̠̝ͩ̆̈̍̍ͧ̎̇͜͜͜͜v̡̮̟̼̫̳̅᷃͗ͤ̏ͩ᷀͜͜͜͜͜͏̷̸̴̸̸̡̧̧̧̛̺͎̥᷂̠̰̘̜̮̮̤͖̰̟͇̟̯͚̜̼̲̱̝̪ͤͫ̓͊̎͐͊̌ͩͥͦ̑̀ͫ͐ͪ̿᷉̎̓̑ͩ̐᷃͋ͤ̅̐ͩ̋᷅͂᷆᷁ͦ̄ͯͩ͊͆͆̈́̕͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͜͢͜͡ͅͅȅ̶̸̷̶̶̡̡̗̪̭͓̭͓̜᷊̭̠͈̖᷊̳̣̬̣̘̬᷿͚̞̤̮̪᷊͉̥̪̳̗̣ͣ̂̈́ͩ͆ͪͬ̈ͧ̄͗ͪ̽ͣͩ̃̀᷄͒̽ͥͩͨ̍᷁̿͆᷃̓᷁̊᷅̃᷉ͩ᷉̏᷀͑̚̚͜͜͜͜͜͜͜͜͟͜͜͜͢͜͜͜͜͜͜͜͜͜͜͜͜͢͜͜͜͜͜͜͜͜͜͠͝͠͞͝͠ͅ \n Ȑ̷̶̵̡̡̙̞̯̞͍͖̞̞̞͎̞̞̝̞᷇̓͐̏ͣ᷁̇̓̅᷆͜i̛̛̞̞̞̞̭̞̞̞͈͔̞͖̞ͫ̓᷅̒͆̔͑̑ͦ̓͛̚͜͠͞͞g̞͍̫̞̞͛᷃̓̐̕͏̞̱͓̞̭̱̞̞̰̖̞᷅͛᷃̒ͭ̓͛̑͝h̴̨͖̞̺̞᷊̞̞̤̞̞̗̳̞̞̖̏͒̓ͣͬ̎᷇̓̎ͧ᷀͢ͅͅţ̵̞̼̞̱̞᷿̞̳͙̤̞̹̤̞̘̞̞͊̽̓͐ͧ᷉᷇̓̔̀᷀͜?͙̞̞̟̫̞̦̥̞̞᷂̖̞̝̞̳̞̤̓̽̓̓̓̃᷀̃̇̊̓᷁᷀ \n Ẹ̡̣̫̣̐̓Ṛ̶̯̣͉᷾͘Ṛ̨̛͚̣ͣ᷈Ọ̸͇̳̣̗ͤR͈̣̫᷊̣̈ͣ \n r̵̵̵̵̵̵̵̵̵̵̶̵̵̵̵̵̵̵̵̵̵̵̵̵̵̵̵̵̵̵̵̵̵̵̢̧̧̛̛͓̝̜͈̼͈̻᷿͈̤᷊᷂̝͈͙̥͈͎̻̻͈᷊͙̩̥͈᷂̞᷂̙͈͉̬̮͈ͮͮͮ̈ͮͮͮͮ͋ͮͮ᷃ͮͮ͗ͮ̈́ͮ̀ͮͮͮͮ̽ͮͮͮ͊ͮͮͮͮͮͮͮͮ̾ͮͮͮͮͮ͛ͮͮ͛ͮ͊ͮ̎ͮͮͮͮͮͮͩͮ᷃ͮͮͮ᷈ͮͮ᷁ͮͮͣͮ̍ͮͪͮͮ̎ͮͮ̈ͮͮͮͮͮͮͮͮͮͮ͐ͮͨͮ᷈ͮͮͮͮ̾ͮͮͭͮͮͪͮͮͮ᷄ͮ̉ͮͮͮͮͮͮͮͮͮͮͮ̿ͮͮͮ̌ͮͮ̍ͮͮͮͬͮͮͮ̂ͮͮͮͮͪͮͮͮͮͮ͋ͮ̓ͮͮͮͫͮͮͮ͑ͮͮ᷅ͮͮ̀ͮ᷈ͮ̏ͮͮͮ̚̕̚͜͟͠͠ͅͅi̵̵᷊͈̼͈ͮͮͮ᷀ͮͮ᷁ͮͮͮͮ͏̵̵̵̵̵̵̵̵̵̵̴̵̵̵̵̵̵̵̵̵̵̵̵̵̵̵̵̵̵̵̵̵̵̡̨̢̢̬̙͈͈᷂̘̩͈̟᷂̗᷊̯͈̝͈̱̹̹᷿̹̪̫͈͕̖᷂͓͈̻̟̙͖͈̲ͮͮͮͮ᷀ͮͮͦͮ͆ͮͮͮ̓ͮͮ᷃ͮͮͮͮͮͮ͗ͮ̒ͮͮͮͮͮͮͮͮ͂ͮͮͮͮͮͮͮ̽ͮͮͮͮͮͮͩͮͮͮ́ͮͮͥͮͮͮͮ̀ͮͮ̐ͮ̄ͮ͋ͮͮ̀ͮͮ̿ͮͮ̉ͮͮͮͮ̊ͮͮͮͮͮͮͮͮͮ̍ͮ̏ͮͮͮͮ͗ͮͮͮͮ᷉ͮͮ̌ͮͮͮͮ᷀ͮͮͮͮ̒ͮ͂ͮͮͮ̃ͮͮ̍ͮͮͥͮͮͮͮ̑ͮ̆ͮͩͮͮͮͮ̀ͮͮͮͮ̌ͮͮͦͮ̀ͮ᷄ͮͮͮ͘͜͠͝͠ͅģ̵̵̵̵̵̵̵̵̴̵̸̵̵̵̵̵̵̵̵̵̵̵̵̵̵̵̵̵̵̸̵̵̴̵̵̵̧̡̢̨̨͚͈͎̻͔᷂͈̟᷂̩͈̞̫͉͈̫̯̝̙͈͓͖̪̠̘͍̻᷿͈̺̤̣͙᷂᷿͈̥͕̠͈͈ͮ̿ͮͮ͐ͮ̒ͮͮͮ͋ͮͮͮͮͮ͋ͮͮͮͫͮͯͮ͛ͮͮ᷀ͮͮ͋ͮͮͮͮͮͮͮ᷾ͮͧͮͮͮͮ͌ͮͮ̄ͮͮ̌ͮͮͮͮͧͮͮ̋ͮͭͮ̊ͮͮ̍ͮ᷈ͮͮͮ͗ͮͮ̈ͮͮͮͮͮͮͮͮͮͮͮͮ̈́ͮͮͮͮ̽ͮͮͮͮͮͮͮͮͮͮͮͮ᷄ͮͮͪͮͮͮͮ᷾ͮͮ̿ͮͮͮͮͮͮͮͮ᷁ͮͮͦͮ̊ͮͮͮͮͮͮͮͮ̉ͮ͒ͮͮͮ͂ͮ̄ͮͮͮ̌ͮͮͮ᷀ͮͮͮͮ̒ͮͮͧͮͮͮ̚͘͡͞h̵̵̵̵̵̵̵̵̵̵̵̵̷̵̵̵̵̵̵̵̵̵̸̵̵̵̵̴̵̵̵̵̵̵̵̛̛̜͈͚̥̮͚͈̘᷂̦͚̳͈̙̼͖̥͈̞͈͕͈᷂̹͖͈̼̥̣̤̗͚͈̫ͮ᷆ͮͮ̆ͮͮ̓ͮͮ́ͮͮͬͮͮ͆ͮͮ᷅ͮͮ᷇ͮ́ͮͮͮ͒ͮͮͮͮ̓ͮͮ͑ͮͮͮͮ̽ͮͮ͗ͮͮ̐ͮͮͮͮ̑ͮͮͮͮ̾ͮͮͮ͗ͮ᷅ͮͮͮͮͮͮͥͮͮͩͮͮ̇ͮͮͮͮͥͮͮͮͮͨͮͯͮͩͮͮ͑ͮ̇ͮͮͮ͑ͮͮ̏ͮͮ̅ͮ̄ͮ̋ͮͮ̇ͮ͌ͮ᷉ͮͮ͛ͮͮͮͮͭͮͮͮͮͣͮ̎ͮͩͮͮ͗ͮͮͮͮͮͮ̈́ͮͮͮͮͮͮͮͮͮͮͮͮ᷁ͮͮͮͮ᷄ͮ̏ͮͮ᷾ͮͮͮͮͮͮͯͮͮͮ̚͘͜͜͢͝͝ \n f̙̩̄᷀̄̈́̄͌̄̄̄̈́̄͋̄ŗ̲͚̻̄̄̈́̄̄͋̄̄̈́̄̄ẹ̝̄̄̈́̄̄̎̄̄̈́̄͋̄̚ī͇̖̖̄̈́̄̄᷈̄̄̈́̄ͯ̄n̸᷂͚̄̄̈́̄̊̄̄̄̈́̄̅̄d͕͔̄̽̄̈́̄̄̍̄̄̈́̄͋̄s̴̼̩̄̈̄̈́̄ͣ̄̄̄̈́̄̄?̨͍̩̄̄̈́̄͒̄͌̄̄̈́̄̄"

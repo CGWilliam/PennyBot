@@ -365,16 +365,16 @@ def find_mispelling(comment, sid):
             reply = "[Pyrrahe](http://streamable.com/woxdj)? Do you mean Pyrrha?"
             respond = True
         elif "ilya" in comment:
-            reply = "[What, oh.](https://i.imgur.com/vIlmFug.gifv) Do you mean Ilia?"
+            reply = "[What, oh.](https://i.imgur.com/dWoj8oX.gifv) Do you mean Ilia?"
             respond = True
         elif "ileah" in comment:
-            reply = "[What, oh.](https://i.imgur.com/vIlmFug.gifv) Do you mean Ilia?"
+            reply = "[What, oh.](https://i.imgur.com/dWoj8oX.gifv Do you mean Ilia?"
             respond = True
         elif "ilea" in comment:
-            reply = "[What, oh.](https://i.imgur.com/vIlmFug.gifv) Do you mean Ilia?"
+            reply = "[What, oh.](https://i.imgur.com/dWoj8oX.gifv) Do you mean Ilia?"
             respond = True
         elif "iliah" in comment:
-            reply = "[What, oh.](https://i.imgur.com/vIlmFug.gifv) Do you mean Ilia?"
+            reply = "[What, oh.](https://i.imgur.com/dWoj8oX.gifv) Do you mean Ilia?"
             respond = True
         if respond is True:
             file = open("pyrrhaignore.txt", "a")
