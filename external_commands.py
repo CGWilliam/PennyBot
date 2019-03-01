@@ -2,10 +2,10 @@ import csv
 import datetime
 import random
 
-import private_credentials
+import non_private_credentials
 
-s3 = private_credentials.amazon_login()
-r = private_credentials.reddit_login()
+s3 = non_private_credentials.amazon_login()
+r = non_private_credentials.reddit_login()
 
 
 def shipping_wars(instring):
