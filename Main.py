@@ -9,7 +9,7 @@ import external_commands
 from random import randint
 from pytz import timezone
 
-import private_credentials
+import non_private_credentials
 import logging
 
 Debug = False
@@ -24,7 +24,7 @@ maintainer = ['weerdo5255']
 botname = ['weerdbot']
 subreddit_list = ['test']
 subreddit_advanced_scan = ['rwby', 'fnki']
-comment_triggers = ['wb', 'weerdbot', 'pb,', 'pb' 'wb,']
+comment_triggers = ['wb', 'weerdbot', 'pb,', 'pb','wb,']
 submission_triggers = ['penny']
 json_memory_length = 86400
 cake_day_message = "Happy Cake Day!"
@@ -33,8 +33,8 @@ Title_Flags = []
 Comment_Flags = []
 ignore_posts = []
 
-r = private_credentials.reddit_login()
-s3 = private_credentials.amazon_login()
+r = non_private_credentials.reddit_login()
+s3 = non_private_credentials.amazon_login()
 
 
 def setup_logger():
