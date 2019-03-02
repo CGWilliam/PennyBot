@@ -78,135 +78,22 @@ def pyrrhascan(comment):
     respond = False
     if comment.submission.id not in pyrrhaignoreposts:
         comment = str(comment.body.lower())
-        if "phyrra" in comment:
-            reply = "[Phyrra](http://streamable.com/c0fel)? Do you mean Pyrrha?"
-            respond = True
-        elif "pyrah" in comment:
-            reply = "[Pyrah](https://streamable.com/rpnvt)? Do you mean Pyrrha?"
-            respond = True
-        elif "phyrrah" in comment:
-            reply = "[Phyrrah](http://streamable.com/jsf47)? Do you mean Pyrrha?"
-            respond = True
-        elif "phyrrha" in comment:
-            reply = "[Phyrrha](https://streamable.com/60hdz)? Do you mean Pyrrha?"
-            respond = True
-        elif "phryrra" in comment:
-            reply = "[Phryrra](http://streamable.com/jc9af)? Do you mean Pyrrha?"
-            respond = True
-        elif "pyhrra" in comment:
-            reply = "[Pyhrra](http://streamable.com/11tag)? Do you mean Pyrrha?"
-            respond = True
-        elif "pyrrah" in comment:
-            reply = "[Pyrrah](http://streamable.com/ks8mf)? Do you mean Pyrrha?"
-            respond = True
-        elif "phrrya" in comment:
-            reply = "[Phrrya](http://streamable.com/t4hg5)? Do you mean Pyrrha?"
-            respond = True
-        elif "pyrhha" in comment:
-            reply = "[Pyrhha](http://streamable.com/ovdli)? Do you mean Pyrrha?"
-            respond = True
-        elif "pirrah" in comment:
-            reply = "[Pirrah](http://streamable.com/nm2lz)? Do you mean Pyrrha?"
-            respond = True
-        elif "piera" in comment:
-            reply = "[Piera](http://streamable.com/8aken)? Do you mean Pyrrha?"
-            respond = True
-        elif "pyra" in comment:
-            reply = "[Pyra](http://streamable.com/ys90o)? Do you mean Pyrrha?"
-            respond = True
-        elif "pyhra" in comment:
-            reply = "[Pyhra](http://streamable.com/q4vm1)? Do you mean Pyrrha?"
-            respond = True
-        elif "pierra" in comment:
-            reply = "[Pierra](http://streamable.com/h8qxx)? Do you mean Pyrrha?"
-            respond = True
-        elif "pierah" in comment:
-            reply = "[Pierah](http://streamable.com/gkd5o)? Do you mean Pyrrha?"
-            respond = True
-        elif "priah" in comment:
-            reply = "[Priah](http://streamable.com/qcp0p)? Do you mean Pyrrha?"
-            respond = True
-        elif "phyrria" in comment:
-            reply = "[Phyrria](http://streamable.com/8hqps)? Do you mean Pyrrha?"
-            respond = True
-        elif "pyrra" in comment:
-            reply = "[Pyrra](http://streamable.com/d4nnu)? Do you mean Pyrrha?"
-            respond = True
-        elif "pyrhaa" in comment:
-            reply = "[Pyrhaa](http://streamable.com/iiz8c)? Do you mean Pyrrha?"
-            respond = True
-        elif "pyyra" in comment:
-            reply = "[Pyyra](http://streamable.com/ww1gk)? Do you mean Pyrrha?"
-            respond = True
-        elif "pyrrea" in comment:
-            reply = "[Pyrrea](http://streamable.com/cyehb)? Do you mean Pyrrha?"
-            respond = True
-        elif "pureha" in comment:
-            reply = "[Pureha](http://streamable.com/inysv)? Do you mean Pyrrha?"
-            respond = True
-        elif "pharah" in comment:
-            reply = "[Pharah](http://streamable.com/i0ttw)? Do you mean Pyrrha?"
-            respond = True
-        elif "pharaoh" in comment:
-            reply = "[Pharaoh](http://streamable.com/v12ah)? Do you mean Pyrrha?"
-            respond = True
-        elif "pyhhra" in comment:
-            reply = "[Pyhhra](http://streamable.com/clfwa)? Do you mean Pyrrha?"
-            respond = True
-        elif "pyrhha" in comment:
-            reply = "[Pyrhha](http://streamable.com/rmn9d)? Do you mean Pyrrha?"
-            respond = True
-        elif "pyhraa" in comment:
-            reply = "[Pyhraa](http://streamable.com/we8bd)? Do you mean Pyrrha?"
-            respond = True
-        elif "pyyrah" in comment:
-            reply = "[Pyyrah](http://streamable.com/lsjn2)? Do you mean Pyrrha?"
-            respond = True
-        elif "phyyra" in comment:
-            reply = "[Phyyra](http://streamable.com/x8i9j)? Do you mean Pyrrha?"
-            respond = True
-        elif "pryyha" in comment:
-            reply = "[Pryyha](http://streamable.com/5wbug)? Do you mean Pyrrha?"
-            respond = True
-        elif "pyyrha" in comment:
-            reply = "[Pyyrha](http://streamable.com/34og7)? Do you mean Pyrrha?"
-            respond = True
-        elif "phyra" in comment:
-            reply = "[Phyra](https://streamable.com/3nbyt)? Do you mean Pyrrha?"
-            respond = True
-        elif "prryha" in comment:
-            reply = "[Prryha](http://streamable.com/0sj7t)? Do you mean Pyrrha?"
-            respond = True
-        elif "pyraah" in comment:
-            reply = "[Pyraah](http://streamable.com/srreq)? Do you mean Pyrrha?"
-            respond = True
-        elif "pearhat" in comment:
-            reply = "[Pearhat](http://streamable.com/i8z81)? Do you mean Pyrrha?"
-            respond = True
-        elif "pyyrahe" in comment:
-            reply = "[Pyyrahe](http://streamable.com/upyvf)? Do you mean Pyrrha?"
-            respond = True
-        elif "purra" in comment:
-            reply = "[Purra](http://streamable.com/pwx3t)? Do you mean Pyrrha?"
-            respond = True
-        elif "prhhya" in comment:
-            reply = "[Prhhya](http://streamable.com/8c471)? Do you mean Pyrrha?"
-            respond = True
-        elif "pyrrahe" in comment:
-            reply = "[Pyrrahe](http://streamable.com/woxdj)? Do you mean Pyrrha?"
-            respond = True
-        elif "ilya" in comment:
-            reply = "[What, oh.](https://i.imgur.com/dWoj8oX.gifv) Do you mean Ilia?"
-            respond = True
-        elif "ileah" in comment:
-            reply = "[What, oh.](https://i.imgur.com/dWoj8oX.gifv Do you mean Ilia?"
-            respond = True
-        elif "ilea" in comment:
-            reply = "[What, oh.](https://i.imgur.com/dWoj8oX.gifv) Do you mean Ilia?"
-            respond = True
-        elif "iliah" in comment:
-            reply = "[What, oh.](https://i.imgur.com/dWoj8oX.gifv) Do you mean Ilia?"
-            respond = True
+        try:
+            with open('data_sources/pyrrha.json') as pyrrhas:
+                dict_of_pyrrhas = json.load(pyrrhas)
+        except:
+            log.warning("Error loading pyrrha files")
+
+        for pyrrha in dict_of_pyrrhas.keys():
+            if pyrrha in comment:
+                #have to make sure the current key is the right one
+                #because the in operator returns the right key but also all its substrings
+                #e.g. if the comment contains pyyrah, it will return pyyrah and pyyra
+                for userInputs in re.split(r"\W",comment):
+                    print(userInputs)
+                    if userInputs == pyrrha:
+                        reply = dict_of_pyrrhas[pyrrha]
+                        respond = True
         if respond is True:
             file = open('/tmp/pyrrhaignore.txt', "a")
             file.write(str(comment.submission.id) + "\n")
