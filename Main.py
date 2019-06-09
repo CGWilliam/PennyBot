@@ -8,12 +8,11 @@ from logging.handlers import RotatingFileHandler
 import external_commands
 from random import randint
 from pytz import timezone
-
-import non_private_credentials
+import private_credentials
 import logging
 
-Debug = False
-Stream = True
+Debug = True
+Stream = False
 S3Resources = True
 celebrate_cake_day = True
 
@@ -23,8 +22,8 @@ log_size = 2048
 maintainer = ['weerdo5255']
 botname = ['weerdbot']
 subreddit_list = ['test']
-subreddit_advanced_scan = ['rwby', 'fnki']
-comment_triggers = ['wb', 'weerdbot', 'pb,', 'pb','wb,']
+subreddit_advanced_scan = ['rwby', 'fnki', 'test']
+comment_triggers = ['pb,', 'pb','wb,']
 submission_triggers = ['penny']
 json_memory_length = 86400
 cake_day_message = "Happy Cake Day!"
@@ -33,8 +32,8 @@ Title_Flags = []
 Comment_Flags = []
 ignore_posts = []
 
-r = non_private_credentials.reddit_login()
-s3 = non_private_credentials.amazon_login()
+r = private_credentials.reddit_login()
+s3 = private_credentials.amazon_login()
 
 
 def setup_logger():
@@ -105,7 +104,7 @@ def comment_process(comment, complete_dict):
         comment.reply(comment_reply_string)
 
 
-def subreddit_comment_ingest(subreddit, ignore_posts=[]):
+def subreddit_comment_ingest(subreddit, Stream, ignore_posts=[]):
     with open('data_sources/common_commands.json') as read:
         json_commands = json.load(read)
     complete_dict = {}
@@ -117,47 +116,82 @@ def subreddit_comment_ingest(subreddit, ignore_posts=[]):
     try:
         with open('data_sources/processed_reddit_comments.json') as read:
             processed_reddit_comments = json.load(read)
-    except:
+    except Exception as e:
         log.warning("Error loading Already Processed Comments")
+        log.warning(e)
 
     processed_comments = list(processed_reddit_comments.keys())
-    for comment in subreddit.stream.comments():
-        if str(comment.id) not in processed_comments:
-            if comment.author in botname:
-                log.debug('Comment is Bots, ignoring.')
-                continue
-            elif comment.submission.id in ignore_posts:
-                log.debug('Comment is in post ignore list, ignoring.')
-                continue
-            else:
-                log.debug("Processing Comment: " + str(comment.id) + "|||" + str(comment.body))
-                comment_process(comment, complete_dict)
-                processed_reddit_comments = {key: val for key, val in processed_reddit_comments.items() if not (time.time() - val) > json_memory_length}
-                processed_reddit_comments[str(comment.id)] = int(time.time())
-                with open('data_sources/processed_reddit_comments.json', 'w') as json_dump:
-                    json.dump(processed_reddit_comments, json_dump)
+
+    if Stream:
+        for comment in subreddit.stream.comments():
+            if str(comment.id) not in processed_comments:
+                if comment.author in botname:
+                    log.debug('Comment is Bots, ignoring.')
+                    continue
+                elif comment.submission.id in ignore_posts:
+                    log.debug('Comment is in post ignore list, ignoring.')
+                    continue
+                else:
+                    log.debug("Processing Comment: " + str(comment.id) + "|||" + str(comment.body))
+                    comment_process(comment, complete_dict)
+                    processed_reddit_comments = {key: val for key, val in processed_reddit_comments.items() if not (time.time() - val) > json_memory_length}
+                    processed_reddit_comments[str(comment.id)] = int(time.time())
+                    with open('data_sources/processed_reddit_comments.json', 'w') as json_dump:
+                        json.dump(processed_reddit_comments, json_dump)
+    else:
+        for comment in subreddit.comments():
+            if str(comment.id) not in processed_comments:
+                if comment.author in botname:
+                    log.debug('Comment is Bots, ignoring.')
+                    continue
+                elif comment.submission.id in ignore_posts:
+                    log.debug('Comment is in post ignore list, ignoring.')
+                    continue
+                else:
+                    log.debug("Processing Comment: " + str(comment.id) + "|||" + str(comment.body))
+                    comment_process(comment, complete_dict)
+                    processed_reddit_comments = {key: val for key, val in processed_reddit_comments.items() if not (time.time() - val) > json_memory_length}
+                    processed_reddit_comments[str(comment.id)] = int(time.time())
+                    with open('data_sources/processed_reddit_comments.json', 'w') as json_dump:
+                        json.dump(processed_reddit_comments, json_dump)
 
 
-def subreddit_submissions_ingest(subreddit):
+def subreddit_submissions_ingest(subreddits, Stream):
     global processed_reddit_submissions
     try:
         with open('data_sources/processed_reddit_submissions.json') as read:
             processed_reddit_submissions = json.load(read)
-    except:
+    except Exception as e:
         log.warning("Error loading Already Processed Submissions")
+        log.warning(e)
 
     processed_submissions = list(processed_reddit_submissions.keys())
-    for submission in subreddit.stream.submissions():
-        if str(submission.id) not in processed_submissions:
-            if str(submission.title).lower() in submission_triggers:
-                processed_reddit_submissions = {key: val for key, val in processed_reddit_submissions.items() if
-                                                not (time.time() - val) > json_memory_length}
-                processed_reddit_submissions[str(submission.id)] = int(time.time())
-                with open('data_sources/processed_reddit_submissions.json', 'w') as json_dump:
-                    json.dump(processed_reddit_submissions, json_dump)
-                with open('data_sources/default_reddit_posts.json') as read:
-                    default_reddit_posts = json.load(read)
-                submission.reply(default_reddit_posts.get(str(randint(0, len(default_reddit_posts) - 1))))
+
+    if Stream:
+        for submission in subreddits.stream.submissions():
+            if str(submission.id) not in processed_submissions:
+                if str(submission.title).lower() in submission_triggers:
+                    processed_reddit_submissions = {key: val for key, val in processed_reddit_submissions.items() if
+                                                    not (time.time() - val) > json_memory_length}
+                    processed_reddit_submissions[str(submission.id)] = int(time.time())
+                    with open('data_sources/processed_reddit_submissions.json', 'w') as json_dump:
+                        json.dump(processed_reddit_submissions, json_dump)
+                    with open('data_sources/default_reddit_posts.json') as read:
+                        default_reddit_posts = json.load(read)
+                    submission.reply(default_reddit_posts.get(str(randint(0, len(default_reddit_posts) - 1))))
+    else:
+        for submission in subreddits.new(limit=10):
+            if str(submission.id) not in processed_submissions:
+                if str(submission.title).lower() in submission_triggers:
+                    processed_reddit_submissions = {key: val for key, val in processed_reddit_submissions.items() if
+                                                    not (time.time() - val) > json_memory_length}
+                    processed_reddit_submissions[str(submission.id)] = int(time.time())
+                    with open('data_sources/processed_reddit_submissions.json', 'w') as json_dump:
+                        json.dump(processed_reddit_submissions, json_dump)
+                    with open('data_sources/default_reddit_posts.json') as read:
+                        default_reddit_posts = json.load(read)
+                    submission.reply(default_reddit_posts.get(str(randint(0, len(default_reddit_posts) - 1))))
+
 
 
 def main():
@@ -170,16 +204,14 @@ def main():
         log.info('Utilizing Subreddit Streams')
         comment_thread = threading.Thread(target=subreddit_comment_ingest, args=(subreddits, ignore_posts))
         submission_thread = threading.Thread(target=subreddit_submissions_ingest, args=(subreddits,))
-
         log.info('Starting Threads.')
         comment_thread.start()
+        time.sleep(5)
         submission_thread.start()
-
-
     else:
         log.info('Utilizing Subreddit Iteration')
-        subreddit_comment_ingest(subreddits, True, ignore_posts)
-        # subreddit_post_ingest(subreddits, True)
+        subreddit_submissions_ingest(subreddits, Stream)
+        subreddit_comment_ingest(subreddits, Stream, ignore_posts)
 
 
 log = setup_logger()
