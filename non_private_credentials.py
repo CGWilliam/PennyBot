@@ -1,6 +1,8 @@
-
 import praw
 import boto3
+
+S3Bucket = ''
+S3Region = ""
 
 
 def reddit_login():
@@ -8,7 +10,7 @@ def reddit_login():
                     client_secret='',
                     redirect_uri='http://localhost:8080',
                     refresh_token='',
-                    user_agent='Contact /u/weerdo5255 if it has gone rouge.')
+                    user_agent='')
     return r
 
 
@@ -17,3 +19,10 @@ def amazon_login():
                      aws_secret_access_key='')
     return a
 
+
+def amazon_bucket():
+    return S3Bucket
+
+
+def amazon_region():
+    return S3Region
