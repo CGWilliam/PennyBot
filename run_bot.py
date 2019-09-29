@@ -1,7 +1,9 @@
 import datetime
 import os
 import sys
+from threading import Thread
 import threading
+from queue import Queue
 import time
 import json
 from logging.handlers import RotatingFileHandler
@@ -13,8 +15,8 @@ import private_credentials
 import logging
 
 Debug = False
-Stream = False
-S3Resources = True
+Stream = True
+S3Resources = False
 S3Logging = True
 S3Bucket = private_credentials.amazon_bucket()
 S3Region = private_credentials.amazon_region()
@@ -25,12 +27,12 @@ log_name = 'weerdbot.log'
 log_size = 2048
 maintainer = 'weerdo5255'
 botname = ['pennybotv2']
-subreddit_list = ['rwby', 'fnki', 'club_penny', 'anime', 'genlock', 'roosterteeth', 'cgwilliam', 'hfy', 'c1764',
-                  'airefuge', 'test']
-subreddit_advanced_scan = ['rwby', 'fnki', 'club_penny']
+subreddit_list = ['all']
+subreddit_advanced_scan = ['rwby', 'fnki', 'club_penny', 'anime', 'genlock', 'roosterteeth', 'cgwilliam', 'hfy',
+                           'c1764', 'airefuge', 'test']
 comment_triggers = ['pb,', 'pennybot', 'pennybotv2', 'pennybot,', 'pennybotv2,']
 submission_triggers = ['penny']
-json_memory_length = 3600
+json_memory_length = 13600
 cake_day_message = "PennybotV2 Wishes you a Happy Cake Day!"
 banner_message = "--- \n \n ^^^^Bot ^^^^Created ^^^^by ^^^^/u/Weerdo5255 ^^^^See ^^^^Source ^^^^[Here.](" \
                  "https://github.com/CGWilliam/PennyBot) "
@@ -41,6 +43,7 @@ ignore_posts = []
 r = None
 s3 = None
 loaded_comments = None
+processed_global = {}
 
 formatter = logging.Formatter(fmt='%(asctime)s %(levelname)-8s %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
 logger = logging.getLogger(log_name)
@@ -59,6 +62,42 @@ log = logger
 log.info('Logging service started')
 log.info('Watching these Subreddits: %s', ' '.join(subreddit_list))
 log.info('Watching these Subreddits for exact commands: %s', ' '.join(subreddit_advanced_scan))
+
+
+class CommentProccessThread(Thread):
+    def __init__(self, commentprocessqueue):
+        Thread.__init__(self)
+        self.queue = commentprocessqueue
+
+    def run(self):
+        while True:
+            comment, processed_reddit_comments = self.queue.get()
+            try:
+                subreddit_comment_process(comment, processed_reddit_comments)
+            except Exception as e:
+                logger.debug("Error in Process thread! " + str(e))
+                continue
+            finally:
+                self.queue.task_done()
+
+
+class CommentIngestThread(Thread):
+    def __init__(self, interval, subreddit, commentinque):
+        super().__init__()
+        self.interval = interval
+        self.subreddit = subreddit
+        self.commentinque = commentinque
+        thread = threading.Thread(target=self.run, args=())
+        thread.daemon = True
+        thread.start()
+
+    def run(self):
+        while True:
+            subreddit = self.subreddit
+            commentinque = self.commentinque
+            for comment in subreddit.stream.comments():
+                commentinque.put(comment)
+            time.sleep(self.interval)
 
 
 def lambdar(r):
@@ -84,8 +123,11 @@ def upload_comments_to_s3(upload_comments):
         lamdas3(s3).Bucket(S3Bucket).upload_file('/tmp/processed_reddit_comments.json',
                                                  'processed_reddit_comments.json')
     else:
-        with open('data_sources/processed_reddit_comments.json', 'w') as json_dump:
-            json.dump(upload_comments, json_dump)
+        try:
+            with open('data_sources/processed_reddit_comments.json', 'w') as json_dump:
+                json.dump(upload_comments, json_dump)
+        except:
+            log.info('Could not Save JSON.')
 
 
 def comment_process(comment, complete_dict):
@@ -148,7 +190,8 @@ def comment_process(comment, complete_dict):
         comment.reply(comment_reply_string)
 
 
-def subreddit_comment_process(comment):
+def subreddit_comment_process(comment, processed_reddit_comments):
+    global processed_global
     if S3Resources:
         lamdas3(s3).Bucket(S3Bucket).download_file('ignore.txt', '/tmp/ignore.txt')
         with open('/tmp/ignore.txt', 'r', encoding='utf8') as f:
@@ -156,15 +199,6 @@ def subreddit_comment_process(comment):
     else:
         with open('data_sources/ignore.txt', 'r', encoding='utf8') as f:
             ignore_these_posts = [line.strip() for line in f]
-
-    if S3Resources:
-        lamdas3(s3).Bucket(S3Bucket).download_file('processed_reddit_comments.json',
-                                                   '/tmp/processed_reddit_comments.json')
-        with open('/tmp/processed_reddit_comments.json') as read:
-            processed_reddit_comments = json.load(read)
-    else:
-        with open('data_sources/processed_reddit_comments.json') as read:
-            processed_reddit_comments = json.load(read)
     processed_comments = list(processed_reddit_comments.keys())
     if str(comment.id) not in processed_comments:
         if comment.author in botname:
@@ -185,12 +219,13 @@ def subreddit_comment_process(comment):
                     complete_dict.update({str(trigger + " " + key): json_commands.get(key)})
             log.debug("Processing Comment: " + str(comment.id) + " ||| " + str(comment.body))
             comment_process(comment, complete_dict)
-            processed_reddit_comments = {key: val for key, val in processed_reddit_comments.items() if
-                                         not (time.time() - val) > json_memory_length}
             processed_reddit_comments[str(comment.id)] = int(time.time())
+            for key, value in processed_reddit_comments.items():
+                if value not in processed_global.values():
+                    processed_global[key] = value
             strtime = time.strftime("%H%M%S", time.localtime())
-            if strtime.endswith("00") and Stream:
-                upload_comments_to_s3(processed_reddit_comments)
+            if strtime.endswith("00"):
+                upload_comments_to_s3(processed_global)
     return processed_reddit_comments
 
 
@@ -206,16 +241,17 @@ def subreddit_submission_process(submission):
                 processed_reddit_submissions = json.load(read)
         processed_submissions = list(processed_reddit_submissions.keys())
         if str(submission.id) not in processed_submissions:
-            if str(submission.title).lower() in submission_triggers:
-                if S3Resources:
-                    lamdas3(s3).Bucket(S3Bucket).download_file('default_reddit_posts.json',
-                                                               '/tmp/default_reddit_posts.json')
-                    with open('/tmp/default_reddit_posts.json') as read:
-                        default_reddit_posts = json.load(read)
-                else:
-                    with open('data_sources/default_reddit_posts.json') as read:
-                        default_reddit_posts = json.load(read)
-                submission.reply(default_reddit_posts.get(str(randint(0, len(default_reddit_posts) - 1))))
+            for trigger in submission_triggers:
+                if trigger in str(submission.title).lower():
+                    if S3Resources:
+                        lamdas3(s3).Bucket(S3Bucket).download_file('default_reddit_posts.json',
+                                                                   '/tmp/default_reddit_posts.json')
+                        with open('/tmp/default_reddit_posts.json') as read:
+                            default_reddit_posts = json.load(read)
+                    else:
+                        with open('data_sources/default_reddit_posts.json') as read:
+                            default_reddit_posts = json.load(read)
+                    submission.reply(default_reddit_posts.get(str(randint(0, len(default_reddit_posts) - 1))))
 
         processed_reddit_submissions = {key: val for key, val in
                                         processed_reddit_submissions.items() if
@@ -231,47 +267,57 @@ def subreddit_submission_process(submission):
                 json.dump(processed_reddit_submissions, json_dump)
 
 
-def subreddit_comment_ingest(subreddit, stream_ingest):
+def subreddit_comment_ingest(subreddit, special_subreddits, processed_reddit_comments, stream_ingest):
     if stream_ingest:
-        for comment in subreddit.stream.comments():
-            subreddit_comment_process(comment)
+        commentprocessque = Queue()
+        commentque = Queue()
+        global processed_global
+
+        for x in range(8):
+            logger.info("Spawning off All Worker: " + str(x))
+            CommentIngestThread(1, subreddit, commentque)
+
+        CommentIngestThread(1, special_subreddits, commentque)
+
+        for x in range(8):
+            commentprocessthread = CommentProccessThread(commentprocessque)
+            commentprocessthread.daemon = True
+            commentprocessthread.start()
+
+        while True:
+            if commentque.empty():
+                commentprocessque.join()
+                processed_global = {key: val for key, val in processed_global.items()
+                                    if (time.time() - val) > json_memory_length}
+                for submission in special_subreddits.new():
+                    subreddit_submission_process(submission)
+            else:
+                commentprocessque.put((commentque.get(), processed_reddit_comments))
 
     else:
         for comment in subreddit.comments():
-            processed_comments = subreddit_comment_process(comment)
+            processed_comments = subreddit_comment_process(comment, processed_reddit_comments)
             upload_comments_to_s3(processed_comments)
 
 
-def subreddit_submissions_ingest(subreddits, stream_ingest):
-    if stream_ingest:
-        for submission in subreddits.stream.submissions():
-            subreddit_submission_process(submission)
-    else:
-        for submission in subreddits.new():
-            subreddit_submission_process(submission)
-
-
 def main():
+    global processed_global
     subreddits = lambdar(r).subreddit('+'.join(subreddit_list))
-    advanced_subreddits = lambdar(r).subreddit('+'.join(subreddit_advanced_scan))
+    special_subreddits = lambdar(r).subreddit('+'.join(subreddit_advanced_scan))
 
     if not os.path.isdir('/tmp'):
         os.mkdir('/tmp')
 
-    if Stream:
-        log.info('Utilizing Subreddit Streams')
-        comment_thread = threading.Thread(target=subreddit_comment_ingest,
-                                          args=(subreddits, advanced_subreddits, Stream))
-        submission_thread = threading.Thread(target=subreddit_submissions_ingest,
-                                             args=(subreddits, advanced_subreddits, Stream))
-        log.info('Starting Threads.')
-        comment_thread.start()
-        time.sleep(1)
-        submission_thread.start()
+    if S3Resources:
+        lamdas3(s3).Bucket(S3Bucket).download_file('processed_reddit_comments.json',
+                                                   '/tmp/processed_reddit_comments.json')
+        with open('/tmp/processed_reddit_comments.json') as read:
+            processed_global = json.load(read)
     else:
-        log.debug('Utilizing Subreddit Iteration')
-        subreddit_comment_ingest(subreddits, Stream)
-        subreddit_submissions_ingest(subreddits, Stream)
+        with open('data_sources/processed_reddit_comments.json') as read:
+            processed_global = json.load(read)
+
+    subreddit_comment_ingest(subreddits, special_subreddits, processed_global, Stream)
 
 
 main()
